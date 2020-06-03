@@ -2,4 +2,6 @@
 .max-height {
     position: center;
     height: 100vh;
+    padding-bottom: 100px;
+    overflow: auto;
 }

@@ -10,47 +10,37 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userMessage: '',
-            isChanged: 'false'
+            userMessage: 'none',
+            isNewMessage: 'false'
         }
         this.readMessage = this.readMessage.bind(this);
     }
 
     readMessage = (message) => {
-        // this.state.userMessage === message
-        //     ? this.setState({userMessage: message});
-        //     : this.state.isChanged = 'true';
-        this.state.userMessage === message
-            ? this.setState({isChanged: 'false'})
-            : this.setState({isChanged: 'true'});
-        //this.state.userMessage = message;
-        this.setState({userMessage: message});
-
-        console.log('Get:' + this.state.userMessage);
+        this.setState({userMessage: message, isNewMessage: 'true'});
     }
 
-
     render() {
+        let msg;
+        {
+            if (this.state.isNewMessage === 'true') {
+                msg = <MessageGroup message={this.state.userMessage}/>
+                this.setState({isNewMessage: 'false'});
+            } else
+                msg = <MessageGroup message='false'/>
+        }
+
+
         return (
             <div className="App">
-                <MessageGroup isAddMessage={this.state.isChanged} message={this.state.userMessage}/>
+                {msg}
                 <InputBlock readMessage={this.readMessage} on/>
+                <div id="wwscroll"></div>
             </div>
+        // Невидимый элемент, фактически браузер прокручивает его
+
         )
     }
 }
-
-// ------ //
-
-// function App() {
-
-//     return (
-//         <div className="App">
-//             <MessageGroup/>
-//             <InputBlock/>
-//         </div>
-//     );
-// }
-
 
 export default App;
