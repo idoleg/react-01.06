@@ -9,16 +9,17 @@ export default class App extends React.Component {
     constructor(props) {
         super(props)
     }
-        
+     
     state = {
-        text: 'Наш первый React-компонент'
+        text: 'Наш первый React-компонент',
+        title: "React GB"
     };
    
     render() {
         console.log('render');
         return (
             <div>
-                <Header/>
+                <Header title={this.state.title}/>
                 <MessageList/>
             </div>
         )
