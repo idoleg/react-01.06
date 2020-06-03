@@ -17,7 +17,16 @@ export default class MessageList extends React.Component {
     }
     
     handleClick = () => {
-        this.setState({ messages: [ ...this.state.messages, {name: document.getElementById('name').value, content: document.getElementById('text').value} ] });
+
+        const nameField = document.getElementById('name').value
+        const textField = document.getElementById('text').value
+
+        if(nameField && textField){
+            this.setState({ messages: [ ...this.state.messages, {name: nameField, content: textField} ] });
+        } else {
+            alert(`Поля пустые`)
+        }
+
     }
  
 
