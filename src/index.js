@@ -18,6 +18,16 @@ const MessageList = ({ messages }) => (
     </ul>
 )
 
+//Добавил функцию, которая выводит в консоль массив с сообщениями и рендерит новое на страницу
+//Но увы не получилось сделать рендер самой кнопки(
+const clickOnButton = () => {
+    const newInfo = { name: 'Dmitriy', content: 'Hi, guys!' }
+
+    messages.push(newInfo)
+    console.log(messages)
+}
+clickOnButton();
+
 
 const mountPoint = document.getElementById("root");
 ReactDom.render(<MessageList messages =  { messages } />, mountPoint);
