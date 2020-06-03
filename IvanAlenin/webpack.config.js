@@ -10,16 +10,27 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js)$/,
-                include: path.resolve(__dirname, "src"),
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/env', '@babel/react'],
-                }
-            }
+                test: /\.(js)$/, include: path.resolve(__dirname, "src"), loader: 'babel-loader',
+                options: {presets: ['@babel/env', '@babel/react']},
+            },
+            {
+                test: /\.(css)$/,
+                use: ['style-loader', 'css-loader']
+            },
         ],
     },
     plugins: [
-        new HTMLWebpackPlugin({template:  path.resolve(__dirname, "public", "index.html"),})
+        new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html"),})
     ],
 }
+
+/*
+ добавить css для bootstrap - 4 часа... so sadly.. ))
+ rules: [
+ ...
+             {
+                test: /\.(css)$/,
+                use: ['style-loader', 'css-loader']
+            },
+        ],
+*/

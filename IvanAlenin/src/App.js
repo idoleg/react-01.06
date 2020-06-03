@@ -1,38 +1,56 @@
-import React, { createElement } from "react";
+import React, {createElement} from "react";
+import {InputBlock} from "./components/InputBlock";
+import {MessageGroup} from "./components/MessageGroup";
+
 //import "./App.css";
 
 // ------ //
 
-const messages = [
-    { name: "Ivan", content: "Hello, friend!" },
-    { name: "Oleg", content: "Hi!" },
-    { name: "Ivan", content: "How are you?" },
-    { name: "Oleg", content: "I'm fine" },
-];
+export class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userMessage: '',
+            isChanged: 'false'
+        }
+        this.readMessage = this.readMessage.bind(this);
+    }
 
-// ------ //
+    readMessage = (message) => {
+        // this.state.userMessage === message
+        //     ? this.setState({userMessage: message});
+        //     : this.state.isChanged = 'true';
+        this.state.userMessage === message
+            ? this.setState({isChanged: 'false'})
+            : this.setState({isChanged: 'true'});
+        //this.state.userMessage = message;
+        this.setState({userMessage: message});
 
-function App() {
-    return (
-        <div className="App">
-            <MessageList messages={messages} />
-        </div>
-    );
+        console.log('Get:' + this.state.userMessage);
+    }
+
+
+    render() {
+        return (
+            <div className="App">
+                <MessageGroup isAddMessage={this.state.isChanged} message={this.state.userMessage}/>
+                <InputBlock readMessage={this.readMessage} on/>
+            </div>
+        )
+    }
 }
 
-const Message = ({ name, content }) => (
-  <li>
-      <strong>{name}:</strong> {content}
-  </li>
-);
-const MessageList = ({ messages }) => (
-  <ul>
-      {messages.map((item, index) => (
-          <Message {...item} key={index} />
-      ))}
-  </ul>
-);
-
 // ------ //
+
+// function App() {
+
+//     return (
+//         <div className="App">
+//             <MessageGroup/>
+//             <InputBlock/>
+//         </div>
+//     );
+// }
+
 
 export default App;
