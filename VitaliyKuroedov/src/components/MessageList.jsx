@@ -3,7 +3,6 @@ import Message from './Message.jsx'
 import Button from './Button.jsx'
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
-// import RaisedButton from 'material-ui/RaisedButton';
 
 export default class MessageList extends React.Component {
     constructor(props){
@@ -20,7 +19,7 @@ export default class MessageList extends React.Component {
         ]
     }
     componentDidUpdate() {
-        if (this.state.messages[this.state.messages.length - 1].name === 'me') {
+        if (this.state.messages[this.state.messages.length - 1].name === 'Я') {
             setTimeout(() =>
                     this.setState({
                         messages: [ ...this.state.messages, {content: 'Не приставай ко мне, я робот!', name: 'bot'} ] }),
@@ -71,9 +70,6 @@ export default class MessageList extends React.Component {
                     </FloatingActionButton>
     
                 </div>
-                {/* <ul className="message-list">
-                    {this.state.messages.map((item, index) => <Message {...item} key={index}/> )}
-                </ul>*/}
              </div> 
         )
     }

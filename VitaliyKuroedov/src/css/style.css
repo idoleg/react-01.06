@@ -24,10 +24,13 @@ main {
     width: 100%;
     max-width: 70%;
     height: 85vh;
-    /* margin: 0; */
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
+}
+
+.chat-list{
+    width: 100%;
+    max-width: 30%;
 }
 
 .message-list {

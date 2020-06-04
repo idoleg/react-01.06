@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'React-dom'
+import ReactDOM from 'react-dom'
 import App from './components/App.jsx'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 

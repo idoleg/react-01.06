@@ -13,7 +13,16 @@ export default class App extends React.Component {
      
     state = {
         text: 'GB React lesson 3',
-        title: "React GB"
+        title: "React GB",
+        contacts: [
+            {id: '1', name: 'Сушист', avatar: 'avatar'}
+        ],
+        chats: [
+            {id: 'chatID', contact: 'idContactsItem', messageHistory: 'idMessageArray',},
+            {id: 'chatID', contact: 'idContactsItem', messageHistory: 'idMessageArray',},
+            {id: 'chatID', contact: 'idContactsItem', messageHistory: 'idMessageArray',}
+
+        ]
     }
    
     render() {
@@ -23,7 +32,7 @@ export default class App extends React.Component {
                 <Header title={this.state.title}/>
                 <main>
                     <MessageList/>
-                    <ChatList/>
+                    <ChatList chats={this.state.chats}/>
                 </main>
             </div>
         )
