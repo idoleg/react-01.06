@@ -2,6 +2,7 @@
 import React from 'react'
 import MessageList from './MessageList.jsx'
 import Header from './Header.jsx'
+import ChatList from './ChatList.jsx'
 
 import '../css/style.css'
 
@@ -11,16 +12,19 @@ export default class App extends React.Component {
     }
      
     state = {
-        text: 'Наш первый React-компонент',
+        text: 'GB React lesson 3',
         title: "React GB"
-    };
+    }
    
     render() {
         console.log('render');
         return (
             <div>
                 <Header title={this.state.title}/>
-                <MessageList/>
+                <main>
+                    <MessageList/>
+                    <ChatList/>
+                </main>
             </div>
         )
     }

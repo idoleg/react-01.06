@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'React-dom'
 import App from './components/App.jsx'
-
-const root = document.getElementById('root')
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 
 ReactDOM.render(
-    <App/>, document.getElementById('root')
+    <MuiThemeProvider>
+        <App/>
+    </MuiThemeProvider>,
+    document.getElementById('root')
+    
 )
