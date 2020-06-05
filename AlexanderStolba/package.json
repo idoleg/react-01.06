@@ -1,21 +1,29 @@
 {
-  "name": "OlegShikov",
+  "name": "Alexander",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --mode=development --open",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitUserNameAlex/react-01.06.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gitUserNameAlex/react-01.06/issues"
+  },
+  "homepage": "https://github.com/gitUserNameAlex/react-01.06#readme",
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
+    "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0",
@@ -23,7 +31,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
