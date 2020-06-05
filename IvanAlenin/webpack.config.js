@@ -23,14 +23,3 @@ module.exports = {
         new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html"),})
     ],
 }
-
-/*
- добавить css для bootstrap - 4 часа... so sadly.. ))
- rules: [
- ...
-             {
-                test: /\.(css)$/,
-                use: ['style-loader', 'css-loader']
-            },
-        ],
-*/
