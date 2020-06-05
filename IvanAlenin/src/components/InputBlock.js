@@ -35,14 +35,14 @@ export class InputBlock extends React.Component {
 
     render() {
         return (
-            <div className="container-md w-50 fixed-bottom">
+            <div className="container-md fixed-bottom ">
 
-                <div className="input-group mb-2 p-3 border border-primary rounded shadow">
+                <div className="bg-white input-group mb-2 p-3 border border-primary rounded shadow">
                     <input ref={this.inputRef} className="form-control"
                            onKeyPress={(event) => this.inputPress(event)}
                            placeholder="Type a message"/>
                     <div className="input-group-append">
-                        <button className="btn btn-outline-primary" onClick={(event) => this.btnClick()}>
+                        <button className="btn btn-outline-primary" onClick={() => this.btnClick()}>
                             Send..
                         </button>
                     </div>

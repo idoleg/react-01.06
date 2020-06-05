@@ -111,6 +111,8 @@ export class MessageGroup extends React.Component {
         return Math.floor(rand);
     }
 
+
+
     componentDidUpdate(prevProps, prevState) {
         let msg = this.props.message;
         console.log('componentDidUpdate()' + msg);
@@ -152,23 +154,16 @@ export class MessageGroup extends React.Component {
             }
 
         }
-        return true;
+
     }
 
 
     render() {
-        let msg = this.props.message;
-        if (msg !== 'false' && msg.length > 0) {
-            // this.addUserMessage();
-        }
-
         return (
-            <div className="container-md  max-height">
-                <div className="  mt-2 p-3">
-                    {this.state.messages.map((i, idx) =>
-                        <MessageBlock name={i.name} content={i.content} key={idx}
-                                      position={(i.name === this.state.botName) ? "left" : "right"}/>)}
-                </div>
+            <div className="  mt-2 p-3">
+                {this.state.messages.map((i, idx) =>
+                    <MessageBlock name={i.name} content={i.content} key={idx}
+                                  position={(i.name === this.state.botName) ? "left" : "right"}/>)}
             </div>
         )
     }

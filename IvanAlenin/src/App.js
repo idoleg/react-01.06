@@ -1,6 +1,8 @@
 import React, {createElement} from "react";
+import Path from "path";
 import {InputBlock} from "./components/InputBlock";
 import {MessageGroup} from "./components/MessageGroup";
+
 
 //import "./App.css";
 
@@ -14,6 +16,9 @@ export class App extends React.Component {
             isNewMessage: 'false'
         }
         this.readMessage = this.readMessage.bind(this);
+
+        console.log(Path.resolve(__dirname));
+        console.log(Path.resolve(__dirname, 'public', 'background_2.png'));
     }
 
     readMessage = (message) => {
@@ -30,15 +35,18 @@ export class App extends React.Component {
                 msg = <MessageGroup message='false'/>
         }
 
-
         return (
-            <div className="App">
-                {msg}
-                <InputBlock readMessage={this.readMessage} on/>
-                <div id="wwscroll"></div>
+            <div className="App container-md">
+                <div className=" pt-2">
+                    <div className="alert alert-info ">
+                        <h2>
+                            Привет! Попробуй отгадать загадку по JS или просто поболтать с моим ботом))
+                        </h2>
+                    </div>
+                    {msg}
+                    <InputBlock readMessage={this.readMessage} on/>
+                </div>
             </div>
-        // Невидимый элемент, фактически браузер прокручивает его
-
         )
     }
 }
