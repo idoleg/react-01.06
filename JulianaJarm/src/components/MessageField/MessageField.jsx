@@ -13,15 +13,20 @@ export class MessageField extends React.Component {
 
     handleClick() {
         let message = this.state.textAreaValue;
-            //[this.state.textAreaValue];
         this.messages.push(message);
         this.setState({textAreaValue: ''});
-        console.log(this.messages);
     }
-
 
    handleChange(event) {
        this.setState({ textAreaValue: event.target.value });
+   }
+
+   componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.textAreaValue === '') {
+            setTimeout(() => {
+                this.messages.push("Talk to the hand. Asshole.");
+            },1000)
+        }
    }
 
     render() {
