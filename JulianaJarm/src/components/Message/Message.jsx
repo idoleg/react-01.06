@@ -1,7 +1,8 @@
 import React, { createElement } from 'react';
 
-export class Message extends React.Component {
-
-
+export default class Message extends React.Component {
+     render() {
+        return <p>{this.props.text}</p>
+     }
 
 }

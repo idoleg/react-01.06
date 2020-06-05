@@ -1,5 +1,5 @@
 import React, { createElement } from 'react';
-import { Message} from "../Message/Message";
+import Message from "../Message/Message";
 
 export class MessageField extends React.Component {
 
@@ -13,19 +13,22 @@ export class MessageField extends React.Component {
 
     handleClick() {
         let message = this.state.textAreaValue;
+            //[this.state.textAreaValue];
         this.messages.push(message);
+        this.setState({textAreaValue: ''});
         console.log(this.messages);
     }
 
 
-   handleChange(event){
+   handleChange(event) {
        this.setState({ textAreaValue: event.target.value });
-        console.log(event.target.value)
    }
 
     render() {
+        let messages = this.messages.map((message, index) => <Message text={message} key={index} />);
         return (
             <div>
+                <div>{messages}</div>
                 <p>Enter your message here:</p>
                 <textarea name="message" id="textarea-message" value={this.state.textAreaValue} onChange={this.handleChange} />
                 <button onClick={this.handleClick}>Send</button>
@@ -33,4 +36,4 @@ export class MessageField extends React.Component {
         );
     }
 }
-//<input type="text" value={this.state.value} onChange={this.handleChange}/>
+
