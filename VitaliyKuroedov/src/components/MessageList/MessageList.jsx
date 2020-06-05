@@ -25,7 +25,6 @@ export default class MessageList extends Component {
                     this.setState({
                         messages: [ ...this.state.messages, {content: 'Не приставай ко мне, я робот!', name: 'bot'} ] }),
                 1000);
-
         }
     }
  
