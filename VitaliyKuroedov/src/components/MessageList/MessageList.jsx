@@ -17,12 +17,15 @@ export default class MessageList extends Component {
             {name: 'Oleg' , content: 'Shalom'},
         ]
     }
-    componentDidUpdate() {
-        if (this.state.messages[this.state.messages.length - 1].name === 'Я') {
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.messages.length < this.state.messages.length &&
+            this.state.messages[this.state.messages.length -1].name === 'Я'){
+
             setTimeout(() =>
                     this.setState({
                         messages: [ ...this.state.messages, {content: 'Не приставай ко мне, я робот!', name: 'bot'} ] }),
                 1000);
+
         }
     }
  
@@ -44,8 +47,6 @@ export default class MessageList extends Component {
         this.setState({ messages: [ ...this.state.messages, {content: message, name: 'Я'} ] });
         this.setState(this.state.input = '')
     };
-
-
 
     render() {
         const messageElements = this.state.messages.map((item, index) => <Message {...item} key={index}/> )
