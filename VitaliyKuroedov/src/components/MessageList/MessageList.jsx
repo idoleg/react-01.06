@@ -68,7 +68,6 @@ export default class MessageList extends Component {
                         onClick={ () => this.handleClick(this.state.input) }>
                         <SendIcon/>
                     </FloatingActionButton>
-    
                 </div>
              </div> 
         )
