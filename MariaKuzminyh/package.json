@@ -1,5 +1,5 @@
 {
-  "name": "OlegShikov",
+  "name": "MariaKuzminyh",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,6 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
@@ -23,7 +22,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
