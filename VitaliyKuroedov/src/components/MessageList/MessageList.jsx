@@ -1,10 +1,9 @@
-import React from 'react'
-import Message from './Message.jsx'
-import Button from './Button.jsx'
+import React, {Component, Fragment} from 'react'
+import Message from '../Message/Message'
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-export default class MessageList extends React.Component {
+export default class MessageList extends Component {
     constructor(props){
         super(props)
         
@@ -42,7 +41,8 @@ export default class MessageList extends React.Component {
     };
    
     sendMessage = (message) => {
-        this.setState({ messages: [ ...this.state.messages, {content: message, name: 'me'} ] });
+        this.setState({ messages: [ ...this.state.messages, {content: message, name: 'Я'} ] });
+        this.setState(this.state.input = '')
     };
 
 

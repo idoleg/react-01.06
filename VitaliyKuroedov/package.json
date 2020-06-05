@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "material-ui": "^0.20.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",

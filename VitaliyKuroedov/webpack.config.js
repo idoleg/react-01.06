@@ -34,6 +34,9 @@ module.exports = {
     },
     plugins: [
         new HTMLWebbackPlugin({template: path.resolve(__dirname, "src", "index.html")})
-    ]
+    ],
+    resolve: {
+        extensions: [".jsx", ".js"]
+    }
 
 }

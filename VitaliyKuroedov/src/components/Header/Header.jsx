@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {Component, Fragment} from 'react'
 
-
-export default class Header extends React.Component {
+export default class Header extends Component {
     render(){
         return(
             <header className="header">

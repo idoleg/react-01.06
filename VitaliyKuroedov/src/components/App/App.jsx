@@ -1,12 +1,11 @@
+import React, {Component, Fragment} from 'react'
+import MessageList from '../MessageList/MessageList'
+import Header from '../Header/Header'
+import ChatList from '../ChatList/ChatList'
 
-import React from 'react'
-import MessageList from './MessageList.jsx'
-import Header from './Header.jsx'
-import ChatList from './ChatList.jsx'
+import '../../css/style.css'
 
-import '../css/style.css'
-
-export default class App extends React.Component {
+export default class App extends Component {
     constructor(props) {
         super(props)
     }
@@ -26,15 +25,14 @@ export default class App extends React.Component {
     }
    
     render() {
-        console.log('render');
         return (
-            <div>
+            <Fragment>
                 <Header title={this.state.title}/>
                 <main>
                     <MessageList/>
                     <ChatList chats={this.state.chats}/>
                 </main>
-            </div>
+            </Fragment>
         )
     }
 }
