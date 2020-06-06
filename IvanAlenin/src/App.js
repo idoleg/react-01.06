@@ -1,7 +1,7 @@
 import React, {createElement} from "react";
 import Path from "path";
-import {InputBlock} from "./components/InputBlock";
-import {MessageGroup} from "./components/MessageGroup";
+import {InputBlock} from "./components/InputBlock/InputBlock";
+import {MessageGroup} from "./components/MessageGroup/MessageGroup";
 
 
 //import "./App.css";

@@ -1,10 +1,11 @@
-import React from "react";
-import {MessageBlock} from "./MessageBlock";
+import React, {useRef} from "react";
+import {MessageBlock} from "../MessageBlock/MessageBlock";
 
 export class MessageGroup extends React.Component {
 
     constructor(props) {
         super(props);
+        this.messagesEndRef = React.createRef();
 
         this.state = {
             date: new Date(),
@@ -74,20 +75,14 @@ export class MessageGroup extends React.Component {
             }]
     }
 
+    /*Read more about scrolling chat to the bottom
+    * with class and func variants
+    * https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
+    */
+    scrollToBottom = () => {
+        this.messagesEndRef.current.scrollIntoView({behavior: "smooth"});
+    }
 
-    // addUserMessage() {
-    //     let lastId = this.state.messages.length;
-    //     let messages = [...this.state.messages];
-    //     messages.push({id: lastId + 1, name: this.state.userName, content: this.props.message});
-    //     this.setState({messages});
-    // }
-    //
-    // addBotMessage(contentStr) {
-    //     let lastId = this.state.messages.length;
-    //     let messages = [...this.state.messages];
-    //     messages.push({id: lastId + 1, name: this.state.botName, content: contentStr});
-    //     this.setState({messages});
-    // }
 
     addUserMessage() {
         let lastId = this.state.messages.length;
@@ -112,11 +107,10 @@ export class MessageGroup extends React.Component {
     }
 
 
-
     componentDidUpdate(prevProps, prevState) {
         let msg = this.props.message;
         console.log('componentDidUpdate()' + msg);
-        // this.setState({date: this.props.time});
+
         if (msg !== 'false' && msg.length > 0) {
             this.addUserMessage();
 
@@ -125,29 +119,22 @@ export class MessageGroup extends React.Component {
             if (this.props.message === 'time') {
                 let contentStr = 'Время в данный момент: ' + new Date().toLocaleTimeString();
                 this.addBotMessage(contentStr);
-            }
-            else if (this.props.message === 'riddle')
-            {
+            } else if (this.props.message === 'riddle') {
                 let i = this.randomInteger(0, 3);
                 this.addBotMessage(this.state.riddles[i].riddle);
                 this.setState({isRiddled: 'true', lastRiddleId: i});
-            }
-            else
-            {
-                if(this.state.isRiddled === 'true')
-                {
+            } else {
+                if (this.state.isRiddled === 'true') {
                     let contentStr;
                     let trueAnswer = this.state.riddles[this.state.lastRiddleId].answer;
 
                     trueAnswer === msg
-                        ?  contentStr = "Вы молодец!"
-                        :  contentStr = "Попытайтесь еще, а верный ответ: " + trueAnswer;
+                        ? contentStr = "Вы молодец!"
+                        : contentStr = "Попытайтесь еще, а верный ответ: " + trueAnswer;
 
                     this.addBotMessage(contentStr);
                     this.setState({isRiddled: 'false'});
-                }
-                else
-                {
+                } else {
                     let i = this.randomInteger(0, 3);
                     this.addBotMessage(this.state.answers[i].answer);
                 }
@@ -155,6 +142,7 @@ export class MessageGroup extends React.Component {
 
         }
 
+        this.scrollToBottom();
     }
 
 
@@ -164,6 +152,7 @@ export class MessageGroup extends React.Component {
                 {this.state.messages.map((i, idx) =>
                     <MessageBlock name={i.name} content={i.content} key={idx}
                                   position={(i.name === this.state.botName) ? "left" : "right"}/>)}
+                <div ref={this.messagesEndRef}/>
             </div>
         )
     }

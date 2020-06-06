@@ -17,9 +17,15 @@ module.exports = {
                 test: /\.(css)$/,
                 use: ['style-loader', 'css-loader']
             },
+            {
+                test: /\.(gif|png|jpe?g)$/, exclude: /favicon/,
+                use: { loader: 'file-loader', options: {name: '[name].[ext]', outputPath: 'img'}, }
+            },
         ],
     },
     plugins: [
         new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html"),})
     ],
 }
+
+
