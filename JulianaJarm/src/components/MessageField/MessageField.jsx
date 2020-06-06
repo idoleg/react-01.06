@@ -5,16 +5,17 @@ export class MessageField extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { textAreaValue: ''}
-        this.messages = [];
+        this.state = {
+            textAreaValue: '',
+            messages: [],
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         let message = this.state.textAreaValue;
-        this.messages.push(message);
-        this.setState({textAreaValue: ''});
+        this.setState({ textAreaValue: '', messages: [...this.state.messages, message]});
     }
 
    handleChange(event) {
@@ -22,21 +23,20 @@ export class MessageField extends React.Component {
    }
 
    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.textAreaValue === '') {
-            setTimeout(() => {
-                this.messages.push("Talk to the hand. Asshole.");
-            },1000)
-        }
+       if (this.state.textAreaValue === '' && this.state.messages.length % 2 !== 0) {
+           setTimeout(() => {this.setState({messages: [...this.state.messages, 'Talk to the hand.']})},
+               1000);
+       }
    }
 
     render() {
-        let messages = this.messages.map((message, index) => <Message text={message} key={index} />);
+        let messages = this.state.messages.map((message, index) => <Message text={ message } key={ index } />);
         return (
             <div>
                 <div>{messages}</div>
                 <p>Enter your message here:</p>
-                <textarea name="message" id="textarea-message" value={this.state.textAreaValue} onChange={this.handleChange} />
-                <button onClick={this.handleClick}>Send</button>
+                <textarea name="message" id="textarea-message" value={ this.state.textAreaValue } onChange={ this.handleChange } />
+                <button onClick={ this.handleClick }>Send</button>
             </div>
         );
     }
