@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import MessageList from './components/MessageList/MessageList.jsx';
+import './layout/style/main.css';
 
 const mountPoint = document.getElementById('root');
 
-let msgArr = [{name: "Mike", text: "Hello"},
-			  {name: "Helga", text: "Hi"},
-			  {name: "Mike", text: "How are you?"},
-			  {name: "Helga", text: "Fine, thanks"}
-			]
 
 
-ReactDom.render(<MessageList msgArr = { msgArr } />, mountPoint);
+
+ReactDom.render(<MessageList />, mountPoint);
