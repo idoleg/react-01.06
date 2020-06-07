@@ -7,19 +7,24 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "output.js"
     },
-    module : {
+    module: {
         rules: [ 
             {
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 include: path.resolve(__dirname, "src"),
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/env', '@babel/react']
+                    presets: ['@babel/env', '@babel/react'],
+                    plugins: ['@babel/plugin-proposal-class-properties']
                 }
             }   
         ],
     },
     plugins: [
-        new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html" )})
+        new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html")})
     ],
+
+    resolve: {
+        extensions: [".jsx", ".js"]
+    },
 }
