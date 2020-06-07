@@ -1,27 +1,25 @@
 const path = require("path");
-const webpack = require('webpack');
+const HTMLwebpackPlagin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: {  //с чего начинается сборка
-        app: './index.js', 
-    },
-    context: path.resolve(__dirname, "src"),  //папка где искать 
+    entry: path.resolve(__dirname, "src", "index.js"),
     output: {
-        path: path.resolve(__dirname, "static", "build"),
-        filename: 'app.js',
+        path: path.resolve(__dirname, "dist"),
+        filename: "index.js"
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                include: path.resolve(__dirname, "static_src"),
+                test: /\.(js)$/,
+                include: path.resolve(__dirname, "src"),
                 loader: 'babel-loader',
-                exclude: /node_modules/,
                 options: {
-                    presets: ['@babel/env'],
+                    presets: ['@babel/env', '@babel/react'],
                 }
-            },
+            }
         ],
     },
-
+    plugins: [
+        new HTMLwebpackPlagin({ template: path.resolve(__dirname, "src", "index.html"), })
+    ],
 };
