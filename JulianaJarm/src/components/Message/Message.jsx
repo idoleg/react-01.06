@@ -1,8 +1,8 @@
-import React, { createElement } from 'react';
+import React from 'react';
 
 export default class Message extends React.Component {
      render() {
-        return <p>{this.props.text}</p>
+        return <p><b>{this.props.author}:</b>{this.props.text}</p>
      }
 
 }

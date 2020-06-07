@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import Message from "../Message/Message";
 
 export class MessageField extends React.Component {
@@ -7,35 +7,44 @@ export class MessageField extends React.Component {
         super(props);
         this.state = {
             textAreaValue: '',
+            //[{login: '', text: ''}]
             messages: [],
+            login: '',
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleLoginChange = this.handleLoginChange.bind(this);
     }
 
     handleClick() {
-        let message = this.state.textAreaValue;
+        let message = {login: this.state.login, text: this.state.textAreaValue};
         this.setState({ textAreaValue: '', messages: [...this.state.messages, message]});
     }
 
-   handleChange(event) {
+   handleMessageChange(event) {
        this.setState({ textAreaValue: event.target.value });
+   }
+
+   handleLoginChange(event) {
+        this.setState({ login: event.target.value });
+        console.log(this.state.login)
    }
 
    componentDidUpdate(prevProps, prevState, snapshot) {
        if (this.state.textAreaValue === '' && this.state.messages.length % 2 !== 0) {
-           setTimeout(() => {this.setState({messages: [...this.state.messages, 'Talk to the hand.']})},
+           let message = {login: 'Robot', text: 'Talk to the hand'};
+           setTimeout(() => {this.setState({messages: [...this.state.messages, message]})},
                1000);
        }
    }
 
     render() {
-        let messages = this.state.messages.map((message, index) => <Message text={ message } key={ index } />);
+        let messages = this.state.messages.map((message, index) => <Message author={ message.login } text={ message.text } key={ index } />);
         return (
             <div>
                 <div>{messages}</div>
-                <p>Enter your message here:</p>
-                <textarea name="message" id="textarea-message" value={ this.state.textAreaValue } onChange={ this.handleChange } />
+                <div><input type="text" placeholder="Login" value={ this.state.login } onChange={ this.handleLoginChange } /></div>
+                <textarea placeholder={ 'Enter your message here:' } value={ this.state.textAreaValue } onChange={ this.handleMessageChange } />
                 <button onClick={ this.handleClick }>Send</button>
             </div>
         );
