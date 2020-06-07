@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/MessageField';
 
-let messages = [
+/*let messages = [
     { 
         name: 'Tanya',
         content: 'How are you?'
@@ -43,7 +44,7 @@ function ButtonClick(){
     messages.push(mes)
     console.log(messages)
     ReactDOM.render(<MessageList messages={messages} />, mountPoint)
-}
+}*/
 
 const mountPoint = document.getElementById('app')
-ReactDOM.render(<MessageList messages={messages} />, mountPoint)
+ReactDOM.render(<App />, mountPoint)
