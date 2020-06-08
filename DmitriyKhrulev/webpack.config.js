@@ -11,7 +11,7 @@ module.exports = {
    module: {
       rules: [
          {
-            test: /\.(js)$/,
+            test: /\.(js||jsx)$/,
             include: path.resolve(__dirname, "src"),
             loader: 'babel-loader',
             options: {
@@ -27,5 +27,8 @@ module.exports = {
    },
    plugins: [
       new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html") })
-   ]
+   ],
+   resolve: {
+      extensions: [".jsx", ".js"],
+   },
 }
