@@ -1,5 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
@@ -14,18 +15,22 @@ module.exports = {
                 options: {presets: ['@babel/env', '@babel/react']},
             },
             {
-                test: /\.(css)$/,
-                use: ['style-loader', 'css-loader']
+                // test: /\.css$/i,
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {loader: MiniCssExtractPlugin.loader, options: {publicPath: "../"}},
+                    {loader: 'css-loader'},
+                    {loader: 'sass-loader'},
+                    ],
             },
             {
                 test: /\.(gif|png|jpe?g)$/, exclude: /favicon/,
-                use: { loader: 'file-loader', options: {name: '[name].[ext]', outputPath: 'img'}, }
+                use: {loader: 'file-loader', options: {name: '[name].[ext]', outputPath: 'img'},}
             },
         ],
     },
     plugins: [
-        new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html"),})
+        new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html")}),
+        new MiniCssExtractPlugin({filename: 'css/[name].css'}),
     ],
 }
-
-

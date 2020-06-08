@@ -36,16 +36,95 @@ export class App extends React.Component {
         }
 
         return (
-            <div className="App container-md">
-                <div className=" pt-2">
-                    <div className="alert alert-info ">
-                        <h2>
-                            Привет! Попробуй отгадать загадку по JS или просто поболтать с моим ботом))
-                        </h2>
+            <div className="App container">
+                <div className="row no-gutters d-none d-md-flex">
+
+                    <div className="flex-grow-1 px-2 text-center m-auto"><span className="h3">Title</span></div>
+
+
+                    <div className="border-left">
+                        <button className=" btn btn-outline-primary px-4 py-2" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    {msg}
-                    <InputBlock readMessage={this.readMessage} on/>
+
+
                 </div>
+                <div className="row no-gutters overflow-hidden d-flex h-100">
+                    <div className="ContactTab col-md-4 d-none d-md-flex flex-column">
+                        <div className="alert">
+                            <h2>
+                                Header
+                            </h2>
+                        </div>
+                        <div className="ContactGroup">
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+                            <div className="alert">
+                                <h2>
+                                    Bla lalalaldkfjjkf
+                                </h2>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div className="MessageTab col-md-8 pt-2 d-flex flex-column">
+                        <div className="MessageTabHead mb-auto">
+                            <h2>
+                                THis place for chat name, button prop and etc
+                            </h2>
+
+                        </div>
+
+                        {msg}
+                        <InputBlock readMessage={this.readMessage} on/>
+                    </div>
+                </div>
+
             </div>
         )
     }

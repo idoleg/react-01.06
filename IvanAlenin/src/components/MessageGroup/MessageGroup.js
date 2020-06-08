@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import {MessageBlock} from "../MessageBlock/MessageBlock";
 
 export class MessageGroup extends React.Component {
@@ -139,7 +139,6 @@ export class MessageGroup extends React.Component {
                     this.addBotMessage(this.state.answers[i].answer);
                 }
             }
-
         }
 
         this.scrollToBottom();
@@ -148,7 +147,7 @@ export class MessageGroup extends React.Component {
 
     render() {
         return (
-            <div className="  mt-2 p-3">
+            <div className="MessageGroup mb-auto">
                 {this.state.messages.map((i, idx) =>
                     <MessageBlock name={i.name} content={i.content} key={idx}
                                   position={(i.name === this.state.botName) ? "left" : "right"}/>)}

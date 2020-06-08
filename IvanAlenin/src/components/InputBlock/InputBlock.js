@@ -35,9 +35,9 @@ export class InputBlock extends React.Component {
 
     render() {
         return (
-            <div className="container-md fixed-bottom ">
+            <div className="InputBlock">
 
-                <div className="bg-white input-group mb-2 p-3 border border-primary rounded shadow">
+                <div className="bg-white input-group p-2 mt-auto">
                     <input ref={this.inputRef} className="form-control"
                            onKeyPress={(event) => this.inputPress(event)}
                            placeholder="Type a message"/>
