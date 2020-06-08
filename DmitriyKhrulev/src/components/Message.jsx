@@ -10,9 +10,9 @@ export default class Message extends React.Component {
    render() {
       return <>
          <div>
-            {this.props.text}
+            {this.props.name}: {this.props.text}
          </div>
-         
+
       </>
    }
 }

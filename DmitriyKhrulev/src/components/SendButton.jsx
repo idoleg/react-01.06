@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Message from './Message';
+
 import { element } from 'prop-types';
 
 
@@ -8,34 +9,32 @@ import { element } from 'prop-types';
 export default class SendButton extends React.Component {
 
    state = {
-      messages: ['User: Hi', 'User: How are you?'],
+      messages: [{text:'Hi', user: 'bot'}, {text:'How are you?', user: 'bot'}],
    };
 
    handleClick = () => {
+      let userMessage = document.querySelector('#userInput').value;
       this.setState({
-         messages: [...this.state.messages, 'Robot: Good'],
+         messages: [...this.state.messages, {text: userMessage, user: 'Human'}],
       });
 
    }
 
    componentDidUpdate() {
-      if (this.state.messages.length % 2 === 1) {
-         setTimeout(() => this.setState({
-            messages: [...this.state.messages, "Robot: I don't want talk to you Leathern!"],
-
-         })), 2000
+      if (this.state.messages[this.state.messages.length-1].user == 'Human') {
+         setTimeout(() => {this.setState({messages: [...this.state.messages, {text: "I don't want talk to you! Leave me alone!", user: 'bot'}]})}, 2000)
       }
    }
    render() {
-      const messageElements = this.state.messages.map((text, index) => (
-            <Message key={index +2} text={text} />
+      const messageElements = this.state.messages.map((message, index) => (
+         
+         <Message key={index} text={message.text} name={message.user} /> 
+         
       ));
-      messageElements.forEach((element) => console.log(element.props));
-
 
       return <div>
          {messageElements}
-         <input id='one'></input><button onClick={this.handleClick}>Send Message</button>
+         <input id='userInput'></input><button onClick={this.handleClick}>Send Message</button>
       </div>
    }
 }
