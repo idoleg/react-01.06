@@ -12,7 +12,7 @@ module.exports={
     module:{
         rules:[
             {
-                test: /\.(js)$/,
+                test: /\.(jsx|js)$/,
                 include: path.resolve(__dirname, 'src'),
                 loader:'babel-loader',
                 options: {
@@ -22,6 +22,9 @@ module.exports={
 
             }
         ]
+    },
+    resolve:{
+        extensions: ['.jsx','.js']
     }
 
     
