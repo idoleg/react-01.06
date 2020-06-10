@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Message extends React.Component {
-    static propTypes = {
-        name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-    }
      render() {
-        return <p><b>{this.props.author}:</b>{this.props.text}</p>
+        return <p className="messageBlock">
+            <b className="author">{this.props.author}:</b>
+            <span className="messageText">{this.props.text}</span>
+        </p>
      }
 
 }

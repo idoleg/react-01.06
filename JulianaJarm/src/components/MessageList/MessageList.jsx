@@ -1,4 +1,5 @@
 import React, { createElement } from 'react';
+import PropTypes from 'prop-types';
 import Message from '../Message/Message'
 
 export const MessageList = ({ messages }) => (
@@ -7,6 +8,3 @@ export const MessageList = ({ messages }) => (
     </ul>
 )
 
-MessageList.propTypes = {
-    messages: PropTypes.arrayOf()
-}
