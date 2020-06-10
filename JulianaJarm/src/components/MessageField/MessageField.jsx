@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, FloatingActionButton } from 'material-ui';
+import { TextField, FloatingActionButton, Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import '../../styles/styles.css'
 import Message from "../Message/Message";
@@ -20,6 +20,7 @@ export class MessageField extends React.Component {
     handleMessageSend = () => {
         let message = {login: this.state.login, text: this.state.textAreaValue};
         this.setState({ textAreaValue: '', messages: [...this.state.messages, message], login: ''});
+
     }
 
    handleMessageChange = (event) => {
@@ -28,6 +29,10 @@ export class MessageField extends React.Component {
 
    handleLoginChange = (event) => {
         this.setState({ login: event.target.value });
+   }
+
+   handleClick = () => {
+        this.handleMessageSend();
    }
 
    handleKeyUp = (event) =>{
@@ -70,7 +75,7 @@ export class MessageField extends React.Component {
                         value={ this.state.textAreaValue }
                         onChange={ this.handleMessageChange }
                         onKeyUp={this.handleKeyUp} />
-                    <FloatingActionButton onClick={ this.handleMessageSend } >
+                    <FloatingActionButton onClick={ this.handleClick } >
                         <SendIcon />
                     </FloatingActionButton>
                 </form>
@@ -79,4 +84,4 @@ export class MessageField extends React.Component {
     }
 }
 //todo -- ChatList и MessageField должны быть расположены рядом друг с другом ниже Header так, чтобы Message Field занимал большую часть (например, 30 % на 70 %);
-//todo -- прикрепить форму для ввода сообщения к низу экрана, отправленные юзером сообщения - к правому краю, полученные - к левому краю
+//todo -- прикрепить форму для ввода сообщения к низу экрана
