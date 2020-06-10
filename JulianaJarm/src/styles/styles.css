@@ -1,0 +1,36 @@
+body {
+    background-color: cadetblue;
+}
+.messageField {
+    width: 50%;
+    margin: 0 auto;
+    background-color: aliceblue;
+    padding: 10px;
+    border: solid cadetblue 2px;
+    border-radius: 10px;
+}
+.messageContainer {
+    width: 100%;
+}
+.botMessage, .userMessage {
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 50px;
+    width: 70%;
+    height: auto;
+}
+
+.botMessage {
+    background-color: #C5E1A5;
+    text-align: left;
+    margin: 10px;
+    float: left;
+}
+
+.userMessage {
+    background-color: #B2DFDB;
+    text-align: right;
+    margin: 10px;
+    float: right;
+}
+
