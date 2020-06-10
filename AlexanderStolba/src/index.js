@@ -1,13 +1,6 @@
-import React, { createElement } from "react";
-import ReactDom from "react-dom";
-import { MessageField } from "./components/MessageField/MessageField";
+import React, { createElement } from 'react';
+import ReactDom from 'react-dom';
+import { App } from './App';
 
-//const messages = [
-//    { name: 'Ivan' },
-//    { name: 'Oleg' },
-//   { name: 'Ivan' }, 
-//    { name: 'Oleg' },
-//]
-
-const mountPoint = document.getElementById("root");
-ReactDom.render(<MessageField />, mountPoint);
+const mountPoint = document.getElementById('root')
+ReactDom.render(<App />, mountPoint)

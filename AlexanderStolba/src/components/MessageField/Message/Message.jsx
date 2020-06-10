@@ -1,15 +1,16 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+import './Message.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ROBOT_NAME } from '../../../containers/ChatContainer';
 
-export class Message extends Component {
-    static propTypes = {
-        text: PropTypes.string.isRequired,
+export const Message = ({ name, content }) => {
 
-    }
+    const isRobot = name === ROBOT_NAME ? ' message--is-robot' : '';
 
-    render() {
-        return <>
-            <strong>{ this.props.text }</strong>
-            </>
-    }
+    return (<li className={ 'message' + isRobot }><strong>{ name }:</strong> { content }</li>);
+};
+
+Message.propTypes = {
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
 }
