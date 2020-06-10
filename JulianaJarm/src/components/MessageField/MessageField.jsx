@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
+import '../../styles/styles.css'
 import Message from "../Message/Message";
 
 export class MessageField extends React.Component {
@@ -37,7 +38,7 @@ export class MessageField extends React.Component {
 
    componentDidUpdate(prevProps, prevState, snapshot) {
        if (this.state.textAreaValue === '' && this.state.messages.length % 2 !== 0) {
-           let message = {login: 'Robot', text: 'Talk to the hand'};
+           let message = {login: 'bot', text: 'Talk to the hand'};
            setTimeout(() => {this.setState({messages: [...this.state.messages, message]})},
                1000);
        }
@@ -46,32 +47,36 @@ export class MessageField extends React.Component {
         let messages = this.state.messages.map((message, index) => (
             <Message author={ message.login } text={ message.text } key={ index } />
             ));
+
         return (
-            <div>
-                <div>{messages}</div>
-                <div>
-                    <input
+            <div className="messageField">
+                <div className="sentMessages">{messages}</div>
+                <form>
+                    <TextField
+                        name="input"
+                        fullWidth={ false }
                         type="text"
-                        placeholder="Login"
+                        hintText="Your login"
+                        className="loginInput"
                         value={ this.state.login }
                         onChange={ this.handleLoginChange } />
-                </div>
-                <textarea
-                    placeholder={ 'Enter your message here:' }
-                    value={ this.state.textAreaValue }
-                    onChange={ this.handleMessageChange }
-                    onKeyUp={this.handleKeyUp} />
-                <button onClick={ this.handleMessageSend }>Send</button>
+
+                    <TextField
+                        fullWidth={ true }
+                        name="message"
+                        hintText="Write your message here..."
+                        className="messageInput"
+                        style={{fontSize: 20}}
+                        value={ this.state.textAreaValue }
+                        onChange={ this.handleMessageChange }
+                        onKeyUp={this.handleKeyUp} />
+                    <FloatingActionButton onClick={ this.handleMessageSend } >
+                        <SendIcon />
+                    </FloatingActionButton>
+                </form>
             </div>
         );
     }
 }
-//todo ?? перенести логику формы для ввода сообщения и логина в ChatForm
-//todo ?? Chat будет содержать чат-форму и список отправленных и полученных сообщений MessageList
-//todo ?? Chat - для отрисовки вертски. ChatContainer - для всей логики, все, кроме верстки
-//todo * Создать новые компоненты: Layout, ChatList и Header.
-//todo -- Layout должен быть вверху приложения (подключаться в index.jsx), а ChatList, Header и MessageField внутри него;
-//todo -- Header должен быть вверху Layout и занимать всю ширину;
 //todo -- ChatList и MessageField должны быть расположены рядом друг с другом ниже Header так, чтобы Message Field занимал большую часть (например, 30 % на 70 %);
-//todo -- ChatList должен только визуально отражать список из 3–5 чатов (назовите их как угодно) и пока не несет никакой функциональности. Переключение между чатами реализовывать не нужно;
-//todo ++ Для верстки ChatList использовать List из Material-UI.
+//todo -- прикрепить форму для ввода сообщения к низу экрана, отправленные юзером сообщения - к правому краю, полученные - к левому краю
