@@ -24,12 +24,13 @@ export const ChatForm = ({ onSendMessage }) => {
         setContentState("");
     }
     
-    //отправка по нажатию enter
-    //срабатывает сразу как только что-либо введено в поле ввода
     const handleKeyUp = (event) => {
-        event.preventDefault();
-        onSendMessage({ name, content });
-        setContentState("");
+
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            onSendMessage({ name, content });
+            setContentState("");
+        }
     }
 
     return (
