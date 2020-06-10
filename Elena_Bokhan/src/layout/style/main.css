@@ -2,6 +2,7 @@ body {
 	padding: 100px 0;	
 	background-color: #006363;
 	margin:  auto;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .field {	
 	display: flex;
@@ -13,24 +14,39 @@ body {
 	
 	background-color:#009999;
 }
-.field-items {
-	display: flex;
-	flex-wrap: wrap;
-	height: 85%;		
-	overflow-y: scroll;
-	align-content: flex-end;
-	
-}
 .field header {
 	color: #006363;
 	background-color: #FF9640;
 	font-family: Arial, Helvetica, sans-serif;
-	flex-basis: 100%;
-	padding: 10px 0;
+	width: 100%;
+	height: 15%;	
 	text-align: center;
 	font-size: 48px;
 	font-weight: 600;
+	line-height: 85px;
 }
+.chat-list-field{
+	width: 30%;
+	height:85%;
+	background-color: #1D7373;
+}
+.chat-list-field div{
+	color:  white;
+	padding: 20px;
+	border-bottom: 1px solid rgb(38, 156, 156);
+}
+.chat-list-field div:hover{
+	background-color: rgb(17, 136, 136);
+}
+.messages-list-field {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	height: 511px;		
+	overflow-y: scroll;
+	align-content: flex-end;	
+}
+
 .wrp-item {
 	flex-basis: 100%;
 	display: flex;	
@@ -57,14 +73,45 @@ body {
 	flex-direction: row-reverse;		
 }
 
-.field textarea {
-	width: 80%;
+.avatar{
+	width: 60px;
+	height: 60px;
+	margin: 0 20px;
+	border-radius: 50%;
+	background-color: #FF9640;
+}
+.bot .avatar{	
+	background-color: rgb(141, 247, 247);
+}
+
+.chat-form{
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	height: 7%;
+	position: absolute;
+    bottom: 0;
+}
+.chat-form input {
+	width: 20%;	
+	outline-style: none;	
+	border: none;
+	background-color: rgb(132, 218, 218);
+	text-align: right;
+	padding: 5px 20px;
+	font-weight: 700;
+	color: teal;
+}
+.chat-form textarea {
+	width: 60%;
 	height:auto;	
 	outline-style: none;	
 	border: none;
+	padding: 5px 20px;
+	line-height: 24px;
 }
 
-.field button {	
+.chat-form button {	
     background-color: #FF9640;
     color: white;    
     border-style: none;    
@@ -76,19 +123,4 @@ button:hover{
 	background-color: #A64B00;
 	cursor: pointer;
 	transition: ease 200ms;
-}
-.avatar{
-	width: 60px;
-	height: 60px;
-	margin: 0 20px;
-	border-radius: 50%;
-	background-color: #FF9640;
-}
-.bot .avatar{	
-	background-color: 	rgb(141, 247, 247);
-}
-.textmap{
-	display: flex;
-	justify-content: flex-end;
-	flex-basis: 100%;
 }
