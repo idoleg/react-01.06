@@ -33,4 +33,8 @@ body {
     margin: 10px;
     float: right;
 }
+.chatListContainer {
+    position: fixed;
+
+}
 

@@ -6,7 +6,7 @@ export default class Message extends React.Component {
      render() {
          let className = this.props.author === 'bot' ? 'botMessage' : 'userMessage';
 
-        return (
+         return (
             <div className="messageContainer">
                 <div className={className}>
                     <Card>
