@@ -36,9 +36,10 @@ export class ChatContainer extends React.Component {
     }
 
     handleSendMessage = (message) => {
-        message.id=this.state.length+1;
+        
+        
         this.setState(state => ({
-            messages: [...state.messages, message],
+            messages: [...state.messages, {...message, id:(state.messages.length+1)}],
         }));
          
 

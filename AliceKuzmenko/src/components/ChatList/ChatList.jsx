@@ -37,14 +37,6 @@ export  function ChatList({chats}) {
 }
 
 
-// export const ChatList = ({ chats }) => (
-//     <><ul className="chat-list">
-        
-//     </ul>
-//     <SelectChat chatsList={chats}></SelectChat>
-// </>
-// );
 ChatList.propTypes = {
     chats: PropTypes.arrayOf(PropTypes.shape(Object)).isRequired,
 }
-// //<ListItemText primary= {item.name} />

@@ -30,9 +30,9 @@ export const ChatForm = ({ onSendMessage }) => {
 
     }
     const handleKeyUp = (event) => {
-        console.log("event")
+        //console.log("event")
         if (event.keyCode === 13) { // Enter
-            this.handleSubmit(event);
+            handleSubmit(event);
         }
      };
     return (
@@ -52,12 +52,13 @@ export const ChatForm = ({ onSendMessage }) => {
                 placeholder="Your message"
                 value={content}
                 onChange={setContent}
+                onKeyUp = { (event) => handleKeyUp(event) }
             />
             <Button 
                 variant="contained" 
                 color="primary" 
                 onClick={handleSubmit}
-                onKeyUp = { (event) => handleKeyUp(event) }
+                
             >
                 Send
             </Button>
