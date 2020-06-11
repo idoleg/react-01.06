@@ -18,7 +18,6 @@ export default class MessageField extends Component {
         this.setState({ messages: [...this.state.messages, {'name': 'User', 'text':'Проблема'}]});
     }
 
-    // componentDidUpdate надо просто кирюха тута ебануть
     componentDidUpdate() {
         if (this.state.messages.length % 2 == 1) {
             setTimeout(() =>
@@ -41,9 +40,3 @@ export default class MessageField extends Component {
         )
     }
 }
-
-// export const MessageList = ({ messages }) => (
-//     <ul>
-//         {messages.map((item, index) => <Message {...item} key={index} />)}
-//     </ul>
-// )
