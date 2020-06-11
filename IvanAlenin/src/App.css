@@ -1,3 +1,4 @@
+/*Styles for main page*/
 body {
     background: rgb(39,39,153);
     background: linear-gradient(270deg, rgb(77, 77, 137) 0%, rgb(126, 170, 179) 100%);
@@ -5,7 +6,6 @@ body {
 }
 
 /*Scroll*/
-
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -19,25 +19,16 @@ body {
 ::-webkit-scrollbar-thumb {
     width: 1em;
     background-color: #bbbbbb;
-    /*border-radius: 1rem;*/
 }
 
 #root {
     height: 100%;
-    /*padding: 0;*/
-    /*margin: 0;*/
     align-items: center !important;
     display: flex;
 }
 
-.App {
-    background: rgb(236, 231, 226);
-    box-shadow: 0 0 10px 0 #000c6f;
-    border-radius: 4px;
 
-    margin: -2px;
-    padding: 2px;
-}
+
 
 /* ---- ContactTab ---- */
 .ContactTab {
@@ -177,16 +168,10 @@ body {
 }
 /*Малые девайсы («ландшафтные», < 768px)*/
 @media (max-width: 767.98px) {
-    .ContactTab, .MessageTab, .App {
+    .ContactTab, .MessageTab {
         height: 100%;
     }
 
-    .App {
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0;
-        margin: 0;
-    }
 
     #root {
 
