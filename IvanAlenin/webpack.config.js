@@ -33,4 +33,8 @@ module.exports = {
         new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html")}),
         new MiniCssExtractPlugin({filename: 'css/[name].css'}),
     ],
+    devServer: {
+        historyApiFallback: true,
+    },
+    devtool: 'cheap-inline-module-source-map',
 }
