@@ -43,8 +43,8 @@ export class MessageGroup extends React.Component {
             },
             {
                 id: 3,
-                riddle: "Каков результат в переменной х?  > x='2'+2",
-                answer: "22"
+                riddle: "Каков результат в переменной х?  > x='4'+2",
+                answer: "42, The Ultimate Question of Life, the Universe, and Everything "
             },
             {
                 id: 4,

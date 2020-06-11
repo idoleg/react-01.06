@@ -1,6 +1,15 @@
 // Используются только стили Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// Для работы динамических плагинов Bootstrap
+// подключить при необходимости:
+import 'bootstrap';
+// import $ from 'jquery';
+// import Popper from 'popper.js';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
+// package.json
+// "jquery": "^3.5.1",
+// "popper.js": "^1.16.1",
+// "bootstrap": "^4.5.0"
 
 import './App.css';
 
@@ -11,23 +20,12 @@ import App from './App';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App/>,
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );
 
-/*
-Для работы динамических плагинов Bootstrap
-подключить при необходимости:
-import 'bootstrap';
-import $ from 'jquery';
-import Popper from 'popper.js';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-// package.json
-"jquery": "^3.5.1",
-"popper.js": "^1.16.1",
-"bootstrap": "^4.5.0"
-*/
+
 
 // Кэширование, оптимизация для офлайн, почитать в будущем
 // https://create-react-app.dev/docs/making-a-progressive-web-app/

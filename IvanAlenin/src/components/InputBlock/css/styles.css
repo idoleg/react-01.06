@@ -1,0 +1,17 @@
+.InputBlock {
+    /*padding: 2px;*/
+}
+
+.InputBlock textarea {
+    resize: none;
+}
+
+.InputBlock textarea:hover {
+    background: rgba(0, 136, 255, 0.1);
+}
+
+.InputBlock button {
+    margin: -3px -5px -5px 3px;
+    min-width: 50px;
+}
+
