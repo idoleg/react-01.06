@@ -1,7 +1,7 @@
 body {
     background-color: cadetblue;
 }
-.messageField {
+.chat {
     width: 50%;
     margin: 0 auto;
     background-color: aliceblue;

@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, FloatingActionButton, Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui';
-import SendIcon from 'material-ui/svg-icons/content/send';
 import '../../styles/styles.css'
-import Message from "../Message/Message";
 import {MessageForm} from "../MessageForm/MessageForm";
 import {MessageList} from "../MessageList/MessageList";
 
@@ -30,7 +27,7 @@ export class Chat extends React.Component {
 
    render() {
         return (
-            <div className="messageField">
+            <div className="chat" id="chat">
                 <MessageList messages={this.state.messages}/>
                 {/*<div className="sentMessages">{messages}</div>*/}
                 <MessageForm onMessage={this.addMessage} />
