@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import Message from './Message';
+import Message from './Message/Message';
 
 import { element } from 'prop-types';
 
-
+import '../components/Styles/style.css'
 
 
 export default class SendButton extends React.Component {
@@ -32,9 +32,10 @@ export default class SendButton extends React.Component {
          
       ));
 
-      return <div>
+      return <div id='main' className='message-field'>
          {messageElements}
-         <input id='userInput'></input><button onClick={this.handleClick}>Send Message</button>
+         <input id='userInput'></input>
+         <button onClick={this.handleClick}>Send Message</button>
       </div>
    }
 }

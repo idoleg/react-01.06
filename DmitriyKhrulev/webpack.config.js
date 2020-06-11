@@ -22,6 +22,10 @@ module.exports = {
                      {"loose": true}]
                ]
             }
+         },
+         {
+            test: /\.(css)$/,
+            loader: 'style-loader!css-loader',
          }
       ]
    },

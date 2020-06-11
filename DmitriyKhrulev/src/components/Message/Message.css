@@ -1,0 +1,16 @@
+.message {
+   align-self: flex-end;
+   list-style: none;
+   background-color: lightblue;
+   padding: 10px;
+   border-radius: 5px;
+   width: 30%;
+}
+
+.message:not(:last-child) {
+   margin-bottom: 10px;
+}
+
+.message--is-robot {
+   align-self: flex-start; 
+}
