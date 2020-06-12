@@ -66,7 +66,7 @@ export default class MessageList extends Component {
                             messages: [ 
                                 ...this.state.chats[id].messages,
                                 { 
-                                    content: 'Не приставай ко мне, я робот!', 
+                                    content: `Не приставай ко мне, я ${this.state.chats[id].name}`, 
                                     name: this.state.chats[id].name, 
                                     author: false
                                 }]    
