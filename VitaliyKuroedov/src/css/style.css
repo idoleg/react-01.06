@@ -27,7 +27,9 @@ main {
     align-items: center;
     flex-direction: column;
 }
-
+.link{
+    text-decoration: none;
+}
 .chat-list{
     width: 100%;
     max-width: 30%;

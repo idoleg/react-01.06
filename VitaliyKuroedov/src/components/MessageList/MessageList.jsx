@@ -15,21 +15,70 @@ export default class MessageList extends Component {
             {name: 'Petr' , content: 'Hi'},
             {name: 'Vitalii' , content: 'Hola'},
             {name: 'Oleg' , content: 'Shalom'},
-        ]
+        ],
+        chats: {
+            1: {
+                name: 'Сушист',
+                messages: [
+                    {name: 'Ivan', content: 'hello', author: true},
+                    {name: 'Petr' , content: 'Hi', author: true},
+                    {name: 'Vitalii' , content: 'Hola', author: true},
+                    {name: 'Oleg' , content: 'Shalom', author: true},
+                ]
+            },
+            2: {
+                name: 'Визажист',
+                messages: [
+                    {name: 'Vitalii' , content: 'Hola', author: true},
+                    {name: 'Oleg' , content: 'Shalom', author: true},
+                ]
+            },
+            3: {
+                name: 'Бухгалтер',
+                messages: [
+                    {name: 'Ivan', content: 'hello', author: true},
+                    {name: 'Petr' , content: 'Hi', author: true},
+                ]
+            },
+            4: {
+                name: 'Качок',
+                messages: [
+                    {name: 'Ivan', content: 'hello', author: true},
+                    {name: 'Petr' , content: 'Hi', author: true},
+                ]
+            },
+        }
     }
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.messages.length < this.state.messages.length &&
-            this.state.messages[this.state.messages.length -1].name === 'Я'){
+        const { id } = this.props.match.params
+        const currentMessage = this.state.chats[id].messages
+        const lastMessage = currentMessage[currentMessage.length -1]
+
+        if(prevState.chats[id].messages.length < currentMessage.length && lastMessage.author === true){
 
             setTimeout(() =>
-                    this.setState({
-                        messages: [ ...this.state.messages, {content: 'Не приставай ко мне, я робот!', name: 'bot'} ] }),
-                1000);
+                this.setState( state => ({
+                    ...state,
+                    chats: {
+                        ...state.chats,
+                        [id]: {
+                            ...state.chats[id],
+                            messages: [ 
+                                ...this.state.chats[id].messages,
+                                { 
+                                    content: 'Не приставай ко мне, я робот!', 
+                                    name: this.state.chats[id].name, 
+                                    author: false
+                                }]    
+                        }
+                    }
+                })), 1000);
         }
     }
  
     handleClick = (message) => {
-        this.sendMessage(message)
+        const { id } = this.props.match.params
+        this.sendMessage(id, message)
     };
  
     handleChange = (event) => {
@@ -37,18 +86,31 @@ export default class MessageList extends Component {
     };
  
     handleKeyUp = (event, message) => {
+        const { id } = this.props.match.params
         if (event.keyCode === 13) { // Enter
-            this.sendMessage(message)
+            this.sendMessage(id, message)
         }
     };
    
-    sendMessage = (message) => {
-        this.setState({ messages: [ ...this.state.messages, {content: message, name: 'Я'} ] });
+    sendMessage = (id, message) => {
+        this.setState(state => ({
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    ...state.chats[id],
+                    messages: [ ...this.state.chats[id].messages, {content: message, name: 'Я', author: true} ]
+                }
+            }
+        }))
         this.setState(this.state.input = '')
     };
 
     render() {
-        const messageElements = this.state.messages.map((item, index) => <Message {...item} key={index}/> )
+        const { id } = this.props.match.params
+        const messageElements = id && this.state.chats[id] ? 
+            this.state.chats[id].messages.map((item, index) => <Message {...item} key={index}/>) : 
+            null
         return(
             <div className="container">
                 <div className="message-list">
