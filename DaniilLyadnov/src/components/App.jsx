@@ -1,44 +1,26 @@
-import React, {Component} from 'react';
-import {MessageField} from "./MessageField/MessageField";
+import React from 'react';
+import {ChatList} from "../components/ChatList/ChatList";
+import {ChatContainer} from '../containers/ChatContainer';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-export class App extends Component {
+export const App = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path="/" exact>It's main page</Route>
 
-    state = {
-        messages: [
-            {role: 'user', name: 'Ivan', content: 'Hello, friend!'},
-            {role: 'user', name: 'Oleg', content: 'Hi!'},
-            {role: 'user', name: 'Ivan', content: 'How are you?'},
-            {role: 'user', name: 'Oleg', content: 'I\'m fine'},
-        ],
-    };
+            <Route path="/chats">
+                <ChatList />
+                <Switch>
+                    <Route path="/chats" exact component={ChatContainer} />
+                    <Route path="/chats/:id" exact component={ChatContainer} />
+                </Switch>
+            </Route>
 
-    addMessage = (author, messageText) => {
-        this.setState(() => ({
-            messages: [...this.state.messages, {role: 'user', name: author, content: messageText}]
-        }))
-    };
+            <Route path="/about">It's about page</Route>
+            <Route path="/contacts">It's contacts page</Route>
+            <Route path="/">It's 404 page</Route>
+        </Switch>
+    </BrowserRouter>
+);
 
-    componentDidUpdate() {
-        // console.log('componentDidUpdate');
-        // console.log(this.state.messages[this.state.messages.length - 1].role === 'robot');
-
-        if (this.state.messages[this.state.messages.length - 1].role !== 'robot') {
-            setTimeout(() =>
-                this.setState({
-                    messages: [...this.state.messages, {
-                        role: 'robot',
-                        name: 'robot',
-                        content: 'Прости ' + this.state.messages[this.state.messages.length - 1].name + ', я робот!'
-                    }]
-                }), 1000);
-        }
-    }
-
-    render() {
-        // console.log(this.state.messages);
-
-        return (
-            <MessageField messages={this.state.messages} addMessage={this.addMessage}/>
-        );
-    };
-}
+//  <ChatContainer />

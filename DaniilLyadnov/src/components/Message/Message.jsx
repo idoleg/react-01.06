@@ -1,9 +1,17 @@
-import React, {Component} from "react";
+import './Message.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {ROBOT_ROLE} from '../../containers/ChatContainer'
 
-export class Message extends Component {
-    render () {
-        return (
-            <li><strong>{this.props.name}:</strong> {this.props.content}</li>
-        )
-    }
-}
+export const Message = ({name, content}) => {
+    const isRobot = name === ROBOT_ROLE ? ' message-is--robot' : '';
+
+    return (
+        <li className={'message' + isRobot}><strong>{name}:</strong> {content}</li>
+    )
+};
+
+Message.propTypes = {
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+};
