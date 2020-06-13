@@ -1,54 +1,17 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component, Fragment, } from 'react'
 import Message from '../Message/Message'
-import { TextField, FloatingActionButton } from 'material-ui';
-import SendIcon from 'material-ui/svg-icons/content/send';
+import { TextField, Fab } from '@material-ui/core'
+import SendIcon from '@material-ui/icons/Send'
 
 export default class MessageList extends Component {
     constructor(props){
         super(props)
-        
     }
     state = {
         input: '',
-        messages: [
-            {name: 'Ivan' , content: 'Hello'},
-            {name: 'Petr' , content: 'Hi'},
-            {name: 'Vitalii' , content: 'Hola'},
-            {name: 'Oleg' , content: 'Shalom'},
-        ],
-        chats: {
-            1: {
-                name: 'Сушист',
-                messages: [
-                    {name: 'Ivan', content: 'hello', author: true},
-                    {name: 'Petr' , content: 'Hi', author: true},
-                    {name: 'Vitalii' , content: 'Hola', author: true},
-                    {name: 'Oleg' , content: 'Shalom', author: true},
-                ]
-            },
-            2: {
-                name: 'Визажист',
-                messages: [
-                    {name: 'Vitalii' , content: 'Hola', author: true},
-                    {name: 'Oleg' , content: 'Shalom', author: true},
-                ]
-            },
-            3: {
-                name: 'Бухгалтер',
-                messages: [
-                    {name: 'Ivan', content: 'hello', author: true},
-                    {name: 'Petr' , content: 'Hi', author: true},
-                ]
-            },
-            4: {
-                name: 'Качок',
-                messages: [
-                    {name: 'Ivan', content: 'hello', author: true},
-                    {name: 'Petr' , content: 'Hi', author: true},
-                ]
-            },
-        }
+        chats: this.props.chats
     }
+
     componentDidUpdate(prevProps, prevState) {
         const { id } = this.props.match.params
         const currentMessage = this.state.chats[id].messages
@@ -72,7 +35,9 @@ export default class MessageList extends Component {
                                 }]    
                         }
                     }
-                })), 1000);
+                    
+                }) ), 1000)
+            setTimeout(() => this.props.addMessage(id, {...this.state.chats[id]}), 1100)   
         }
     }
  
@@ -82,6 +47,8 @@ export default class MessageList extends Component {
     };
  
     handleChange = (event) => {
+        const { id } = this.props.match.params
+        if(id === undefined) return
         this.setState({ input: event.target.value });
     };
  
@@ -91,8 +58,10 @@ export default class MessageList extends Component {
             this.sendMessage(id, message)
         }
     };
-   
+    
     sendMessage = (id, message) => {
+        console.log(id)
+        if(id === undefined) return
         this.setState(state => ({
             ...state,
             chats: {
@@ -103,33 +72,38 @@ export default class MessageList extends Component {
                 }
             }
         }))
-        this.setState(this.state.input = '')
+        this.setState({input : ''})
+        
     };
 
     render() {
         const { id } = this.props.match.params
-        const messageElements = id && this.state.chats[id] ? 
-            this.state.chats[id].messages.map((item, index) => <Message {...item} key={index}/>) : 
+        const messageElements = id && this.props.chats[id] ? 
+            this.props.chats[id].messages.map((item, index) => <Message {...item} key={index}/>) : 
             null
+        let error = ''
+        if (id == undefined) error = <strong>Выберите чат</strong>
+        
         return(
             <div className="container">
                 <div className="message-list">
                     { messageElements }
+                    { error }
                 </div>
                 <div className="message__action">
                     <TextField
                         name="input"
                         fullWidth={true}
-                        hintText="Введите сообщение"
+                        placeholder="Введите сообщение"
                         className="message-text__input"
                         onChange= {this.handleChange} 
                         value= {this.state.input} 
                         onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
                         />
-                    <FloatingActionButton 
+                    <Fab color='primary'
                         onClick={ () => this.handleClick(this.state.input) }>
-                        <SendIcon/>
-                    </FloatingActionButton>
+                        <SendIcon color='inherit'/>
+                    </Fab>
                 </div>
              </div> 
         )

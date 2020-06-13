@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble'
 
 export default class ChatList extends Component {
+    constructor(props){
+        super(props)
+    }
     render() {
         return(
             <aside className="chat-list">
