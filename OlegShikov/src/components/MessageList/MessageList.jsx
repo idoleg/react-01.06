@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 export const MessageList = ({ messages }) => (
     <ul className="message-list">
+        {messages.length == 0 && <strong>Здесь еще нет сообщений. <br/> Введите первое!</strong>}
         {messages.map((item, index) => <Message {...item} key={index} />)}
     </ul>
 );
