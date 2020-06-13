@@ -9,7 +9,11 @@ export default class Header extends Component {
         return(
             <header className="header">
                 <h2 className="header__title">{this.props.title}</h2>
+                <Button variant="contained" color="primary" href='/'>Чаты</Button>
                 <Button variant="contained" color="primary" onClick={this.props.addChat}>Новый чать</Button>
+                <Button variant="contained" color="primary" href='/profile'>Профиль</Button>
+
+
             </header>
         )
     }

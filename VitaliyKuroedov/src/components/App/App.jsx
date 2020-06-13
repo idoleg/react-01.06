@@ -3,6 +3,7 @@ import MessageList from '../MessageList/MessageList'
 import Header from '../Header/Header'
 import ChatList from '../ChatList/ChatList'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Profile from '../Profile/Profile'
 import '../../css/style.css'
 
 export default class App extends Component {
@@ -49,7 +50,7 @@ export default class App extends Component {
             },
         }
     }
-    // https://randomuser.me/api/portraits/med/men/57.jpg
+    // 
 
     addChat = () => {
         let counter = 1
@@ -72,22 +73,21 @@ export default class App extends Component {
     render() {
         return (
             <Fragment>
-                <Header title={this.state.title} addChat={this.addChat}/>
+                <Header title={this.state.title} addChat={this.addChat}/>   
                 <BrowserRouter>
                     <main>
                         <Switch>
+                            <Route path='/profile' exact component={ Profile }></Route>
                             <Route path='/'>
                                 <Switch>
                                     <Route path='/' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
                                     <Route path='/:id' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
                                     <Route path='/:id'>Not Found</Route>
                                     <Route path='/'>Not Found</Route>
-
-
                                 </Switch>
+                                <ChatList chats={this.state.chats}/>
                             </Route>
                         </Switch>
-                        <ChatList chats={this.state.chats}/>
 
                     </main>
                 </BrowserRouter>

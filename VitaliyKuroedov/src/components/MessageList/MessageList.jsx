@@ -32,10 +32,10 @@ export default class MessageList extends Component {
                                     content: `Не приставай ко мне, я ${this.state.chats[id].name}`, 
                                     name: this.state.chats[id].name, 
                                     author: false
-                                }]    
+                                }
+                            ]    
                         }
                     }
-                    
                 }) ), 1000)
             setTimeout(() => this.props.addMessage(id, {...this.state.chats[id]}), 1100)   
         }
@@ -60,8 +60,10 @@ export default class MessageList extends Component {
     };
     
     sendMessage = (id, message) => {
-        console.log(id)
-        if(id === undefined) return
+
+        if (id === undefined) return
+        if (message.length == 0) return
+
         this.setState(state => ({
             ...state,
             chats: {

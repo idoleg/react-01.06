@@ -15,6 +15,7 @@ export default class ChatList extends Component {
             <aside className="chat-list">
                 <List>
                     <Subheader>Последние Чаты</Subheader>
+                    
                     <Link to='/1' className='link'>
                         <ListItem
                             primaryText="Сушист"
