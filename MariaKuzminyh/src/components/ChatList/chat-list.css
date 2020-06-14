@@ -1,4 +1,5 @@
 .chat-list {
   list-style-type: none;
   width: 30%;
+  float: left;
 }

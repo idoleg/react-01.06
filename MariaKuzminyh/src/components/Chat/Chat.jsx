@@ -6,13 +6,13 @@ import { ChatForm } from '../ChatForm/ChatForm';
 
 import './chat.css';
 
-export const Chat = ({ messages, lastId, setLastId, onSendMessage }) => {
+export const Chat = ({ messages, onSendMessage }) => {
   
   return (
     <div className="chat">
-      <MessageList messages={ messages } />
-      <ChatForm messages={ messages }
-        onSendMessage={ onSendMessage } />
+      { !messages && <strong>Чат не существует</strong> }
+      { messages && <MessageList messages={ messages } /> }
+      { messages && <ChatForm onSendMessage={ onSendMessage } /> }
     </div>
   );
 };

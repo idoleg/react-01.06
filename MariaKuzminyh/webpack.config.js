@@ -15,6 +15,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/env', '@babel/react'],
+          plugins: ['@babel/plugin-proposal-class-properties'],
         }
       },
       {
@@ -28,5 +29,8 @@ module.exports = {
   ],
   resolve: {
     extensions: [".jsx", ".js"],
-  }
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
 }
