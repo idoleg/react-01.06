@@ -15,6 +15,7 @@ export default class App extends Component {
         test: 'test',
         chats: {
             1: {
+                id: 1,
                 name: 'Сушист',
                 avatar: 'https://v0.material-ui.com/images/ok-128.jpg',
                 messages: [
@@ -25,6 +26,7 @@ export default class App extends Component {
                 ]
             },
             2: {
+                id: 2,
                 name: 'Визажист',
                 avatar: 'https://v0.material-ui.com/images/kolage-128.jpg',
                 messages: [
@@ -33,6 +35,7 @@ export default class App extends Component {
                 ]
             },
             3: {
+                id: 3,
                 name: 'Бухгалтер',
                 avatar: 'https://v0.material-ui.com/images/raquelromanp-128.jpg',
                 messages: [
@@ -41,6 +44,7 @@ export default class App extends Component {
                 ]
             },
             4: {
+                id: 4,
                 name: 'Качок',
                 avatar: 'https://v0.material-ui.com/images/kerem-128.jpg',
                 messages: [
@@ -82,13 +86,11 @@ export default class App extends Component {
                                 <Switch>
                                     <Route path='/' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
                                     <Route path='/:id' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
-                                    <Route path='/:id'>Not Found</Route>
                                     <Route path='/'>Not Found</Route>
                                 </Switch>
                                 <ChatList chats={this.state.chats}/>
                             </Route>
                         </Switch>
-
                     </main>
                 </BrowserRouter>
             </Fragment>

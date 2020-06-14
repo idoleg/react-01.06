@@ -14,8 +14,8 @@ main {
 .header{
     display: flex;
     justify-content: space-between;
-    padding: .5rem 2rem;
-    background-color: blueviolet;
+    /* padding: .5rem 2rem; */
+    /* background-color: blueviolet; */
     /* max-height: 50px; */
     box-sizing: border-box;
     align-items: center;
@@ -24,6 +24,7 @@ main {
 .header__title{
     color: #fff;
 }
+
 
 .container{
     display: flex;
