@@ -11,11 +11,9 @@ export default class MessageList extends Component {
         input: '',
         chats: this.props.chats
     }
-
+    
     componentDidUpdate(prevProps, prevState) {
         const { id } = this.props.match.params
-        console.log(id)
-        console.log(this.state.chats)
         const currentMessage = this.state.chats[id].messages
         const lastMessage = currentMessage[currentMessage.length -1]
 

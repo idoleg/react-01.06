@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {List} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import ChatListItem from '../ChatListItem/ChatListItem'
+import Drawer from '@material-ui/core/Drawer'
 
 export default class ChatList extends Component {
     constructor(props){

@@ -92,7 +92,7 @@ export default class App extends Component {
                                 <Switch>
                                     <Route path='/' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
                                     <Route path='/:id' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
-                                    <Route path='/'>Not Found</Route>
+                                    <Route path='/:id'>Not Found</Route>
                                 </Switch>
                                 <ChatList chats={this.state.chats}/>
                             </Route>
