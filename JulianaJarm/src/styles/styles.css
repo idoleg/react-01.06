@@ -1,6 +1,12 @@
 body {
     background-color: cadetblue;
 }
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
 .chat {
     width: 50%;
     margin: 0 auto;
@@ -9,32 +15,44 @@ body {
     border: solid cadetblue 2px;
     border-radius: 10px;
 }
+
 .messageContainer {
     width: 100%;
 }
+
 .botMessage, .userMessage {
     border-radius: 10px;
     padding: 10px;
     min-width: 50px;
     width: 70%;
-    height: auto;
+    margin: 5px;
 }
 
 .botMessage {
     background-color: #C5E1A5;
     text-align: left;
-    margin: 10px;
     float: left;
 }
 
 .userMessage {
     background-color: #B2DFDB;
     text-align: right;
-    margin: 10px;
     float: right;
 }
-.chatListContainer {
-    position: fixed;
 
+.chatList {
+    width: 20%;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    position: fixed;
+}
+
+.messageForm {
+    width: 70%;
+    margin-left: 25%;
+}
+
+.author div {
+    padding-right: 0 !important;
 }
 

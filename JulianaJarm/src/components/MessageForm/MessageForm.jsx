@@ -38,7 +38,7 @@ export class MessageForm extends React.Component {
 
     render () {
         return (
-            <form>
+            <form className="messageForm">
                 <TextField
                     name="input"
                     fullWidth={ false }

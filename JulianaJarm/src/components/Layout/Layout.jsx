@@ -7,7 +7,7 @@ import { ChatList } from "../ChatList/ChatList";
 export class Layout extends React.Component {
     render() {
         return (
-            <div>
+            <div className="layout">
                 <Header />
                 <Chat />
                 <ChatList />
