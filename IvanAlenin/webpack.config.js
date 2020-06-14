@@ -11,7 +11,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js)$/, include: path.resolve(__dirname, "src"), loader: 'babel-loader',
+                test: /\.(js|jsx)$/, include: path.resolve(__dirname, "src"), loader: 'babel-loader',
                 options: {presets: ['@babel/env', '@babel/react']},
             },
             {
@@ -33,8 +33,11 @@ module.exports = {
         new HTMLWebpackPlugin({template: path.resolve(__dirname, "public", "index.html")}),
         new MiniCssExtractPlugin({filename: 'css/[name].css'}),
     ],
+    // resolve: {
+    //     extensions: [".jsx", ".js"],
+    // },
     devServer: {
         historyApiFallback: true,
     },
-    devtool: 'cheap-inline-module-source-map',
+    devtool: 'inline-source-map',
 }
