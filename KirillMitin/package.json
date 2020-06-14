@@ -22,7 +22,12 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@material-ui/core": "^4.10.1",
+    "css-loader": "^3.5.3",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "style-loader": "^1.2.1"
   }
 }
