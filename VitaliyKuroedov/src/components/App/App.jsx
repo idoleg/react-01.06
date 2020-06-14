@@ -56,14 +56,20 @@ export default class App extends Component {
     }
     // 
 
-    addChat = () => {
+    addChat = (chatName) => {
         let counter = 1
         for (let id in this.state.chats) {
            counter++
         }
         this.setState( state => ({
             ...state,
-            chats: { ...state.chats, [counter]: {avatar: `https://randomuser.me/api/portraits/med/men/${counter}.jpg`}}
+            chats: { ...state.chats, 
+                    [counter]: {
+                        avatar: `https://randomuser.me/api/portraits/med/men/${counter}.jpg`,
+                        name: chatName,
+                        id: counter,
+                        messages: []
+                    }}
         }))
     }
 
