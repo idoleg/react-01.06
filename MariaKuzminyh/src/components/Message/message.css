@@ -1,0 +1,16 @@
+.message {
+  align-self: flex-end;
+  background: #f0d1a9;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px #ffffffb2;
+  width: 40%;
+}
+
+.message:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.message_robot {
+  align-self: flex-start;
+}
