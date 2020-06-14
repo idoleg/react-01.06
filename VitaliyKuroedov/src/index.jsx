@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom'
 import App from './components/App/App'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-
 ReactDOM.render(
-    <MuiThemeProvider>
-        <App/>
-    </MuiThemeProvider>,
+        <MuiThemeProvider>
+            <App/>
+        </MuiThemeProvider> ,
     document.getElementById('root')
     
 )

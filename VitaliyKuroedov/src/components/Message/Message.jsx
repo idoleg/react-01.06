@@ -5,13 +5,14 @@ export default class Message extends React.Component{
     static propTypes = {
         name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
+        author: PropTypes.bool.isRequired
     }
 
     render(){
         return(
             <div className="list__item message"
-                style={ { alignSelf: this.props.name === 'bot' ? 
-                        'flex-end' : 'flex-start'}}
+                style={ { alignSelf: this.props.author === true ? 
+                        'flex-start' : 'flex-end'}}
                 >
                 <div>
                     <span className="list__item-text">{this.props.name} : </span>

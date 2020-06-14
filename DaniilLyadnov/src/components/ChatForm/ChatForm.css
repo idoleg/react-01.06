@@ -1,0 +1,59 @@
+.chat-form {
+	width: 100%;
+	background: #fff;
+	padding: 12px 7px;
+	box-sizing: border-box;
+	flex-grow: 1;
+}
+
+.input-name,
+.input-content {
+	min-height: 35px;
+}
+
+.input-name {
+	width: 150px;
+	margin-right: 7px!important;
+}
+
+.input-content {
+	width: calc(100% - 150px - 50px - 7px);
+	margin-right: 12px!important;
+}
+
+.input-name label,
+.input-content label {
+	line-height: 0;
+}
+
+.input-name input,
+.input-content .MuiOutlinedInput-multiline {
+	padding: 8px;
+}
+
+.input-content textarea {
+	max-height: 100px;
+	overflow-y: auto!important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+	border-color: #2094e6!important;
+	border-width: 1px!important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+	color: #2094e6!important;
+}
+
+.MuiIconButton-root {
+	padding: 1px!important;
+}
+
+.MuiSvgIcon-root {
+	font-size: 2rem!important;
+	color: #2094e6!important;
+}
+
+.MuiIconButton-root:hover {
+	background: unset!important;
+}

@@ -1,0 +1,14 @@
+.message {
+	align-self: flex-start;
+	background: #e4ecf2;
+	font: 13px/18px Tahoma, sans-serif, Arial, Helvetica;
+	color: #000;
+	padding: 7px 10px;
+	border-radius: 3px;
+	margin: 8px 0;
+}
+
+.message-is--robot {
+	align-self: flex-end;
+	background: #f1f1f1;
+}

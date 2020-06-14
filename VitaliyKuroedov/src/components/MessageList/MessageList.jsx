@@ -1,75 +1,111 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component, Fragment, } from 'react'
 import Message from '../Message/Message'
-import { TextField, FloatingActionButton } from 'material-ui';
-import SendIcon from 'material-ui/svg-icons/content/send';
+import { TextField, Fab } from '@material-ui/core'
+import SendIcon from '@material-ui/icons/Send'
 
 export default class MessageList extends Component {
     constructor(props){
         super(props)
-        
     }
     state = {
         input: '',
-        messages: [
-            {name: 'Ivan' , content: 'Hello'},
-            {name: 'Petr' , content: 'Hi'},
-            {name: 'Vitalii' , content: 'Hola'},
-            {name: 'Oleg' , content: 'Shalom'},
-        ]
+        chats: this.props.chats
     }
+
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.messages.length < this.state.messages.length &&
-            this.state.messages[this.state.messages.length -1].name === 'Я'){
+        const { id } = this.props.match.params
+        const currentMessage = this.state.chats[id].messages
+        const lastMessage = currentMessage[currentMessage.length -1]
+
+        if(prevState.chats[id].messages.length < currentMessage.length && lastMessage.author === true){
 
             setTimeout(() =>
-                    this.setState({
-                        messages: [ ...this.state.messages, {content: 'Не приставай ко мне, я робот!', name: 'bot'} ] }),
-                1000);
-
+                this.setState( state => ({
+                    ...state,
+                    chats: {
+                        ...state.chats,
+                        [id]: {
+                            ...state.chats[id],
+                            messages: [ 
+                                ...this.state.chats[id].messages,
+                                { 
+                                    content: `Не приставай ко мне, я ${this.state.chats[id].name}`, 
+                                    name: this.state.chats[id].name, 
+                                    author: false
+                                }
+                            ]    
+                        }
+                    }
+                }) ), 1000)
+            setTimeout(() => this.props.addMessage(id, {...this.state.chats[id]}), 1100)   
         }
     }
  
     handleClick = (message) => {
-        this.sendMessage(message)
+        const { id } = this.props.match.params
+        this.sendMessage(id, message)
     };
  
     handleChange = (event) => {
+        const { id } = this.props.match.params
+        if(id === undefined) return
         this.setState({ input: event.target.value });
     };
  
     handleKeyUp = (event, message) => {
+        const { id } = this.props.match.params
         if (event.keyCode === 13) { // Enter
-            this.sendMessage(message)
+            this.sendMessage(id, message)
         }
     };
-   
-    sendMessage = (message) => {
-        this.setState({ messages: [ ...this.state.messages, {content: message, name: 'Я'} ] });
-        this.setState(this.state.input = '')
+    
+    sendMessage = (id, message) => {
+
+        if (id === undefined) return
+        if (message.length == 0) return
+
+        this.setState(state => ({
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    ...state.chats[id],
+                    messages: [ ...this.state.chats[id].messages, {content: message, name: 'Я', author: true} ]
+                }
+            }
+        }))
+        this.setState({input : ''})
+        
     };
 
     render() {
-        const messageElements = this.state.messages.map((item, index) => <Message {...item} key={index}/> )
+        const { id } = this.props.match.params
+        const messageElements = id && this.props.chats[id] ? 
+            this.props.chats[id].messages.map((item, index) => <Message {...item} key={index}/>) : 
+            null
+        let error = ''
+        if (id == undefined) error = <strong>Выберите чат</strong>
+        
         return(
             <div className="container">
                 <div className="message-list">
                     { messageElements }
+                    { error }
                 </div>
                 <div className="message__action">
                     <TextField
                         name="input"
                         fullWidth={true}
-                        hintText="Введите сообщение"
+                        placeholder="Введите сообщение"
                         className="message-text__input"
                         onChange= {this.handleChange} 
                         value= {this.state.input} 
                         onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
                         />
-                    <FloatingActionButton 
+                    <Fab color='primary'
                         onClick={ () => this.handleClick(this.state.input) }>
-                        <SendIcon/>
-                    </FloatingActionButton>
-    
+                        <SendIcon color='inherit'/>
+                    </Fab>
                 </div>
              </div> 
         )

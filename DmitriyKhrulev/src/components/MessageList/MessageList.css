@@ -1,0 +1,7 @@
+.message-list {
+   background-color:lightgray;
+   padding: 15px;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+}

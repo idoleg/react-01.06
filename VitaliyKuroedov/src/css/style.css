@@ -6,6 +6,11 @@ main {
     display: flex;
 }
 
+.avatar{
+    max-width: 300px;
+    max-height: 300px;
+}
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -13,6 +18,7 @@ main {
     background-color: blueviolet;
     /* max-height: 50px; */
     box-sizing: border-box;
+    align-items: center;
 }
 
 .header__title{
@@ -27,7 +33,9 @@ main {
     align-items: center;
     flex-direction: column;
 }
-
+.link{
+    text-decoration: none;
+}
 .chat-list{
     width: 100%;
     max-width: 30%;
