@@ -1,0 +1,15 @@
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e2e2;
+    padding: 20px;
+    width: 70%;
+    height: 100%;
+    overflow-y: scroll;
+}
