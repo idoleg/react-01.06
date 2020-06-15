@@ -1,18 +1,14 @@
-import React, {Component, Fragment, useState} from 'react'
+import React, { Component, Fragment } from 'react'
 import MessageList from '../MessageList/MessageList'
 import Header from '../Header/Header'
 import ChatList from '../ChatList/ChatList'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Profile from '../Profile/Profile'
 import '../../css/style.css'
-
 export default class App extends Component {
-    
-     
     state = {
         text: 'GB React lesson 4',
         title: "React GB",
-        test: 'test',
         currentChatName: '',
         chats: {
             1: {
@@ -55,7 +51,6 @@ export default class App extends Component {
             },
         }
     }
-    // 
     handleCurrentChatName = (value) => {
         this.setState({currentChatName: value})
     }
@@ -65,6 +60,7 @@ export default class App extends Component {
         for (let id in this.state.chats) {
            counter++
         }
+        
         this.setState( state => ({
             ...state,
             chats: { ...state.chats, 
@@ -78,9 +74,10 @@ export default class App extends Component {
     }
 
     addMessage = (id, input) => {
+        console.log(input)
         this.setState( state => ({
             ...state,
-            chats: { ...state.chats, [id]: { ...input} }
+            chats: { ...state.chats, [id]: input }
         }) )
     }
     

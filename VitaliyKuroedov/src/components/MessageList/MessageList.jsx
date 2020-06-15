@@ -1,52 +1,36 @@
-import React, {Component, Fragment, } from 'react'
+import React, {Component } from 'react'
 import Message from '../Message/Message'
-import { TextField, Fab } from '@material-ui/core'
-import SendIcon from '@material-ui/icons/Send'
-
+import { TextField, IconButton } from '@material-ui/core'
+import SendRoundedIcon from '@material-ui/icons/SendRounded'
 export default class MessageList extends Component {
     constructor(props){
         super(props)
     }
     state = {
         input: '',
-        chats: this.props.chats
+        chats: this.props.chats,
+        timeoutId: null
     }
     
-    componentDidUpdate(prevProps, prevState) {
-        // this.state.chats = this.props.chats
-        const { id } = this.props.match.params
-        console.log(id)
-        if(!id) return
-        const currentMessage = this.state.chats[id].messages
-        const lastMessage = currentMessage[currentMessage.length -1]
+    handleBotMessage = (id) => {
+        if (id && this.state.chats[id]) {
+            const currentMessage = this.state.chats[id].messages
+            const lastMessage = currentMessage[currentMessage.length -1]
 
-        if(prevState.chats[id].messages.length < currentMessage.length && lastMessage.author === true){
-            
-            setTimeout(() =>
-                this.setState( state => ({
-                    ...state,
-                    chats: {
-                        ...state.chats,
-                        [id]: {
-                            ...state.chats[id],
-                            messages: [ 
-                                ...this.state.chats[id].messages,
-                                { 
-                                    content: `Не приставай ко мне, я ${this.state.chats[id].name}`, 
-                                    name: this.state.chats[id].name, 
-                                    author: false
-                                }
-                            ]    
-                        }
-                    }
-                }) ), 1000)
-            setTimeout(() => this.props.addMessage(id, {...this.state.chats[id]}), 1100)   
+            if (lastMessage && lastMessage.name !== 'Я') {
+                clearTimeout(this.timeoutId)
+                this.timeoutId = setTimeout(() => this.handleSendMessage(id,{
+                    content: `Не приставай ко мне, я ${this.state.chats[id].name}`, 
+                    name: this.props.chats[id].name, 
+                    author: false
+                }), 1000)
+            }
         }
     }
  
-    handleClick = (message) => {
+    handleClick = (value) => {
         const { id } = this.props.match.params
-        this.sendMessage(id, message)
+        this.handleSendMessage(id, {content: value, name: 'Я', author: true})
     };
  
     handleChange = (event) => {
@@ -55,17 +39,25 @@ export default class MessageList extends Component {
         this.setState({ input: event.target.value });
     };
  
-    handleKeyUp = (event, message) => {
+    handleKeyUp = (event, value) => {
         const { id } = this.props.match.params
         if (event.keyCode === 13) { // Enter
-            this.sendMessage(id, message)
+            this.handleSendMessage(id, {content: value, name: 'Я', author: true})
         }
     };
     
-    sendMessage = (id, message) => {
+    handleSyncChat = () => {
+        this.state.chats = this.props.chats
+    }
 
+    handleSendMessage = (id, value) => {
         if (id === undefined) return
-        if (message.length == 0) return
+        
+        console.log(this.state.chats[id])
+
+        if (this.state.chats[id] === undefined) {
+            this.handleSyncChat()
+        }
 
         this.setState(state => ({
             ...state,
@@ -73,11 +65,13 @@ export default class MessageList extends Component {
                 ...state.chats,
                 [id]: {
                     ...state.chats[id],
-                    messages: [ ...this.state.chats[id].messages, {content: message, name: 'Я', author: true} ]
+                    messages: [ ...this.state.chats[id].messages, value ]
                 }
             }
-        }))
+        }), this.handleBotMessage(id))
+
         this.setState({input : ''})
+        this.props.addMessage(id, this.state.chats[id])
         
     };
 
@@ -97,16 +91,19 @@ export default class MessageList extends Component {
                     <TextField
                         name="input"
                         fullWidth={true}
-                        placeholder="Введите сообщение"
+                        label="Введите сообщение"
                         className="message-text__input"
                         onChange= {this.handleChange} 
                         value= {this.state.input} 
                         onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
                         />
-                    <Fab color='primary'
-                        onClick={ () => this.handleClick(this.state.input) }>
-                        <SendIcon color='inherit'/>
-                    </Fab>
+                        <IconButton  onClick={() => this.handleClick(this.state.input)}>
+                            <SendRoundedIcon color="primary"/>
+                        </IconButton>
+                    {/* <Fab color='primary'
+                        >
+                        
+                    </Fab> */}
                 </div>
              </div> 
         )
