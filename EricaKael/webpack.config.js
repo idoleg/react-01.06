@@ -7,6 +7,12 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "main.js"
     },
+    devServer:{
+        port: 8080,
+        historyApiFallback:{
+            index:'index.html'
+        }
+    },
     module:{
         rules:[
             {
@@ -30,4 +36,5 @@ module.exports = {
     resolve: {
         extensions: [".jsx", ".js"],
     },
+    devtool: 'cheap-inline-module-source-map',
 }

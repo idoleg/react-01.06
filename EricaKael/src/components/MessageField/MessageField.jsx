@@ -1,6 +1,7 @@
 import './MessageField.css';
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {TextField, FloatingActionButton} from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
@@ -8,25 +9,25 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message';
 
 export default class MessageField extends Component{
+    static propTypes={
+        chatId: PropTypes.number.isRequired,
+    };
+    
     /*constructor(props){
         super(props);
         this.textInput = React.createRef();
     }*/
 
     state = {
-        messages: [{ 
-            name: 'Tanya',
-            text: 'How are you?'
+        chats:{
+            1:{title: 'Chat 1', messageList:[1]},
+            2:{title:'Chat 2', messageList:[2]},
+            3:{title:'Chat 3', messageList:[]}
         },
-        { 
-            name: 'Vlad',
-            text: 'Hi, friend!'
+        messages: {
+            1:{text:"Hi", name: "Robot"},
+            2:{text:"HOw are you?", name:"Vlad"}
         },
-        { 
-            name: 'Julia',
-            text: 'Hello'
-        },
-        ],
         input: '',
     };
 
@@ -34,43 +35,66 @@ export default class MessageField extends Component{
         this.textInput.current.focus();
     }*/
 
-    handleClick = (message)=>{
-        this.sendMessage(message)
+    handleClick = ()=>{
+        //this.sendMessage(message)
+        this.handleSendMessage(this.state.input, 'me')
     }
     handleChange = (e) =>{
         this.setState({[e.target.name]: e.target.value});
     }
-    handleKeyUp=(e, message)=>{
+    handleKeyUp=(e)=>{
         if(e.keyCode === 13){
-            this.sendMessage(message);
+            this.handleSendMessage(this.state.input, 'me')
         }
-    }
-    sendMessage = (message)=>{
+    };
+    handleSendMessage = (message, name)=>{
+        const {messages, chats, input}=this.state;
+        const {chatId}=this.props;
+
+        if(input.length > 0 || name === 'Robot'){
+            const messageId = Object.keys(messages).length + 1;
+            this.setState({
+                messages:{...messages, [messageId]:{text:message, name: name}},
+                chats: {...chats, [chatId]:{...chats[chatId], messageList: [...chats[chatId]['messageList'],messageId]}}
+            })
+        }
+        if(name === 'me'){
+            this.setState({input:''})
+        }
+    };
+    /*sendMessage = (message)=>{
         this.setState({messages:[...this.state.messages, {'name':'me', 'text':message}]});
         this.state.input = '';
-    }
+    }*/
 
-    componentDidUpdate(){
-        const lastMessage = this.state.messages[this.state.messages.length - 1].name;
+    componentDidUpdate(prevProps, prevState){
+        const {messages} = this.state;
+        const lastMessage = Object.values(messages)[Object.values(messages).length-1].name;
 
-        if(lastMessage === 'me'){
+        if(Object.keys(prevState.messages).length < Object.keys(messages).length && lastMessage === 'me'){
             setTimeout(()=>{
-                this.setState({
-                    messages:[...this.state.messages, {'name':'Robot', 'text':'I`m robot'}]
-                })
+                this.handleSendMessage('I`m a robot', 'Robot')
             }, 1000);
         }
     }
 
     render(){
-        const messageELements = this.state.messages.map((item, index)=>(
-            <Message {...item} key={index} />
+        const {messages, chats}=this.state;
+        const{chatId}=this.props;
+
+        const messageELements = chats[chatId].messageList.map((messageId, index)=>(
+            <Message
+                key={index}
+                text={messages[messageId].text}
+                name={messages[messageId].name}
+            />
         ));
-        return <div className='layout'>
-            <div className='message-field'>
+        return[
+        <div className='layout'>
+            <div key='messageELements' className='message-field'>
                 {messageELements}
             </div>
-            <div style={{width: '100%', display: 'flex'}}>
+            <div key='textInput' style={{width: '100%', display: 'flex'}}>
                 <TextField 
                     /*ref={this.textInput}*/
                     name="input"
@@ -79,12 +103,13 @@ export default class MessageField extends Component{
                     style={{fontSize: '12px'}}
                     onChange={this.handleChange}
                     value={this.state.input} 
-                    onKeyUp={(e)=>this.handleKeyUp(e, this.state.input)} 
+                    onKeyUp={this.handleKeyUp} 
                 />
-                <FloatingActionButton onClick={()=>this.handleClick(this.state.input)}>
+                <FloatingActionButton onClick={()=>this.handleClick()}>
                     <SendIcon />
                 </FloatingActionButton>
             </div>
         </div>
+        ] 
     }
 }
