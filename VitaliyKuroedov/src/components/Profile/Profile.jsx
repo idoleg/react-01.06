@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardHeader, CardMedia, CardContent   } from '@material-ui/core'
-
 export default class Profile extends Component {
-
     state = {
         username: 'Я'
     }
