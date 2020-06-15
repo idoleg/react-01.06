@@ -1,16 +1,22 @@
-// import React, {Component} from 'react';
-// import ChatContainer from './container/ChatContainer'
-// import Chat from './components/Chat/Chat'
-// import Layout from './Layout/Layout'
+import React from 'react';
+import { ChatList } from './container/ChatList/ChatList'
+import { Header } from './container/Header/Header'
+import { ChatContainer } from './container/ChatContainer'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-// class App extends Component {
-//     render() {
-//         return (
-//             <Layout>
-//                 <ChatContainer/>
-//             </Layout> 
-//         )
-//     }
-// }
 
-// export default App
+export const App = () => (
+    <BrowserRouter>
+    <Header/>
+        <Switch>
+            <Route path="/" exact>Главная страница</Route>
+            <Route path="/chats">
+            <ChatList />
+                <Switch>
+                {/* <Route path="/chats" exact component={ ChatContainer } /> */}
+                <Route path="/chats/:id" exact component={ ChatContainer } />
+                </Switch>
+            </Route>
+        </Switch>
+    </BrowserRouter>
+)

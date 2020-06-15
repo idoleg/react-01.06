@@ -1,7 +1,8 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
-import Layout from './Layout/Layout';
-// import Header from './container/Header/Header'
-{/* <Header /> */}
+import { App } from './App.jsx'
+
+
+
 const mountPoint = document.getElementById('root')
-ReactDom.render(<Layout />, mountPoint)
+ReactDom.render(<App />, mountPoint)

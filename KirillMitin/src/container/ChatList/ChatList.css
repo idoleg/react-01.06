@@ -1,4 +1,6 @@
 .ChatList {
-    width: 30%;
     background: #67b9f0;
+    height: 100vh;
+    /* width: 12vh; */
+    position: fixed !important;
 }
