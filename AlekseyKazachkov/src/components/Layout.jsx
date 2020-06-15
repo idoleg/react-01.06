@@ -1,30 +1,25 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import Header from './Header';
 import MessageField from './MessageField';
 import ChatList from './ChatList';
+import "../styles/style.css";
 
 export default class Layout extends React.Component {
-    UNSAFE_componentWillMount() {
-        // console.log('Layout componentWillMount');
-    }
-
-    componentDidMount() {
-        // console.log('Layout componentDidMount');
-    }
-
-    componentDidUpdate() {
-        // console.log('Layout componentDidMount');
-    }
-    
+    static propTypes = {
+        chatId: PropTypes.number,
+    };
+    static defaultProps = {
+        chatId: 1,
+    }; 
     render() {
-        // console.log("Layout render");
     
         return (
             <div className="layout">
-                <Header />
+                <Header chatId={ this.props.chatId } />
                 <div className="wrap-chat-and-liast">
                     <ChatList />
-                    <MessageField />
+                    <MessageField chatId={ this.props.chatId } />
                 </div>
             </div>
         )

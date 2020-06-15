@@ -7,21 +7,7 @@ export default class Message extends React.Component {
        text: PropTypes.string.isRequired,
        sender: PropTypes.string.isRequired,
    };
-
-    UNSAFE_componentWillMount() {
-        // console.log('Message componentWillMount');
-    }
-
-    componentDidMount() {
-        // console.log('Message componentDidMount');
-    }
-
-    componentDidUpdate() {
-        // console.log('Message componentDidUpdate');
-    }
-
    render() {
-    // console.log("Message rander");
        return (
             <div className="message" style={{
                 alignSelf: this.props.sender === "bot" ? "flex-start" : "flex-end"
