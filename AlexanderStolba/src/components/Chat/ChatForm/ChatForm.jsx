@@ -24,8 +24,8 @@ export const ChatForm = ({ onSendMessage }) => {
         setContentState("");
     }
     
+    //отправка сообщений по нажатию Enter
     const handleKeyUp = (event) => {
-
         if (event.keyCode === 13) {
             event.preventDefault();
             onSendMessage({ name, content });

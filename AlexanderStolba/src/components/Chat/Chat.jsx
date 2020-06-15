@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 
 export const Chat = ({ messages, onSendMessage }) => (
     <main>
-        <MessageField messages={messages} />
-        <ChatForm onSendMessage={onSendMessage} />
+        {!messages && <strong>This chat doesn't exist</strong>}
+        {messages && <MessageField messages={messages} />}
+        {messages && <ChatForm onSendMessage={onSendMessage} />}
     </main>
 );
 
