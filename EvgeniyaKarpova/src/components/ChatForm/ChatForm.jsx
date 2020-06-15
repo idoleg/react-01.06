@@ -1,33 +1,9 @@
-// import React from "react";
-// import PropTypes from "prop-types";
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
-
-// export const ChatForm = ({onSendMessage}) => {
-//     return (
-//         <form>
-//             <input>
-//             name="Name"
-//             placeholder="Name"
-//             </input>
-//             <textarea>
-//             name="Content"
-//             placeholder="Текст сообщения"
-//             </textarea>
-//             <button>Отправить</button>
-//         </form>
-//     )
-// };
-
-
-
-// ChatForm.propTypes = {
-//     onSendMessage: PropTypes.func.isRequired,
-// }
 
 function useInput(initialState) {
     const [state, setState] = useState(initialState);
