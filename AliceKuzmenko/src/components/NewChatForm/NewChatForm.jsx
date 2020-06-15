@@ -14,7 +14,7 @@ function useInput(initialState) {
     return [state, setInput, setState];
 }
 
-export const NewChatForm = ({ onSendMessage }) => {
+export const NewChatForm = ({onNewChat}) => {
     const [name, setName] = useInput("Chat");
 
     const handleChange = (event) => {
@@ -23,11 +23,11 @@ export const NewChatForm = ({ onSendMessage }) => {
 
     const handleSubmit = (event) => {
         //alert('Отправленное имя: ' + this.state.value);
-        
+        console.log(onNewChat)
         onNewChat(name);
         console.log(name)
         event.preventDefault();
-        setContentState("");
+        //setContentState("");
 
     }
     const handleKeyUp = (event) => {
@@ -38,6 +38,7 @@ export const NewChatForm = ({ onSendMessage }) => {
      };
     return (
         <form>
+            <strong className="no-chat">Chat does not exist</strong>
             <TextField
                 label="Name"
                 variant="outlined"
@@ -51,7 +52,7 @@ export const NewChatForm = ({ onSendMessage }) => {
                 onClick={handleSubmit}
                 
             >
-                Send
+                Create
             </Button>
         </form>
     )
@@ -61,3 +62,5 @@ NewChatForm.propTypes = {
     onNewChat: PropTypes.func.isRequired,
 
 }
+
+//onNewChatCreate

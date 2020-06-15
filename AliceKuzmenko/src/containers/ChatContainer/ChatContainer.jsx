@@ -41,6 +41,19 @@ export class ChatContainer extends React.Component {
         //timerID:''
     }
     timerID = ""
+
+    handleNewChat = (id) => (newChatName) => {
+        let newChat={};
+        newChat[id]={name: newChatName, messages: []}
+        this.setState(state => ({
+            //messages: [...state.messages, {...message, id:(state.messages.length+1)}],
+            ...state,
+            chats: {
+                ...state.chats, ...newChat
+                }
+            }
+        ),);
+    }
     //componentDidUpdate(prevProps, prevState) {
     handleRobotAnswer = () => {
         //console.log ("robot")
@@ -74,27 +87,19 @@ export class ChatContainer extends React.Component {
         }),this.handleRobotAnswer);
     }
 
-    handleNewChat = (id) => (newChatName) => {
-        let newChat={};
-        newChat[id]={name: newChatName, messages: []}
-        this.setState(state => ({
-            //messages: [...state.messages, {...message, id:(state.messages.length+1)}],
-            ...state,
-            chats: {
-                ...state.chats, ...newChat
-                }
-            }
-        ),);
-    }
 
+    testHandle = (id) => () =>{
+        console.log("testHandle: "+id)
+    }
     render() {
         const { id } = this.props.match.params;
         const messages = id && this.state.chats[id] ? this.state.chats[id].messages : null;
-        //console.log (messages)
+        console.log (this.handleSendMessage(id))
+        console.log (this.handleNewChat(id))
         return <>
             
             <main>
-                <Chat messages={messages} onSendMessage={this.handleSendMessage(id)}  />
+                <Chat messages={messages} onNewChat={this.handleNewChat(id)} onSendMessage={this.handleSendMessage(id)}   />
             </main>
         </>
     }
@@ -102,3 +107,4 @@ export class ChatContainer extends React.Component {
 ChatContainer.propTypes = {
     chats: PropTypes.arrayOf(PropTypes.shape(Object)),//.isRequired,
 }
+//onNewChatDo={this.handleNewChat(id)}
