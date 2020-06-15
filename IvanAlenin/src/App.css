@@ -1,0 +1,205 @@
+body {
+    background: rgb(39,39,153);
+    background: linear-gradient(270deg, rgb(77, 77, 137) 0%, rgb(126, 170, 179) 100%);
+    height: 100vh;
+}
+
+/*Scroll*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    /*width: 6px;*/
+    /*background: #fdfdfd;*/
+    width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 1em;
+    background-color: #bbbbbb;
+    /*border-radius: 1rem;*/
+}
+
+#root {
+    height: 100%;
+    /*padding: 0;*/
+    /*margin: 0;*/
+    align-items: center !important;
+    display: flex;
+}
+
+.App {
+    background: rgb(236, 231, 226);
+    box-shadow: 0 0 10px 0 #000c6f;
+    border-radius: 4px;
+
+    margin: -2px;
+    padding: 2px;
+}
+
+/* ---- ContactTab ---- */
+.ContactTab {
+    /*margin: -2px 0 -2px -2px;*/
+    /*border-right: 1px solid #9da1a5;*/
+
+    /*box-shadow:        2px 0 5px 0 rgba(50, 50, 50, 0.2);*/
+    z-index: 10;
+
+    /*height: 600px;*/
+    /*height: 100%;*/
+
+}
+
+.ContactTabHead{
+    min-height: 50px;
+    max-height: 50px;
+    border-right: 1px solid #9da1a5;
+
+    z-index: 11;
+
+    box-shadow: -1px 2px 3px -0px rgba(50, 50, 50, 0.4);
+
+
+}
+
+
+.ContactGroup{
+    background: rgb(253, 253, 253);
+    overflow-y: scroll;
+    /*padding: 10px;*/
+
+    z-index: 5;
+    box-shadow:        3px 2px 5px -2px rgba(50, 50, 50, 0.3);
+
+    height: 100%;
+}
+
+.ContactGroup a:not(:last-child){
+    border: none;
+    border-bottom: 1px solid rgba(50, 50, 50, 0.4);
+}
+
+.ContactGroup a {
+    border: none;
+}
+
+.ContactGroup a:hover:not(.active) {
+    /*opacity: 0.8;*/
+    background: rgba(0, 136, 255, 0.4);
+    border-bottom: 3px solid rgba(42, 143, 231, 0.6);
+}
+
+
+/* ---- MessageTab ---- */
+.MessageTab {
+    /*margin: -2px -2px -2px 0;*/
+    /*height: 600px;*/
+    /*height: 100%;*/
+
+    }
+
+.MessageTabHead {
+    min-height: 50px;
+    max-height: 50px;
+
+    z-index: 10;
+    box-shadow: 1px 2px 3px -0px rgba(50, 50, 50, 0.4);
+}
+
+.MessageGroup {
+    overflow-y: scroll;
+    padding: 10px;
+    /*margin: auto 0px;*/
+    height: 100%;
+    background-image: url("../public/background_1.png");
+    background-repeat: repeat;
+}
+
+
+
+/*Others */
+.rounded-circle {
+    border-radius: 50% !important;
+    background: #5462a8;
+    font-size: 20px;
+    text-shadow: 1px 1px 3px #555;
+    color: white;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    padding: 4px 2px 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.img-circle{
+    border-radius: 50% !important;
+    min-height: 64px;
+    min-width: 64px;
+    max-height: 64px;
+    max-width: 64px;
+}
+
+
+.text-shadow-w {
+    text-shadow: 1px 0px 1px #000,
+    -1px 0px 3px #000;
+}
+
+.text-shadow-g {
+    text-shadow: 1px 0px 2px #fff,
+    -1px 0px 2px #fff,
+    3px 0px 8px #333,
+    -3px 0px 8px #333;
+}
+
+
+/*Media width*/
+/*Экстрабольшие девайсы (большие десктопы, >= 1200px)*/
+@media (min-width: 1200px) {
+    .ContactTab, .MessageTab {
+        min-height: 320px;
+        height: 80vh;
+    }
+
+}
+
+/*Большие девайсы (большие десктопы, < 1200px)*/
+@media (max-width: 1200px) {
+    .ContactTab, .MessageTab {
+        min-height: 320px;
+        height: 80vh;
+    }
+
+}
+/*Малые девайсы («ландшафтные», < 768px)*/
+@media (max-width: 767.98px) {
+    .ContactTab, .MessageTab, .App {
+        height: 100%;
+    }
+
+    .App {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    #root {
+
+        align-items: unset;
+        display: block;
+    }
+
+}
+/*Экстрамалые девайсы («телефоны», < 576px)*/
+@media (max-width: 320px) {
+    .rounded-circle {
+        display: none;
+    }
+
+}
+
