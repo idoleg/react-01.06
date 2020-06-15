@@ -1,0 +1,41 @@
+/*Common*/
+.MessageBlock{
+
+
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+    /*background: #5462a8;*/
+    font-size: 20px;
+    text-shadow: 1px 1px 3px #555;
+    color: white;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    padding: 4px 2px 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Media*/
+/*Экстрабольшие девайсы (большие десктопы, >= 1200px)*/
+@media (min-width: 1200px) {
+
+}
+
+/*Большие девайсы (большие десктопы, < 1200px)*/
+@media (max-width: 1200px) {
+
+}
+/*Малые девайсы («ландшафтные», < 768px)*/
+@media (max-width: 767.98px) {
+
+}
+/*Экстрамалые девайсы («телефоны», < 576px)*/
+@media (max-width: 320px) {
+    .rounded-circle {
+        display: none;
+    }
+}
