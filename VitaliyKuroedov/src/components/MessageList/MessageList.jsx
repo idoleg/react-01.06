@@ -13,12 +13,15 @@ export default class MessageList extends Component {
     }
     
     componentDidUpdate(prevProps, prevState) {
+        // this.state.chats = this.props.chats
         const { id } = this.props.match.params
+        console.log(id)
+        if(!id) return
         const currentMessage = this.state.chats[id].messages
         const lastMessage = currentMessage[currentMessage.length -1]
 
         if(prevState.chats[id].messages.length < currentMessage.length && lastMessage.author === true){
-
+            
             setTimeout(() =>
                 this.setState( state => ({
                     ...state,
@@ -82,15 +85,13 @@ export default class MessageList extends Component {
         const { id } = this.props.match.params
         const messageElements = id && this.props.chats[id] ? 
             this.props.chats[id].messages.map((item, index) => <Message {...item} key={index}/>) : 
-            null
-        let error = ''
-        if (id == undefined) error = <strong>Выберите чат</strong>
+            <strong>Выберите чат</strong>
+       
         
         return(
             <div className="container">
                 <div className="message-list">
                     { messageElements }
-                    { error }
                 </div>
                 <div className="message__action">
                     <TextField

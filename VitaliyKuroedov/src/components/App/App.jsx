@@ -13,6 +13,7 @@ export default class App extends Component {
         text: 'GB React lesson 4',
         title: "React GB",
         test: 'test',
+        currentChatName: '',
         chats: {
             1: {
                 id: 1,
@@ -55,6 +56,9 @@ export default class App extends Component {
         }
     }
     // 
+    handleCurrentChatName = (value) => {
+        this.setState({currentChatName: value})
+    }
 
     addChat = (chatName) => {
         let counter = 1
@@ -83,8 +87,8 @@ export default class App extends Component {
     render() {
         return (
             <Fragment>
-                <Header title={this.state.title} addChat={this.addChat}/>   
                 <BrowserRouter>
+                    <Header title={this.state.title} addChat={this.addChat} currentChatName={this.state.currentChatName}/>   
                     <main>
                         <Switch>
                             <Route path='/profile' exact component={ Profile }></Route>
@@ -94,7 +98,7 @@ export default class App extends Component {
                                     <Route path='/:id' exact render={(props) => <MessageList {...props} {...this.state} addMessage={this.addMessage} />}></Route>
                                     <Route path='/:id'>Not Found</Route>
                                 </Switch>
-                                <ChatList chats={this.state.chats}/>
+                                <ChatList chats={this.state.chats} handleCurrentChatName={this.handleCurrentChatName}/>
                             </Route>
                         </Switch>
                     </main>

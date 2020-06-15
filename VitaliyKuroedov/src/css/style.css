@@ -25,7 +25,6 @@ main {
     color: #fff;
 }
 
-
 .container{
     display: flex;
     width: 100%;
@@ -36,7 +35,9 @@ main {
 }
 .link{
     text-decoration: none;
+    color: inherit;
 }
+
 .chat-list{
     width: 100%;
     max-width: 30%;

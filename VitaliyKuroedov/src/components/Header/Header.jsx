@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react'
+import {Link} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -55,25 +56,37 @@ export default class Header extends Component {
     }
 
     render(){
+
+        let title = ''
+        if (this.props.currentChatName.length > 0 || !this.props.currentChatName === undefined) {
+            title = this.props.currentChatName 
+        } else {
+            title = this.props.title
+        }
+        
+
         return(
             <header className="header">
                 <AppBar position="static">
                     <Toolbar variant="dense" className="header">
-                        <IconButton edge="start" className="button" color="inherit" aria-label="menu" >
-                            <MenuIcon />
-                        </IconButton>
                         <Typography variant="h6" className="header__title">
-                            {this.props.title}
+                            {title}
                         </Typography>
-                        <Button color="inherit" variant="outlined" href='/'>
-                            Чаты
-                        </Button>
-                        <Button color="inherit" variant="outlined" href='/profile'>
-                            Профиль
-                        </Button>
-                        <Button variant="outlined" color="inherit" onClick={this.handleClickOpen}>
-                            Новый Чат
-                        </Button>
+                        <Link to='/' className='link'>
+                            <Button color="inherit" variant="outlined">
+                                Чаты
+                            </Button>
+                        </Link>
+                        <Link to='/profile' className='link'>
+                            <Button color="inherit" variant="outlined">
+                                Профиль
+                            </Button>
+                        </Link>
+                        <Link to='/' className='link'>
+                            <Button variant="outlined" color="inherit" onClick={this.handleClickOpen}>
+                                Новый Чат
+                            </Button>
+                        </Link>
                     </Toolbar>
                 </AppBar>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
