@@ -15,13 +15,3 @@ Message.propTypes = {
     name: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
 }
-// export default class Message extends Component {
-//     static propTypes = {
-//         text: PropTypes.string.isRequired,
-//     };
-
-//     render() {     
-//         return <li><strong>{this.props.text.name}:</strong> {this.props.text.content}</li>
-//     }
-//  }
- 
