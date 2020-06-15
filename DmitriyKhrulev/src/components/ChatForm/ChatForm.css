@@ -1,0 +1,15 @@
+.send-form {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin: 0 auto;
+   width: 80%
+}
+.name-form {
+   max-width: 150px;
+   min-width: 70px;
+}
+.content-form {
+   margin: 10px 0;
+
+}
