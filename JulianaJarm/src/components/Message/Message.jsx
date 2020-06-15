@@ -14,7 +14,6 @@ export default class Message extends React.Component {
                             title={this.props.author}
                             className="author"
                             subtitle="subtitle"
-
                         />
                         <CardText>
                             <span className="messageText">{this.props.text}</span>
