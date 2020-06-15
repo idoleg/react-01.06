@@ -23,7 +23,7 @@ export const ChatForm = ({ onSendMessage }) => {
       e.preventDefault();
       onSendMessage({ name, content });
       setContentState('');
-      setNameState('');
+      // setNameState('');
    }
 
    const handleKeyUp = (e) => {
@@ -31,7 +31,7 @@ export const ChatForm = ({ onSendMessage }) => {
          e.preventDefault();
          onSendMessage({ name, content });
          setContentState('');
-         setNameState('');
+         // setNameState('');
       }
 
 

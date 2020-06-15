@@ -6,12 +6,13 @@ import { ChatForm } from '../ChatForm/ChatForm'
 
 export const Chat = ({messages, onSendMessage}) =>(
    <main className='chat'>
-      <MessageList messages={messages}/>
-      <ChatForm onSendMessage={onSendMessage} />
+      {!messages && <strong>Broken link</strong>}
+      {messages && <MessageList messages={messages}/>}
+      {messages && <ChatForm onSendMessage={onSendMessage} />}
    </main>
 );
 
 Chat.propTypes = {
-   messages: MessageList.propTypes.messages,
+   // messages: MessageList.propTypes.messages,
    onSendMessage: PropTypes.func.isRequired,
 }
