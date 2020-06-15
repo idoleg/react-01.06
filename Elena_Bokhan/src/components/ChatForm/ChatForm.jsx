@@ -11,20 +11,19 @@ function useInput(initialState){
 }
 const ChatForm = (props) => {
 	
-	const [name, setName, setNameState] = useInput("Your name");
+	const [name, setName, setNameState] = useInput(props.author);
 	const [text, setText, setTextState] = useInput("type your message");
 
 	const handleSubmit = () =>{
 		event.preventDefault();
-		props.onSendMsg({name,text});
-		props.addChat({name});
+		props.onSendMsg({name:props.author,text},props.chatId);			
 		setTextState("type your message");
 		setNameState("Your name");
 	}
 	
 	const handleKeyUp = (event) =>{
 			if(event.keyCode === 13){
-				props.onSendMsg({name,text});
+				props.onSendMsg({name:props.author,text},props.chatId);	
 				setTextState("type your message");
 				setNameState("Your name");
 		}

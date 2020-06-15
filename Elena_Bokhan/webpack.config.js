@@ -23,6 +23,20 @@ module.exports = {
 				test: /\.css$/i,
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'url-loader',
+				options: {
+				  limit: 25000,
+				},
+			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'file-loader',
+				options: {
+				  name: '[path][name].[hash].[ext]',
+				},
+			},
 		]
 	},
 	plugins: [
@@ -33,6 +47,14 @@ module.exports = {
 			chunkFilename: '[id].css',
 		}),
 	],
-	resolve: {extensions: ['.jsx','.js']}
-	
+	resolve: {
+        extensions: [".jsx", ".js"],
+	},	
+	devtool : 'cheap-inline-module-source-map',
+	devServer : {
+		port : 8080 ,
+		historyApiFallback : {
+		index : 'index.html'
+		}
+		} ,
 }
