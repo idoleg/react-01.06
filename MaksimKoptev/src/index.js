@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MessageField from './components/chat/MessageField'
+import Layout from './components/chat/Layout'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
-let messages = ['Hello!', 'Как дела?', 'Зачем это здесь?'];
-
-const MessageComponent = (props) => <div>{props.text}</div>;
-const MessageField = (props) => {
-   return props.messages.map(message => <MessageComponent text={ message } />);
-};
-
-const mountPoint = document.getElementById('root')
-ReactDOM.render(<MessageField messages={ messages } />, mountPoint);
+ReactDOM.render(
+   <MuiThemeProvider>
+       <Layout />
+   </MuiThemeProvider>,
+   document.getElementById('root'),
+);
