@@ -150,7 +150,9 @@ export class MessageGroup extends React.Component {
             <div className="MessageGroup mb-auto">
                 {this.state.messages.map((i, idx) =>
                     <MessageBlock name={i.name} content={i.content} key={idx}
-                                  position={(i.name === this.state.botName) ? "left" : "right"}/>)}
+                                  position={(i.name === this.state.botName) ? "left" : "right"}
+                                    date={new Date()} color="#aa5077"
+                                    avatarUrl='https://picsum.photos/64?random=1'/>)}
                 <div ref={this.messagesEndRef}/>
             </div>
         )

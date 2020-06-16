@@ -1,0 +1,36 @@
+/*Common*/
+
+.ChatContainer {
+    background: rgb(236, 231, 226);
+    box-shadow: 0 0 10px 0 #000c6f;
+    border-radius: 4px;
+
+    margin: -2px;
+    padding: 2px;
+}
+
+
+/*Media*/
+/*Экстрабольшие девайсы (большие десктопы, >= 1200px)*/
+@media (min-width: 1200px) {
+
+}
+
+/*Большие девайсы (большие десктопы, < 1200px)*/
+@media (max-width: 1200px) {
+
+}
+/*Малые девайсы («ландшафтные», < 768px)*/
+@media (max-width: 767.98px) {
+    .ChatContainer {
+        height: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+/*Экстрамалые девайсы («телефоны», < 576px)*/
+@media (max-width: 320px) {
+
+}
