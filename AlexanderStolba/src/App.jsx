@@ -1,9 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ChatContainer } from './containers/ChatContainer'
-import { ChatList } from './components/Chat/ChatList/ChatList'
+import ChatContainer from './containers/ChatContainer';
+import { ChatList } from './components/Chat/ChatList/ChatList';
+import { Provider } from 'react-redux';
+import { initStore } from './store';
+import { initChats, sendMessage } from './store/chatActions';
+
+const store = initStore();
+store.dispatch(initChats());
+store.dispatch(sendMessage(1, "Alex", "SEND"))
+
 
 export const App = () => (
+    <Provider store = { store }>
     <BrowserRouter>
         <Switch>
         
@@ -21,6 +30,7 @@ export const App = () => (
             <Route path="/">Error 404</Route>
         </Switch>
     </BrowserRouter>
+    </Provider>
 )
 
 //<ChatContainer />

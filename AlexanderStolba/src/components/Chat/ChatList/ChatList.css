@@ -1,0 +1,30 @@
+/* @font-face { 
+    font-family: "main";
+    src: url(../../../fonts/Subdex-Bold.woff) format("woff"),
+         url(../../../fonts/19140.woff2) format("woff2")
+} */
+
+.list {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.list-item {
+    color: #f50056;
+    list-style-type: square;
+    display: inline-block;
+}
+
+.link {
+    text-decoration: none;
+    color: #FFA07A;
+    display: block;
+    padding: 20px;
+    font-size: 20px;
+    font-family: "main";
+}
+
+.link:visited {
+    color: #FFA07A;
+}

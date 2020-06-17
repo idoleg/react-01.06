@@ -1,48 +1,16 @@
 import React, { Component } from 'react';
-import { Chat } from '../components/Chat/Chat'
+import { Chat } from '../components/Chat/Chat';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { sendMessage } from '../store/chatActions'
+
 
 export const ROBOT_NAME = 'Robot';
 
-export class ChatContainer extends Component {
-    state = {
-        chats: {
-            1: {
-                name: "Chat 1",
-                messages: [
-                    { name: 'Alex', content: 'Hello!' },
-                    { name: 'Ivan', content: 'Hi!' },
-                    { name: 'Alex', content: 'How are you?' },
-                    { name: 'Ivan', content: 'Fine, and wbu?' },
-                ]
-            },
-
-            2: {
-                name: "Chat 2",
-                messages: [
-                    { name: 'Dima', content: 'Hello!' },
-                    { name: 'Oleg', content: 'Hi!' },
-                    { name: 'Dima', content: 'What is the weather like?' },
-                    { name: 'Oleg', content: 'Wonderful!' },
-                ]
-            },
-
-            3: {
-                name: "Chat 3",
-                messages: [
-                    
-                ]
-            },
-
-            4: {
-                name: "Chat 4",
-                messages: [
-                    { name: 'Messenger Bot', content: 'It is chat 4' },
-                ]
-            }
-        }
-    }
-
-    // componentDidUpdate(prevProps, prevState) {
+/* class ChatContainer extends Component {
+    componentDidUpdate(prevProps, prevState) 
+    {
+        
         handleRobotAnswer = () => {
             const { id } = this.props.match.params;
     
@@ -72,7 +40,7 @@ export class ChatContainer extends Component {
                 ...state.chats,
                 [id]: {
                     ...state.chats[id],
-                    messages: [...state.chats[id].messages, message],
+                    messages: [...state.chats[id].messages, messages],
                 }
             }
         }), this.handleRobotAnswer);
@@ -83,4 +51,31 @@ export class ChatContainer extends Component {
         const messages = id && this.state.chats[id] ? this.state.chats[id].messages : null;
         return <Chat messages={ messages } onSendMessage={ this.handleSendMessage(id) } />
     }
+} */
+
+const mapStateToProps = (store, props) => {
+    const { id } = props.match.params;
+    const chat = id && store.chats && store.chats[id] ? store.chats[id] : undefined;
+
+    return {
+        messages: chat ? chat.messages : undefined,
+    }
 }
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({ sendMessage }, dispatch);
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const { id } = ownProps.match.params;
+
+    const onSendMessage = (message) => {
+        dispatchProps.sendMessage(id, message.name, message.content);
+    }
+
+    return {
+        ...stateProps,
+        onSendMessage,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);
