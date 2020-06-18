@@ -51,10 +51,7 @@ module.exports = {
         extensions: [".jsx", ".js"],
 	},	
 	devtool : 'cheap-inline-module-source-map',
-	devServer : {
-		port : 8080 ,
-		historyApiFallback : {
-		index : 'index.html'
-		}
+	devServer : {	
+		historyApiFallback : true
 		} ,
 }

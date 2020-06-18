@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { ChatContainer } from './containers/ChatContainer.jsx';
+import ChatContainer from './containers/ChatContainer.jsx';
 import Header from './components/Header/Header.jsx';
-import {BrowserRouter , Switch, Route} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import ChatList from './components/ChatList/ChatList.jsx';
 import Profile from './components/Profile/Profile.jsx';
+import { initStore } from './store/index.js';
+import { Provider } from 'react-redux';
+import AddChatContainer from './components/ChatList/ChatListContainer.jsx';
+
+const store = initStore();
 
 class App extends Component{
 	state = {
@@ -66,26 +71,19 @@ class App extends Component{
 	}
 	render(){		
 		return (
-			<>
-				<Header />				
+			<Provider store = {store}>
+				<Header />
 				<div className = "field">
-					<ChatList 	chats={this.state.chatArr}
-								addChat = {this.handleAddChat.bind(this)} />
+					<AddChatContainer />
 					<Route>
 						<Switch>
-							<Route 	path ="/main" exact render = {() => <div style = {{margin:"auto", fontSize:"24px", color:"rgb(17, 136, 136)" }}>Тут будет главная страница :)</div>} />									
-							<Route 	path ="/chats/profile/:id" exact 
+							<Route 	path ="/chats/:id/profile/:id" exact 
 									render = {profile => <Profile profileId = {Number(profile.match.params.id)}/>} />
-							<Route 	path ="/chats/:id" exact 
-									render = {chat=> <ChatContainer chatId = {Number(chat.match.params.id)}
-																	state = {this.state}
-																	onSendMessage = {this.handleSendMessage.bind(this)}
-																	addChat = {this.handleAddChat.bind(this)}
-																	/>}/>				
+							<Route 	path ="/chats/:id" exact component = {ChatContainer}/>				
 						</Switch>
 					</Route>
 				</div>
-			</>
+			</Provider>
 		)		
 	}
 }

@@ -7,10 +7,10 @@ const ChatList = (props) =>{
 
 	return  (
 		<div className = "chat-list-field" >                                
-				{props.chats.map((item,index) => <>
+				{props.chatArr.map((item,index) => <>
 					<Link to ={"/chats/" + (index+1)} key = {index}>
 							<span>{item}</span>
-							<Link to ={"/chats/profile/" + (index+1)} key = {index}>
+							<Link to ={"/chats/"+ (index+1) +"/profile/" + (index+1)} key = {index}>
 									<AccountCircleIcon style={{ fontSize: 40 }} />
 							</Link>                               
 					</Link>
