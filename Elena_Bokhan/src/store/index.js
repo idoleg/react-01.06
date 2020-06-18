@@ -1,10 +1,9 @@
 import {createStore, combineReducers} from 'redux';
-import chatReducer from './chatReducer'
-import messagesReducer from './messagesReducer';
+import chatReducer from './chatReducer';
+
 
 let reducers = combineReducers({
-	chatReducer: chatReducer,
-	messagesReducer: messagesReducer
+	chatReducer: chatReducer,	
 })
 
 export function initStore(){

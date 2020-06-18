@@ -3,29 +3,31 @@ import Chat from '../components/Chat/Chat';
 import { sendMessageActionCreator } from '../store/messagesReducer';
 import { connect } from 'react-redux';
 
-// export class ChatContainer extends Component{
-// 	constructor(props){
-// 		super(props);
-// 	}
-	
-// 	render(){		
-// 		return <Chat 	messages = {this.props.state.chats[this.props.chatId].msgArr}				 			 
-// 						author = {this.props.state.chats[this.props.chatId].author}
-// 						onSendMessage = {this.props.onSendMessage}
-// 						addChat = {this.props.addChat}
-// 						chatId = {this.props.chatId}
-// 					/>
-// 		}
-// }	
+class ChatContainer extends Component{
+	constructor(props){
+		super(props);
+	}
+	onSendMessage = (id) =>(message) => {
+		this.props.onSendMsg(message,id)
+		}
+	render(){
+		let chatId = this.props.match.params.id;	
+		return <Chat 	messages = {this.props.messages}				 			 
+						author = {this.props.author}
+						onSendMessage = {this.onSendMessage(chatId)}
+						addChat = {this.props.addChat}
+						chatId = {this.props.chatId}
+					/>
+		}
+}	
 
 
-let mapStateToProps = ({messagesReducer}, ownProps) =>{
-	debugger
+let mapStateToProps = ({chatReducer}, ownProps) =>{	
 	const chatId =  ownProps.match.params.id;	
 	return {
-		messages: messagesReducer.state.chats[chatId].msgArr,
-		author: messagesReducer.state.chats[chatId].author,
-		chatId: messagesReducer.chatId
+		messages: chatReducer.chats[chatId].msgArr,
+		author: chatReducer.chats[chatId].author,
+		chatId: chatReducer.chatId
 	}
 	
 }
@@ -37,20 +39,19 @@ let mapDispatchToProps = (dispatch) =>{
 // const mapDispatchToProps = (dispatch) =>
 // 	bindActionCreators({ onSendMsg }, dispatch);
 	
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const { id } = ownProps.match.params;
+// const mergeProps = (stateProps, dispatchProps, ownProps) => {
+//     const { id } = ownProps.match.params;
 
-    const onSendMsg = (message) => {
-        dispatchProps.onSendMsg( message,id);
-    }
+//     const onSendMsg = (message) => {
+//         dispatchProps.onSendMsg( message,id);
+//     }
 
-    return {
-		...stateProps,
-		...dispatchProps,
-        onSendMsg,
-    }
-}
-const ChatContainer = connect(mapStateToProps,mapDispatchToProps, mergeProps)(Chat)
+//     return {
+// 		...stateProps,
+// 		...dispatchProps,
+//         onSendMsg,
+//     }
+// }
+export default ChatContainer = connect(mapStateToProps,mapDispatchToProps)(ChatContainer)
 
-export default ChatContainer
 
