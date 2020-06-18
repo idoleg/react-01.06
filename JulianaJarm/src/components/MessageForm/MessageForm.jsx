@@ -1,7 +1,6 @@
-import {FloatingActionButton, TextField} from "material-ui";
-import SendIcon from "material-ui/svg-icons/content/send";
+import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
 import React from "react";
-
 
 export class MessageForm extends React.Component {
     constructor(props) {
@@ -12,10 +11,10 @@ export class MessageForm extends React.Component {
         };
     }
 
-    handleMessageSend = () => {
-        let message = {login: this.state.login, text: this.state.textAreaValue};
-        this.props.onMessage(message);
-        this.setState({ login: '', textAreaValue: ''});
+    handleMessageSend () {
+         let message = {name: this.state.login, content: this.state.textAreaValue};
+         this.props.onMessage(message);
+         this.setState({ login: '', textAreaValue: ''});
     }
 
     handleMessageChange = (event) => {
@@ -40,27 +39,27 @@ export class MessageForm extends React.Component {
         return (
             <form className="messageForm">
                 <TextField
-                    name="input"
-                    fullWidth={ false }
-                    type="text"
-                    hintText="Your login"
+                    id="outlined-basic"
+                    label="Login"
+                    variant="outlined"
                     className="loginInput"
                     value={ this.state.login }
-                    onChange={ this.handleLoginChange } />
-
+                    onChange={ this.handleLoginChange }
+                />
                 <TextField
-                    fullWidth={ true }
-                    name="message"
-                    hintText="Write your message here..."
+                    id="outlined-multiline-static"
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    label="Message"
                     className="messageInput"
-                    style={{fontSize: 20}}
                     value={ this.state.textAreaValue }
                     onChange={ this.handleMessageChange }
-                    onKeyUp={this.handleKeyUp} />
-                <FloatingActionButton onClick={ this.handleClick } >
-                    <SendIcon />
-                </FloatingActionButton>
+                    onKeyUp={this.handleKeyUp}
+                />
+                <Button variant="contained" color="primary" onClick={ this.handleClick }>SEND</Button>
             </form>
         )
     }
 }
+

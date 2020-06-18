@@ -2,10 +2,10 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, "src", "index.js"),
+    entry: path.resolve(__dirname, "src", "App.jsx"),
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "index.js"
+        filename: "App.jsx"
     },
     module: {
         rules: [

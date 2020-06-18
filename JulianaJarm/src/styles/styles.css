@@ -18,26 +18,27 @@ body {
 
 .messageContainer {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .botMessage, .userMessage {
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 5px;
+    padding: 5px;
     min-width: 50px;
-    width: 70%;
+    width: 40%;
     margin: 5px;
 }
 
 .botMessage {
     background-color: #C5E1A5;
     text-align: left;
-    float: left;
 }
 
 .userMessage {
     background-color: #B2DFDB;
     text-align: right;
-    float: right;
+    align-self: flex-end;
 }
 
 .chatList {
@@ -52,7 +53,9 @@ body {
     margin-left: 25%;
 }
 
-.author div {
-    padding-right: 0 !important;
+.loginInput, .messageInput {
+    margin: 50px;
+    width: 60%;
 }
+
 
