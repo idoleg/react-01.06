@@ -7,14 +7,16 @@ export default class Message extends React.Component {
        text: PropTypes.string.isRequired,
        sender: PropTypes.string.isRequired,
    };
+
    render() {
        return (
-            <div className="message" style={{
-                alignSelf: this.props.sender === "bot" ? "flex-start" : "flex-end"
-            }}>
-                <div className="message-sender">{this.props.sender}</div>
-                <div>{ this.props.text }</div>
-            </div>
-        )
+           <div
+               className="message"
+               style={ { alignSelf: this.props.sender === 'bot' ?
+                   'flex-start' : 'flex-end' } }>
+               <div>{ this.props.text }</div>
+               <div className="message-sender">{ this.props.sender }</div>
+           </div>
+       )
    }
 }

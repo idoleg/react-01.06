@@ -1,106 +1,80 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import Message from './Message';
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
-import "../styles/style.css";
+import Message from './Message';
+import '../styles/style.css';
 
-export default class MessageField extends React.Component {
+class MessageField extends React.Component {
     static propTypes = {
-        chatId: PropTypes.number.isRequired,
+       chatId: PropTypes.number.isRequired,
+       messages: PropTypes.object.isRequired,
+       chats: PropTypes.object.isRequired,
+       sendMessage: PropTypes.func.isRequired,
     };
- 
+
     state = {
-        chats: {
-            1: {title: 'Чат 1', messageList: [1]},
-            2: {title: 'Чат 2', messageList: [2]},
-            3: {title: 'Чат 3', messageList: []},
-        },
-        messages: {
-            1: { text: "Привет!", sender: 'bot' },
-            2: { text: "Здравствуйте!", sender: 'bot' },
-        },
         input: '',
     };
 
-    textInput = React.createRef();
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
-    componentDidMount() {
-        this.textInput.current.focus();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { messages } = this.state;
-        if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
-            Object.values(messages)[Object.values(messages).length - 1].sender === 'me') {
-            setTimeout(() =>
-               this.handleClick('Не приставай ко мне, я робот!', 'bot'), 1000);
-        }
-    }
-
-   handleClick = (message, sender) => {
-    const { messages, chats, input } = this.state;
-    const { chatId } = this.props;
-
-    if (input.length > 0 || sender === 'bot') {
-        const messageId = Object.keys(messages).length + 1;
-        this.setState({
-            messages: {...messages,
-                [messageId]: {text: message, sender: sender}},
-                chats: {...chats,
-                    [chatId]: { ...chats[chatId],
-                        messageList: [...chats[chatId]['messageList'], messageId]
-                    }
-                },
-            })
-        }
-        if (sender === 'me') {
-            this.setState({ input: '' });
+    handleKeyUp = (event, message) => {
+        if (event.keyCode === 13) { // Enter
+            this.handleSendMessage(message, 'me')
         }
     };
- 
-   handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value});
-   };
 
-   handleKeyUp = (e) => {
-       if (e.keyCode == 13) {
-        this.handleClick(this.state.input, 'me');
+    handleSendMessage = (message, sender) => {
+       if (message.length > 0 || sender === 'bot') {
+           this.props.sendMessage(message, sender);
        }
-   };
+       if (sender === 'me') {
+           this.setState({ input: '' });
+       }
+    };
 
-   render() {
+    render() {
+        const { chatId, chats, messages } = this.props;
 
-        const { messages, chats } = this.state;
-        const { chatId } = this.props;
+        const messageElements = chats[chatId].messageList.map(messageId => (
+            <Message
+                key={ messageId }
+                text={ messages[messageId].text }
+                sender={ messages[messageId].sender }
+            />
+        ));
 
-        const messageElements = chats[chatId].messageList.map((messageId, index) => (
-           <Message
-               key={ messageId }
-               text={ messages[messageId].text }
-               sender={ messages[messageId].sender }
-           />));
-
-       return (
-            <div className="wrap-message-field">
-                <div className="message-field">
-                    { messageElements }
-                </div>
-                <div style={ { width: '100%', display: 'flex' } }>
-                    <TextField
-                    hintText="Hint Text"
-                    fullWidth={true}
+        return [
+            <div key='message-field' className="message-field">
+                { messageElements }
+            </div>,
+            <div key='text-field' style={ { width: '100%', display: 'flex' } }>
+                <TextField
                     name="input"
-                    onChange={this.handleChange}
-                    value={this.state.input}
-                    onKeyUp={this.handleKeyUp}
-                    ref={this.textInput}
-                    />
-                    <FloatingActionButton onClick={ () => this.handleClick(this.state.input, 'me') }>
-                        <SendIcon />
-                    </FloatingActionButton>
-                </div>
+                    fullWidth={ true }
+                    hintText="Введите сообщение"
+                    style={ { fontSize: '22px' } }
+                    onChange={ this.handleChange }
+                    value={ this.state.input }
+                    onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
+                />
+                <FloatingActionButton onClick={ () => this.handleSendMessage(this.state.input, 'me') }>
+                    <SendIcon />
+                </FloatingActionButton>
             </div>
-       )
-   }
+        ]
+    }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "../styles/style.css";
 
 export default class Profile extends React.Component {
-    render() {
-        return (
-            <div className="profile">
-                <div>Name: Alexander</div>
-                <div>Age: 27</div>
-                <Link to="/">
-                    <div>Back</div>
-                </Link>
-            </div>
-        )
-    }
+   render() {
+       return (
+           <div>
+               <h1>Профиль</h1>
+               <div>Гик</div>
+               <div>geek@geekbrains.ru</div>
+               <div>+7 999 999 99 99</div>
+               <Link to='/'> ← Назад</Link>
+           </div>
+       )
+   }
 }

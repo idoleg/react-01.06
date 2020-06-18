@@ -7,9 +7,9 @@ export default class Router extends React.Component {
    render() {
        return (
            <Switch>
-                <Route exact={ true } path='/profile/' component={ Profile } />
-                <Route exact={ true } path='/' component={ Layout } />
-                <Route
+               <Route exact path='/' component={ Layout } />
+               <Route exact path='/profile/' component={ Profile } />
+               <Route
                    exact
                    path='/chat/:chatId/'
                    render={ obj => <Layout
