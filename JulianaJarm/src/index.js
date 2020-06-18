@@ -1,19 +1,11 @@
-import React, { createElement } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react';
 import ReactDom from 'react-dom';
-import { Chat } from "./components/Chat/Chat";
-import { Layout } from "./components/Layout/Layout";
-import {ChatList} from "./components/ChatList/ChatList";
+import { App } from "./App";
 
 const mountPoint = document.getElementById('root');
 
 ReactDom.render(
-    <MuiThemeProvider>
-        <div className="container">
-            <ChatList />
-            <Chat />
-        </div>
-    </MuiThemeProvider>,
+    <App />,
     mountPoint
 );
 
