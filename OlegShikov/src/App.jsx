@@ -1,38 +1,42 @@
 import React from 'react';
-import { ChatList } from './components/ChatList/ChatList'
+import ChatListContainer from './containers/ChatListContainer'
 import ChatContainer from './containers/ChatContainer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { initStore } from './store'
+import { initStore, history } from './store'
+import { ConnectedRouter } from 'connected-react-router'
+
 // StaticRouter
 // MemoryRouter - 
 // HashRouter - www.test.com#/about
 // BrowserRouter - www.test.com/about
 import { initChats } from './store/chatActions';
 const store = initStore();
+console.log("store", store.getState())
 store.dispatch(initChats())
 
 export const App = () => (
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
+            <>
+                <Switch>
+                    <Route path="/" exact>It's main page</Route>
 
-            <Switch>
-                <Route path="/" exact>It's main page</Route>
+                    <Route path="/chats">
+                        <ChatListContainer />
+                        <Switch>
+                            <Route path="/chats" exact component={ChatContainer} />
+                            <Route path="/chats/:id" exact component={ChatContainer} />
+                        </Switch>
+                    </Route>
 
-                <Route path="/chats">
-                    <ChatList />
-                    <Switch>
-                        <Route path="/chats" exact component={ChatContainer} />
-                        <Route path="/chats/:id" exact component={ChatContainer} />
-                    </Switch>
-                </Route>
-
-                <Route path="/about">It's about page</Route>
-                <Route path="/contacts">It's contacts page</Route>
-                <Route path="/contacts/how">It's contacts page</Route>
-                <Route path="/">It's 404 page</Route>
-            </Switch>
-        </BrowserRouter>
+                    <Route path="/about">It's about page</Route>
+                    <Route path="/contacts">It's contacts page</Route>
+                    <Route path="/contacts/how">It's contacts page</Route>
+                    <Route path="/">It's 404 page</Route>
+                </Switch>
+            </>
+        </ConnectedRouter>
     </Provider>
 )
 
