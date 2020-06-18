@@ -3,3 +3,21 @@
   width: 100%;
   color: burlywood;
 }
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item,
+.menu-item:hover,
+.menu-item:active {
+  text-decoration: none;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.menu-item {
+  
+}
