@@ -16,7 +16,7 @@ function useInput(initialState) {
 }
 
 export const ChatForm = ({ onSendMessage }) => {
-   const [name, setName, setNameState] = useInput('');
+   const [name, setName, setNameState] = useInput('Dima');
    const [content, setContent, setContentState] = useInput('')
 
    const handleSubmit = (e) => {
