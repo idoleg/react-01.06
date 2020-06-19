@@ -8,7 +8,6 @@ import { initStore } from "./store";
 import { initChats } from "./store/chatActions";
 
 
-
 const store = initStore();
 store.dispatch(initChats());
 
@@ -20,7 +19,7 @@ export const App = () => (
                     <Route path="/" exact>Main page
                     </Route>
                     <Route path="/chats">
-                        <ChatList/>
+                        <ChatList />
                         <Switch>
                             <Route path="/chats" exact component={ChatContainer} />
                             <Route path="/chats/:id" exact component={ChatContainer} />

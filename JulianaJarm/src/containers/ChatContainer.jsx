@@ -3,9 +3,6 @@ import { Chat } from "../components/Chat/Chat";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { sendMessage } from "../store/chatActions";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
-import mergeProps from "react-redux/lib/connect/mergeProps";
 
 //export  const BOT_NAME = 'bot';
 
@@ -50,7 +47,7 @@ import mergeProps from "react-redux/lib/connect/mergeProps";
   //  }
 //}
 
-const stateToProps = (store, props) => {
+const mapStateToProps = (store, props) => {
     const { id } = props.match.params;
     const chat = id && store.chats ? store.chats[id] : undefined;
     return {
@@ -58,20 +55,18 @@ const stateToProps = (store, props) => {
     }
 }
 
-const dispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch) =>
     bindActionCreators({ sendMessage }, dispatch)
 
-const mergeAllProps = (stateProps, dispatchProps, ownProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { id } = ownProps.match.params;
     const onMessage = (message) =>  {
         dispatchProps.sendMessage(id, message.name, message.content);
     }
-
     return {
         ...stateProps,
         onMessage,
     }
 }
 
-
-export default connect(stateToProps, dispatchToProps, mergeAllProps)(Chat);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);

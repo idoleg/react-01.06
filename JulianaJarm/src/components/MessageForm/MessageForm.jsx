@@ -55,7 +55,7 @@ export class MessageForm extends React.Component {
                     className="messageInput"
                     value={ this.state.textAreaValue }
                     onChange={ this.handleMessageChange }
-                    onKeyUp={this.handleKeyUp}
+                    onKeyUp={ this.handleKeyUp }
                 />
                 <Button variant="contained" color="primary" onClick={ this.handleClick }>SEND</Button>
             </form>
