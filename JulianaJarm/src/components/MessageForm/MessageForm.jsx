@@ -14,7 +14,7 @@ export class MessageForm extends React.Component {
     handleMessageSend () {
          let message = {name: this.state.login, content: this.state.textAreaValue};
          this.props.onMessage(message);
-         this.setState({ login: '', textAreaValue: ''});
+         this.setState({ textAreaValue: ''});
     }
 
     handleMessageChange = (event) => {
