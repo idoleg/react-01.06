@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import { Chat } from '../components/Chat/Chat'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
