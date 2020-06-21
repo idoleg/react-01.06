@@ -16,6 +16,7 @@ main {
 	height: 100vh;
 	display: flex;
 	flex-wrap: wrap;
+	overflow: hidden;
 }
 
 h2.chats-error {
