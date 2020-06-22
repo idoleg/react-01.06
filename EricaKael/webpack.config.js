@@ -5,7 +5,8 @@ module.exports = {
     entry: path.resolve(__dirname, "src", "index.jsx"),
     output:{
         path: path.resolve(__dirname, "dist"),
-        filename: "main.js"
+        filename: "main.js",
+
     },
     devServer:{
         port: 8080,

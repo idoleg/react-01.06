@@ -10,14 +10,14 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 
 import Message from '../../components/Message';
 
+
 class MessageField extends Component{
     static propTypes={
         chatId: PropTypes.number.isRequired,
-        messages: PropTypes.object.isRequired,
         chats: PropTypes.object.isRequired,
-        sendMessage: PropTypes.func.isRequired
+        sendMessage: PropTypes.func.isRequired,
     };
-
+    
     state={
         input: '',
     }
@@ -83,7 +83,6 @@ class MessageField extends Component{
     render(){
         //const {messages, chats}=this.state;
         const{chatId, messages, chats}=this.props;
-
         const messageELements = chats[chatId].messageList.map(messageId =>(
             <Message
                 key={messageId}

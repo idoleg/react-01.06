@@ -6,42 +6,47 @@ import ChatList from '../containers/ChatList/ChatList';
 import Header from '../containers/Header/Header';
 import MessageField from '../containers/MessageField/MessageField';
 import {sendMessage} from '../store/actions/messageActions';
+import {addMessage} from '../store/actions/messageActions';
 
 class Layout extends Component{
     static propTypes ={
         chatId: PropTypes.number,
         sendMessage: PropTypes.func.isRequired,
+        addMessage: PropTypes.func.isRequired,
+        messages: PropTypes.object.isRequired
+
     };
     static defaultProps = {
         chatId:1,
     };
 
-    state = {
-        messages: {
-            1:{text:"Hi", name: "Robot"},
-            2:{text:"HOw are you?", name:"Vlad"}
-        },
-    };
+    // state = {
+    //     messages: {
+    //         1:{text:"Hi", name: "Robot"},
+    //         2:{text:"HOw are you?", name:"Vlad"}
+    //     },
+    // };
 
-    componentDidUpdate(prevProps, prevState){
-        const {messages} = this.state;
-        const lastMessage = Object.values(messages)[Object.values(messages).length-1].name;
-
-        if(Object.keys(prevState.messages).length < Object.keys(messages).length && lastMessage === 'me'){
-            setTimeout(()=>{
-                this.sendMessage('I`m a robot', 'Robot')
-            }, 1000);
-        }
-    }
+    // componentDidUpdate(prevProps, prevState){
+    //     const {messages} = this.props;
+    //     const lastMessage = Object.values(messages)[Object.values(messages).length-1].name;
+    //     if(Object.keys(prevProps.messages).length < Object.keys(messages).length && lastMessage === 'me'){
+    //         setTimeout(()=>{
+    //             this.sendMessage('I`m a robot', 'Robot');
+    //         }, 1000);
+    //     }
+    // }
 
     sendMessage = (message, name)=>{
-        const {messages}=this.state;
+        const {messages}=this.props;
         const {chatId}=this.props;
-
         const messageId = Object.keys(messages).length + 1;
-        this.setState({
-            messages:{...messages, [messageId]:{text:message, name: name}},
-        });
+        this.props.addMessage(message, name);
+
+        // this.setState({
+        //     messages:{...messages, [messageId]:{text:message, name: name}},
+        // });
+
         this.props.sendMessage(messageId, message, name, chatId);
     };
 
@@ -63,7 +68,7 @@ class Layout extends Component{
                 <ChatList />,
                 <MessageField 
                     chatId={this.props.chatId}
-                    messages={this.state.messages}
+                    messages={this.props.messages}
                     sendMessage={this.sendMessage}
                 />
             </div>
@@ -71,8 +76,10 @@ class Layout extends Component{
     }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({messageReducer}) => ({
+    messages: messageReducer.messages,
+});
 
-const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({sendMessage, addMessage}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -9,6 +9,7 @@ export default class Message extends Component{
         text: PropTypes.string.isRequired,
     };
     render(){
+        
     return <div
         className="message"
         style={{alignSelf: this.props.name === 'Robot' ? 'flex-start':'flex-end'}}
