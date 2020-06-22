@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "../styles/style.css";
+import '../styles/style.css';
 
 export default class Message extends React.Component {
    static propTypes = {
