@@ -126,6 +126,7 @@ const mapStateToProps = (store, props)=>{
     return { messages:  chat ? chat.messages : null}
 }
 const mapDispatchToProps = (dispatch) => bindActionCreators({sendMessage},dispatch)
+//,{addChat}
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     //console.log(ownProps.match.params)
     const { id } = ownProps.match.params;
@@ -133,10 +134,14 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const onSendMessage = (message) => {
         dispatchProps.sendMessage(id, message.name, message.content);
     }
+    // const onAddChat = (chat) => {
+    //     dispatchProps.addChat(chat.id, chat.name);
+    // }
     //console.log(dispatchProps)
     return {
         ...stateProps,
         onSendMessage,
+        //onAddChat,
     }
 }
 
