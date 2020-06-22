@@ -28,3 +28,11 @@
 .link:visited {
     color: #FFA07A;
 }
+
+.add-form {
+    display: flex;
+}
+
+.add-btn {
+    margin-left: 20px;
+}

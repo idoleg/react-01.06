@@ -1,15 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ChatContainer from './containers/ChatContainer';
-import { ChatList } from './components/Chat/ChatList/ChatList';
+import ChatListContainer from './containers/ChatListContainer';
 import { Provider } from 'react-redux';
 import { initStore } from './store';
 import { initChats, sendMessage } from './store/chatActions';
 
 const store = initStore();
 store.dispatch(initChats());
-store.dispatch(sendMessage(1, "Alex", "SEND"))
-
 
 export const App = () => (
     <Provider store = { store }>
@@ -17,7 +15,7 @@ export const App = () => (
         <Switch>
         
             <Route path="/chats">
-            <ChatList />
+            <ChatListContainer />
                 <Switch>
                     <Route path="/chats" exact component = { ChatContainer }/>
                     <Route path="/chats/:id" exact component = { ChatContainer }/>
