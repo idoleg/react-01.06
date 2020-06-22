@@ -1,5 +1,6 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import chatReducer from './chatReducer';
+import botAnswer from './BotMiddleware';
 
 
 let reducers = combineReducers({
@@ -8,5 +9,5 @@ let reducers = combineReducers({
 
 export function initStore(){
 	const innitialStore = {};
-	return createStore(reducers, innitialStore)
+	return createStore(reducers, innitialStore, applyMiddleware(botAnswer))
 }

@@ -9,39 +9,38 @@ function useInput(initialState){
 	}
 	return [state,setInput,setState]
 }
-const ChatForm = (props) => {
+const ChatForm = (props) => {	
 	
-	const [name, setName, setNameState] = useInput(props.author);
-	const [text, setText, setTextState] = useInput("type your message");
+	const [text, setText, setTextState] = useInput(props.changeMsgText);
 
 	const handleSubmit = () =>{
 		event.preventDefault();
-		props.onSendMsg({name:props.author,text},props.chatId);			
-		setTextState("type your message");
-		setNameState("Your name");
+		if(props.changeMsgText===""){			
+			props.onSendMsg({name:props.author,text});			
+			setTextState(null);	
+		}else {
+			debugger
+			props.editMsg({name:props.author,text})
+			setTextState(null);	
+		}			
 	}
 	
 	const handleKeyUp = (event) =>{
 			if(event.keyCode === 13){
-				props.onSendMsg({name:props.author,text},props.chatId);	
-				setTextState("type your message");
-				setNameState("Your name");
+				props.changeMsgText==="" ? props.onSendMsg({name:props.author,text})
+				: props.editMsg({name:props.author,text});	
+				setTextState(null);	
 		}
 	}
 	return (
-		<form onSubmit = {handleSubmit} className ="chat-form">
-			<input type="text"
-				placeholder = "Your name"
-				value = {name}
-				onChange = {setName}
-				onKeyUp = {handleKeyUp}/>
+		<form onSubmit = {handleSubmit} className ="chat-form">			
 			<textarea 
 				placeholder = "type your message"
-				value = {text}
+				value = {text || props.changeMsgText}
 				onChange = {setText}
 				onKeyUp = {handleKeyUp} >
 			</textarea>
-			<button >SEND</button>
+			<button >{props.changeMsgText==="" ? "SEND" : "CHANGE"}</button>
 		</form>
 	)
 }

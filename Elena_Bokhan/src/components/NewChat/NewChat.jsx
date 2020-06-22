@@ -27,7 +27,7 @@ const NewChat = (props) =>{
 	}
 
 	return (
-		<div className = "new-chat-field">
+		<section className = "new-chat-field">
 			<p>Add new chat</p>
 			<form onSubmit = {handleSubmit} className ="new-chat-form">
 				<input type="text"
@@ -37,7 +37,7 @@ const NewChat = (props) =>{
 					onKeyUp = {handleKeyUp}/>			
 				<button >+</button>
 			</form>
-		</div>
+		</section>
 	)
 }
 export default NewChat
