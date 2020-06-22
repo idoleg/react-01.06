@@ -8,7 +8,7 @@
 }
 .chats li{
     display: block;
-    padding:10px;
+    
     border:3px solid lightgray;
     border-radius: 10px;
     margin-right: 20px;
@@ -20,7 +20,11 @@
 .chats li a{
     text-decoration: none;
     font-weight: bold;
-    color: gray
+    color: gray;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding:10px;
 }
 
 .chats li:hover{
