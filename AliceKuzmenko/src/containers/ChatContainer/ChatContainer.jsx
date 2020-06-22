@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Chat } from '../../components/Chat/Chat'
 import { ChatList } from '../../components/ChatList/ChatList'
+
 import { Header } from '../../components/Header/Header'
 
 import {connect} from 'react-redux'

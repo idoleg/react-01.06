@@ -34,7 +34,7 @@ export default handleActions({
                 ]
             },
             3: {
-                name: 'Dolor',
+                name: 'Dolor-Vasya',
                 messages: []
             },
             //4:{name:'Sit'},

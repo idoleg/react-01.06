@@ -1,5 +1,6 @@
 import React from 'react';
 import  ChatContainer from './containers/ChatContainer/ChatContainer';
+import ChatListContainer from './containers/ChatListContainer/ChatListContainer'
 import {ChatList} from './components/ChatList/ChatList'
 import { Profile } from './components/Profile/Profile'
 import { Header } from './components/Header/Header'
@@ -27,6 +28,7 @@ export const App = () => (
             <Route path="/" exact component={ChatList} />
             <Switch>
                 <Route path="/chats">
+                    <ChatListContainer />
                     <Header />
                     <ChatList />
                     <Switch>
