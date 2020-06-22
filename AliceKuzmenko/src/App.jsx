@@ -1,6 +1,6 @@
 import React from 'react';
 import  ChatContainer from './containers/ChatContainer/ChatContainer';
-import { ChatList } from './components/ChatList/ChatList'
+import ChatList from './components/ChatList/ChatList'
 import { Profile } from './components/Profile/Profile'
 import { Header } from './components/Header/Header'
 
@@ -24,7 +24,7 @@ store.dispatch(sendMessage(1,'Lorem',"New"))
 export const App = () => (
     <Provider store={store}>
         <BrowserRouter>
-
+            <Route path="/" exact component={ChatList} />
             <Switch>
                 <Route path="/chats">
                     <Header />
@@ -42,3 +42,5 @@ export const App = () => (
         </BrowserRouter>
     </Provider>
 )
+
+
