@@ -1,7 +1,8 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 
 import chatReducer from './chatReducer';
 import profileReducer from './profileReducer';
+import botMiddleware from './botMiddleware';
 
 const reducer = combineReducers({
   chats: chatReducer,
@@ -9,7 +10,9 @@ const reducer = combineReducers({
 });
 
 export function initStore(preloadedState = undefined) {
-  const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
+  const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-  return createStore(reducer, preloadedState, devTools);
+  return createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(
+    botMiddleware
+  )));
 };

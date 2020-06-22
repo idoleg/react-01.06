@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { initChats, sendMessage } from './chatActions';
+import { initChats, sendMessage, createChat } from './chatActions';
 
 const initialState = {};
 
@@ -65,5 +65,15 @@ export default handleActions({
         ]
       }
     };
+  },
+  [createChat]: (state, action) => {
+    const { id, name } = action.payload;
+    return {
+      ...state,
+      [id]: {
+        name,
+        messages: [],
+      }
+    }
   },
 }, initialState);

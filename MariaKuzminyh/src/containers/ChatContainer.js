@@ -5,8 +5,6 @@ import { sendMessage } from '../store/chatActions';
 
 import { Chat } from '../components/Chat/Chat';
 
-export const ROBOT_NAME = "Робот";
-
 //class ChatContainer extends Component {
 
   /* timeoutId = null;

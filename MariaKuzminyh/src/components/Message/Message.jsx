@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames'; 
 
-import { ROBOT_NAME } from '../../containers/ChatContainer';
+import { ROBOT_NAME } from '../../store/botMiddleware';
 import './message.css';
 
 export const Message = ({ name, content }) => {

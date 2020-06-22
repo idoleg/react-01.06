@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { initStore } from './store';
 
 import Header from './components/Header/Header';
-import { ChatList } from './components/ChatList/ChatList';
+import ChatListContainer from './containers/ChatListContainer';
 import ChatContainer from './containers/ChatContainer';
 import { Profile } from './components/Profile/Profile';
 
@@ -24,7 +24,7 @@ export const App = () => (
       <Switch>
         <Route path="/" exact>Главная страница</Route>
         <Route path="/chats">
-          <ChatList />
+          <ChatListContainer />
           <Switch>
             {/* <Route path="/chats" exact component={ ChatContainer } /> */}
             <Route path="/chats/:id" exact component={ ChatContainer } />
