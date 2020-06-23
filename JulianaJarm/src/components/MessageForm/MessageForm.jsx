@@ -1,6 +1,8 @@
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 export class MessageForm extends React.Component {
     constructor(props) {
@@ -62,4 +64,12 @@ export class MessageForm extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (store) => ({
+    chats: store.chats
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageForm);
 

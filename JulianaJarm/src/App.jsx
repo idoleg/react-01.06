@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { initStore } from "./store";
 import { initChats } from "./store/chatActions";
+import ChatListContainer from "./containers/ChatListContainer";
 
 
 const store = initStore();
@@ -19,7 +20,7 @@ export const App = () => (
                     <Route path="/" exact>Main page
                     </Route>
                     <Route path="/chats">
-                        <ChatList />
+                        <ChatListContainer />
                         <Switch>
                             <Route path="/chats" exact component={ChatContainer} />
                             <Route path="/chats/:id" exact component={ChatContainer} />
@@ -38,17 +39,24 @@ export const App = () => (
 
 
 /*
-
-// todo перевести chatList на redux
-
-// todo 7. * Реализовать добавление новых чатов в мессенджер.
+// todo Lesson 5 * Реализовать добавление новых чатов в мессенджер.
     Для этого нужно связать воедино чаты, хранящиеся в state MessageField, и чаты, отрисовывающиеся в ChatList.
 
 
+//todo Lesson 6
 //todo 1. Подключить middlewares.
 //todo 2. Создать messageMiddleware и перенести туда логику ответа от робота.
 //todo 3. Сделать с помощью middleware мигание (подсвечивание в списке на короткое время) чата, в который пришло сообщение от робота.
 //todo 4. Подключить Router к Redux и перевести переходы между чатами с <Link> на push().
 //todo 5. Подключить redux-persist и сохранять с его помощью чаты и сообщения.
 //todo 6. * Реализовать возможность удаления чатов и сообщений.
+
+
+//todo Lesson 7
+//todo 1. Подключить redux-api-middleware.
+//todo 2. Организовать загрузку чатов и сообщений через API.
+//todo 3. Проводить выделение сущностей (чатов и сообщений) с помощью normalizr.
+//todo 4. Загружать данные профиля через API.
+
  */
+

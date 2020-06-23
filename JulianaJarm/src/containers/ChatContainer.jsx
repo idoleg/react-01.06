@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { sendMessage } from "../store/chatActions";
 
 //export  const BOT_NAME = 'bot';
-
 //class ChatContainer extends React.Component {
     //timeoutId = null;
     // handleMessageSend = (id) => (message) => {

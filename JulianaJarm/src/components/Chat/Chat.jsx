@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import '../../styles/styles.css'
 import { MessageForm } from "../MessageForm/MessageForm";
 import { MessageList } from "../MessageList/MessageList";
