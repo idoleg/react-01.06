@@ -10,13 +10,38 @@ import { bindActionCreators } from "redux";
 import { createChat } from "../../store/chatActions";
 
 export class ChatList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chatName: '',
+            chatId: '',
+        }
+    }
+    handleNameChange = (event) => {
+        this.setState({chatName: event.target.value});
+    }
+    findNewChatId = () => {
+        let max = 0;
+        this.props.chats.map((chat, index) => {
+            if (chat.id > max) {
+                max = chat.id;
+            }
+        })
+        parseInt(max)
+        max += 1;
+        this.setState({chatId: max});
+    }
+    setNewChat = () => {
+        const chatName = this.state.chatName;
+        const chatId = this.state.chatId;
+        return {id: chatId, name: chatName};
+    }
     handleCreateChat = () => {
-        const chat = {id: 50, name: 'Test Chat'}
+        const chat = this.setNewChat();
         this.props.onNewChat(chat);
+        this.setState({chatName: ''})
     }
     render() {
-        console.log(this.props.chats)
-
         const chats = this.props.chats.map((chat, id) => (
             <>
                 <Link to={`/chats/${chat.id}`}>
@@ -29,6 +54,7 @@ export class ChatList extends React.Component {
         return (
             <div className="chatList">
                 <List>
+                    <input type="text" value={this.state.chatName} onChange={this.handleNameChange}/>
                     <Button onClick={this.handleCreateChat}>Create new chat</Button>
                     { chats }
                 </List>

@@ -9,7 +9,6 @@ const mapStateToProps = (store) => {
         for (let id in store.chats) {
             chats.push({id: id, name: store.chats[id].name})
         }
-        console.log(chats);
     return { chats }
 }
 
@@ -18,7 +17,6 @@ const mapDispatchToProps = (dispatch) =>
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const onNewChat = (chat) => {
-        console.log('new chat')
         dispatchProps.createChat(chat.id, chat.name);
     }
     return {
