@@ -10,6 +10,8 @@ import { sendMessage } from "./chatActions";
 
 export  const BOT_NAME = 'bot';
 
+const timeoutIds = {};
+
 export default store => next => action => {
     next(action);
 
@@ -17,8 +19,8 @@ export default store => next => action => {
         const {name, id} = action.payload;
 
         if (name !== BOT_NAME) {
-            //setTimeout(generateBotAnswer)
-            generateBotAnswer(store, id, name);
+            clearTimeout(timeoutIds[id]);
+            timeoutIds[id] = setTimeout(generateBotAnswer, 3000, store, id, name);
         }
     }
 }

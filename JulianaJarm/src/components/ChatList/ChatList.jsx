@@ -17,7 +17,7 @@ export class ChatList extends React.Component {
     }
     findNewChatId = () => {
         let max = 0;
-        this.props.chats.map((chat, index) => {
+        this.props.chats.map((chat) => {
             if (chat.id > max) {
                 max = chat.id;
             }
