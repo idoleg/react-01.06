@@ -1,13 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { createChat } from "../../store/chatActions";
 
 export class ChatList extends React.Component {
     constructor(props) {
@@ -63,7 +59,5 @@ export class ChatList extends React.Component {
     }
 }
 /*
-
-//todo по кнопке добавления чата должен вместо кнопки появляться инпут, где нужно ввести имя чата и
-//todo после нажатия энтера чат добавляется с введенным именем
+//fixme при добавлении нового чата ид вычисляется конкатенацией, иногда новый чат удаляет один из старых
  */
