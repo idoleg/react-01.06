@@ -1,45 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import { Link } from 'react-router-dom';
+import { List, ListItem } from 'material-ui/List';
+import ContentSend from 'material-ui/svg-icons/content/send';
 
 
 export default class ChatList extends React.Component {
     render() {
         return (
-            <div>
-                <List component="nav" aria-label="secondary mailbox folders">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Чат №1" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <DraftsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Чат №2" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Чат №3" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <DraftsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Чат №4" />
-                    </ListItem>
-                </List>
-            </div>
-          );
+            <List>
+               <Link to="/chat/1/">
+                   <ListItem primaryText="Chat 1" leftIcon={<ContentSend />} />
+               </Link>
+               <Link to="/chat/2/">
+                   <ListItem primaryText="Chat 2" leftIcon={<ContentSend />} />
+               </Link>
+               <Link to="/chat/3/">
+                   <ListItem primaryText="Chat 3" leftIcon={<ContentSend />} />
+               </Link>
+           </List>
+        )
     }
 }
