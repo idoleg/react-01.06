@@ -10,7 +10,6 @@ export class ChatList extends React.Component {
         super(props);
         this.state = {
             chatName: '',
-            chatId: '',
         }
     }
     handleNameChange = (event) => {
@@ -23,13 +22,11 @@ export class ChatList extends React.Component {
                 max = chat.id;
             }
         })
-        parseInt(max)
-        max += 1;
-        this.setState({chatId: max});
+        return max += 1;
     }
     setNewChat = () => {
         const chatName = this.state.chatName;
-        const chatId = this.state.chatId;
+        const chatId = this.findNewChatId();
         return {id: chatId, name: chatName};
     }
     handleCreateChat = () => {
@@ -39,10 +36,10 @@ export class ChatList extends React.Component {
     }
     render() {
         const chats = this.props.chats.map((chat, id) => (
-                <Link key={id} to={`/chats/${chat.id}`}>
-                    <ListItem>{chat.name}</ListItem>
-                    <Divider/>
-                </Link>
+            <Link key={id} to={`/chats/${chat.id}`}>
+                <ListItem>{chat.name}</ListItem>
+                <Divider/>
+            </Link>
         ))
 
         return (
@@ -56,6 +53,3 @@ export class ChatList extends React.Component {
         )
     }
 }
-/*
-//fixme при добавлении нового чата ид вычисляется конкатенацией, иногда новый чат удаляет один из старых
- */

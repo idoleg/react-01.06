@@ -7,7 +7,7 @@ import {ChatList} from "../components/ChatList/ChatList";
 const mapStateToProps = (store) => {
     let chats = [];
         for (let id in store.chats) {
-            chats.push({id: id, name: store.chats[id].name})
+            chats.push({id: parseInt(id, 10), name: store.chats[id].name})
         }
     return { chats }
 }
