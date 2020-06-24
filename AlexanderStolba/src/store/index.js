@@ -1,8 +1,10 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import chatReducer  from './chatReducer';
 import { botMiddleware } from './botMiddleware';
-import {createBrowserHistory} from 'history'
-import {routerMiddleware, connectRouter} from 'connected-react-router'
+import { chatMiddleware } from './chatMiddleware';
+import {createBrowserHistory} from 'history';
+import {routerMiddleware, connectRouter} from 'connected-react-router';
+import ReduxThunk from 'redux-thunk' 
 
 
 export const history = createBrowserHistory();
@@ -16,7 +18,9 @@ const reducer = combineReducers({
 
 export function initStore(preloadedStore = undefined) {
     return createStore(reducer, preloadedStore, applyMiddleware(
-        botMiddleware,
+        ReduxThunk,
         routerMiddleware(history),
+        botMiddleware,
+        chatMiddleware,
     ))
 }

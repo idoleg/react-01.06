@@ -1,58 +1,51 @@
 import { handleActions } from 'redux-actions';
-import { initChats, sendMessage, createChat } from './chatActions'
+import {loadingChats, failedLoadedChats, initChats, sendMessage, createChat } from './chatActions'
 
-const initialState = {}
+const initialState = {
+    items: {},
+    error: null,
+    isLoading: false
+}
 
 export default handleActions ({
+
+    [loadingChats]: (state, action) => {
+        return {
+            items: {},
+            isLoading: true,
+            error: null
+        }
+    },
+
+    [failedLoadedChats]: (state, action) => {
+        return {
+        items: {},
+        error: action.payload.messages,
+        isLoading: false,
+        }
+    },
     
     [initChats]: (state, action) => {
         return {
-                1: {
-                    name: "Chat 1",
-                    messages: [
-                        { name: 'Alex', content: 'Hello!' },
-                        { name: 'Ivan', content: 'Hi!' },
-                        { name: 'Alex', content: 'How are you?' },
-                        { name: 'Ivan', content: 'Fine, and wbu?' },
-                    ]
-                },
-    
-                2: {
-                    name: "Chat 2",
-                    messages: [
-                        { name: 'Dima', content: 'Hello!' },
-                        { name: 'Oleg', content: 'Hi!' },
-                        { name: 'Dima', content: 'What is the weather like?' },
-                        { name: 'Oleg', content: 'Wonderful!' },
-                    ]
-                },
-    
-                3: {
-                    name: "Chat 3",
-                    messages: [
-                        
-                    ]
-                },
-    
-                4: {
-                    name: "Chat 4",
-                    messages: [
-                        { name: 'Messenger Bot', content: 'It is chat 4' },
-                    ]
-                }
-        };
+        items: action.payload.data,
+        isLoading: false,
+        error: null,
+        }
     },
 
     [sendMessage]: (state, action) => {
         const { id, name, content } = action.payload;
         return {
             ...state,
-            [id]: {
-                ...state[id],
-                messages: [
-                    ...state[id].messages,
-                    { name, content }
-                ]
+            items: {
+                ...state.items,
+                [id]: {
+                    ...state.items[id],
+                    messages: [
+                        ...state.items[id].messages,
+                        { name, content }
+                    ]
+                }
             }
         };
     },
@@ -61,9 +54,12 @@ export default handleActions ({
         const { id, name } = action.payload;
         return {
             ...state,
-            [id]: {
-                name,
-                messages: [],
+            items: {
+                ...state.items,
+                [id]: {
+                    name,
+                    messages: [],
+                }
             }
         }
     }

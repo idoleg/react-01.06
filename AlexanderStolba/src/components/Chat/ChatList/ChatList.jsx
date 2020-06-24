@@ -33,7 +33,7 @@ export const ChatList = ({ chats, createChat }) => {
 
     <div className="add-form">
         <div className="add-input">
-            <TextField id="filled-basic" label="Filled" variant="filled" placeholder="Chat name:" onChange={ setName } onKeyUp={ handleKeyUp } value={ name } />
+            <TextField id="filled-basic" label="Chat name" variant="filled" placeholder="Chat name:" onChange={ setName } onKeyUp={ handleKeyUp } value={ name } />
         </div>
 
     <div className="add-btn">

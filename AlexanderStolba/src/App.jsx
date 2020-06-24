@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ChatContainer from './containers/ChatContainer';
 import ChatListContainer from './containers/ChatListContainer';
 import { Provider } from 'react-redux';
-import { initStore } from './store';
-import { initChats, sendMessage } from './store/chatActions';
+import { initStore, history } from './store';
+import { fetchChats } from './store/chatAsyncActions';
+import { ConnectedRouter } from 'connected-react-router';
+
 
 const store = initStore();
-store.dispatch(initChats());
+store.dispatch(fetchChats());
+
 
 export const App = () => (
     <Provider store = { store }>
-    <BrowserRouter>
+    <ConnectedRouter history = { history }>
         <Switch>
         
             <Route path="/chats">
@@ -27,8 +30,6 @@ export const App = () => (
             <Route path="/about">About us</Route>
             <Route path="/">Error 404</Route>
         </Switch>
-    </BrowserRouter>
+    </ConnectedRouter>
     </Provider>
 )
-
-//<ChatContainer />
