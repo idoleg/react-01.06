@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import ChatContainer from "./containers/ChatContainer";
-import {  ChatList } from "./components/ChatList/ChatList";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { initStore } from "./store";

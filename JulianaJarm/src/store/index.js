@@ -1,10 +1,15 @@
-import { createStore, combineReducers } from 'redux';
-import chatReducer from './chatReducer'
+import {createStore, combineReducers, compose, applyMiddleware,} from 'redux';
+import chatReducer from './chatReducer';
+import botMiddleware from "./botMiddleware";
 
 const reducer = combineReducers({
     chats: chatReducer
 })
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
+
 export function initStore(preloadedState = undefined) {
-    return createStore(reducer, preloadedState, devTools);
+    const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+    return createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(
+        botMiddleware
+    )));
 }

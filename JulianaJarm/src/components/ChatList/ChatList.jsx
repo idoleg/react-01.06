@@ -39,12 +39,10 @@ export class ChatList extends React.Component {
     }
     render() {
         const chats = this.props.chats.map((chat, id) => (
-            <>
-                <Link to={`/chats/${chat.id}`}>
-                    <ListItem key={id}>{chat.name}</ListItem>
+                <Link key={id} to={`/chats/${chat.id}`}>
+                    <ListItem>{chat.name}</ListItem>
+                    <Divider/>
                 </Link>
-                <Divider />
-            </>
         ))
 
         return (
