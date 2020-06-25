@@ -1,6 +1,7 @@
 import {createStore, combineReducers, compose, applyMiddleware,} from 'redux';
 import chatReducer from './chatReducer';
 import botMiddleware from "./botMiddleware";
+import chatMiddleware from "./chatMiddleware";
 import { createBrowserHistory } from "history";
 import { routerMiddleware, connectRouter } from "connected-react-router";
 
@@ -16,6 +17,7 @@ export function initStore(preloadedState = undefined) {
 
     return createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(
         routerMiddleware(history),
-        botMiddleware
+        botMiddleware,
+        chatMiddleware
     )));
 }
