@@ -14,7 +14,7 @@ const mapStateToProps = (store) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({ createChat, deleteChat ,push }, dispatch);
+    bindActionCreators({ createChat, deleteChat, push }, dispatch);
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {

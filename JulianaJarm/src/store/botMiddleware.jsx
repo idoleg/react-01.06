@@ -1,5 +1,9 @@
 import { sendMessage, createChat } from "./chatActions";
 
+export  const BOT_NAME = 'bot';
+
+const timeoutIds = {};
+
 // export default function (store) {
 //     return function (next) {
 //         return function (action) {
@@ -7,11 +11,6 @@ import { sendMessage, createChat } from "./chatActions";
 //         }
 //     }
 // }
-
-export  const BOT_NAME = 'bot';
-
-const timeoutIds = {};
-
 export default store => next => action => {
     next(action);
 
