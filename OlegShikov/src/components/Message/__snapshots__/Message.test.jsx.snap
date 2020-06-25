@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message.jsx render contetn 1`] = `
+<li
+  className="message"
+>
+  <strong>
+    Ivan
+    :
+  </strong>
+   
+  Hello!
+</li>
+`;
+
+exports[`Message.jsx render message with robot css class 1`] = `
+<li
+  className="message message--is-robot"
+>
+  <strong>
+    Robot
+    :
+  </strong>
+   
+  Hello!
+</li>
+`;
