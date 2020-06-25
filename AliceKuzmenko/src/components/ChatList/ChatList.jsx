@@ -9,42 +9,29 @@ import Button from '@material-ui/core/Button';
 //import './NewChatForm.css'
 
 
-//import useInput from '../../hooks/useInput';
+import useInput from '../../hooks/useInput';
 
-export const AddChatForm = ({onNewChat}) => {
-//    const [name, setName, setNameState] = useInput("");
+export const AddChatForm = ({onNewChat, chats}) => {
 
-    //const handleClick = () => {
-    //    createChat(new Date().valueOf(), name);
-    //    setNameState('');
-    //}
-    //const [name, setName] = useInput("Chat");
+    const [name, setName,setNameState] = useInput("");
 
-    const handleChange = (event) => {
-        this.setState({ value: event.target.value });
-    }
 
     const handleSubmit = (event) => {
         //alert('Отправленное имя: ' + this.state.value);
-        console.log(onNewChat)
-        onNewChat(name);
-        console.log(name)
+       // console.log(onNewChat)
+        onNewChat(chats.length+1, name);
+       // console.log(name)
         event.preventDefault();
-        //setContentState("");
+        setNameState('');
 
     }
-    const handleKeyUp = (event) => {
-        //console.log("event")
-        if (event.keyCode === 13) { // Enter
-            handleSubmit(event);
-        }
-     };
+
     return (
-        <form>
+        <form className="add-chat-form" onSubmit={handleSubmit}>
             <TextField
-                label="Name"
+                label="New chat name"
                 variant="outlined"
-                placeholder="Name"
+                placeholder="New chat name"
                 value={name}
                 onChange={setName}
             />
@@ -62,19 +49,21 @@ export const AddChatForm = ({onNewChat}) => {
 
 
 //export function ChatList(chats){
-export const ChatList = ({ chats }) => {
+export const ChatList = ({ chats, addChat }) => {
     
    //chats = Object.values(chats)
    const chatsArray=[]
    for (let key in chats){chatsArray.push(chats[key])};
    chatsArray.map(item => console.log (item))
     return (
-        <ul>
+        <><ul className="chats">
             {chatsArray.map(({ id, name }) => (<li key={id}><Link to={"/chats/" + id}>{name}</Link></li>))}
-            {/* <li>
-              <AddChatForm />
-            </li> */}
+            
+            
+        
         </ul>
+              <AddChatForm onNewChat={addChat} chats={chats}/>
+        </>
     )
     return null
 }

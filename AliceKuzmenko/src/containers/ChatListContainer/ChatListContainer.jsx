@@ -6,13 +6,13 @@ import { addChat } from '../../store/chatActions';
 
 const mapStateToProps = (state) => {
     const chats = Object.entries(state.chats).map(([id, { name }]) => ({ id, name }));
-    console.log (chats)
+    //console.log (chats)
     return {
         chats
     }
 }
 
-//const mapDispatchToProps = (dispatch) => bindActionCreators({ addChat }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ addChat }, dispatch);
 
-export default connect(mapStateToProps)(ChatList)
-//, mapDispatchToProps
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
+//

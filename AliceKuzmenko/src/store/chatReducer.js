@@ -9,7 +9,7 @@
 // }
 
 import {handleActions} from "redux-actions"
-import {initChats, sendMessage} from './chatActions'
+import {initChats, sendMessage, addChat} from './chatActions'
 //addChat
 
 const initialState={};
@@ -55,14 +55,14 @@ export default handleActions({
             }
         };
     },
-    // [addChat]:(state,action)=>{
-    //     //console.log(state,action)
-    //     const { id, name } = action.payload;
-    //     let chat={name:name, id:(state[id].messages.length+1)}
-    //     return {
-    //         ...state, [id]:{name:chat.name, messages:[]}
+     [addChat]:(state,action)=>{
+        //console.log(state,action)
+        const { id, name } = action.payload;
+        //let chat={name:name, id:(state[id].messages.length+1)}
+        return {
+            ...state, [id]:{name, messages:[]}
             
-    //     };
-    // }
+        };
+    }
 
 },initialState)
