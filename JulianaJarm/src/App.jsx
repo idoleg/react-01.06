@@ -1,12 +1,11 @@
 import React from 'react';
 import ChatContainer from "./containers/ChatContainer";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { initStore, history } from "./store";
 import { initChats } from "./store/chatActions";
 import ChatListContainer from "./containers/ChatListContainer";
 import { ConnectedRouter } from "connected-react-router";
-
 
 const store = initStore();
 store.dispatch(initChats());

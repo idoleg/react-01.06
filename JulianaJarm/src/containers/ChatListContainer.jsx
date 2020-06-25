@@ -1,6 +1,6 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { createChat } from "../store/chatActions";
+import { createChat, deleteChat } from "../store/chatActions";
 import { connect } from "react-redux";
 import { ChatList } from "../components/ChatList/ChatList";
 import { push } from "connected-react-router";
@@ -14,12 +14,13 @@ const mapStateToProps = (store) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({ createChat, push }, dispatch);
+    bindActionCreators({ createChat, deleteChat ,push }, dispatch);
 
-const mergeProps = (stateProps, dispatchProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...stateProps,
         ...dispatchProps,
+        ...ownProps
     }
 }
 

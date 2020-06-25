@@ -51,13 +51,12 @@ export default handleActions({
         const { chatId, messageId } = action.payload;
         let messages = state[chatId].messages;
         messages.splice(messageId, 1)
-        console.log(state)
         return {
             ...state,
             [chatId] : {
                 ...state[chatId],
                 messages: [
-                    ...state[chatId].messages
+                    ...messages
                 ]
             }
         }
@@ -75,8 +74,12 @@ export default handleActions({
     },
 
     [deleteChat]: (state, action) => {
-
-    },
+        const {id} = action.payload;
+        delete state[id];
+        return {
+            ...state
+        }
+    }
 
 
 }, initialState);

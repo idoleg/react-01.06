@@ -1,9 +1,7 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 
 export class ChatList extends React.Component {
 
@@ -41,13 +39,17 @@ export class ChatList extends React.Component {
     }
 
     handleNavigate = (link) => {
-        console.log('click');
         this.props.push(link);
     }
 
     render() {
         const chats = this.props.chats.map((chat, id) => (
-                <ListItem key={chat.id} onClick={() => this.handleNavigate(`/chats/${chat.id}`)}>{this.props.symbol}{chat.name}</ListItem>
+                <ListItem
+                    key={chat.id}
+                    onClick={() => this.handleNavigate(`/chats/${chat.id}`)}>
+                        {chat.name}
+                        <button onClick={() => this.props.deleteChat(chat.id)}>x</button>
+                </ListItem>
         ))
 
         return (
