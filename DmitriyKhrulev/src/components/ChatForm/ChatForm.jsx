@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import useInput  from '../../hooks/useInput'
 import './ChatForm.css'
 
 
-function useInput(initialState) {
-   const [state, setState] = useState(initialState);
 
-   const setInput = e => {
-      setState(e.target.value);
-   }
-
-   return [state, setInput, setState];
-}
 
 export const ChatForm = ({ onSendMessage }) => {
    const [name, setName, setNameState] = useInput('Dima');

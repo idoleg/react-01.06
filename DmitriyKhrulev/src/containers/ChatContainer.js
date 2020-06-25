@@ -6,55 +6,55 @@ import { bindActionCreators } from 'redux';
 import { sendMessage } from '../store/chatActions'
 
 
-export const ROBOT = 'Robot'
+// export const ROBOT = 'Robot'
 // class ChatContainer extends Component {
-//    // state = {
-//    //    chats: {
-//    //       1: {
-//    //          name:'Chat 1',
-//    //          messages: [
-//    //             { name: 'Ivan', content: 'Hello' },
-//    //             { name: 'Gref', content: 'Hi' },
-//    //          ],
-//    //       },
-//    //       2: {
-//    //          name: 'Chat 2',
-//    //          messages: [
-//    //             // { name: 'Ivan', content: 'Hello' },
-//    //             // { name: 'Gref', content: 'Hi' },
-//    //             { name: 'Pupu', content: 'Good day' },
-//    //             { name: 'Medved', content: 'Ola' },
-//    //          ],
-//    //       },
-//    //       3: {
-//    //          name: 'Chat 3',
-//    //          messages: [],
-//    //       }
-//    //    },
+   // state = {
+   //    chats: {
+   //       1: {
+   //          name:'Chat 1',
+   //          messages: [
+   //             { name: 'Ivan', content: 'Hello' },
+   //             { name: 'Gref', content: 'Hi' },
+   //          ],
+   //       },
+   //       2: {
+   //          name: 'Chat 2',
+   //          messages: [
+   //             // { name: 'Ivan', content: 'Hello' },
+   //             // { name: 'Gref', content: 'Hi' },
+   //             { name: 'Pupu', content: 'Good day' },
+   //             { name: 'Medved', content: 'Ola' },
+   //          ],
+   //       },
+   //       3: {
+   //          name: 'Chat 3',
+   //          messages: [],
+   //       }
+   //    },
       
       
-//    // }
-//    // timeoutId = null;
+   // }
+   // timeoutId = null;
 
-//    // // componentDidUpdate(prevProps, prevState) {
-//    //    handleRobotAnswer = () =>{
-//    //    const {id} = this.props.match.params;
+   // componentDidUpdate(prevProps, prevState) {
+   //    handleRobotAnswer = () =>{
+   //    const {id} = this.props.match.params;
 
-//    //    if (id && this.state.chats[id]) {
-//    //       const currentMessages = this.state.chats[id].messages;
-//    //       const lastMessage = currentMessages[currentMessages.length - 1];
+   //    if (id && this.state.chats[id]) {
+   //       const currentMessages = this.state.chats[id].messages;
+   //       const lastMessage = currentMessages[currentMessages.length - 1];
 
-//    //       // if(prevState.chats[id].messages.length === currentMessages.length) return;
+         // if(prevState.chats[id].messages.length === currentMessages.length) return;
 
-//    //       if (lastMessage && lastMessage.name !== ROBOT) {
-//    //          clearTimeout(this.timeoutId);
-//    //          this.timeoutId = setTimeout(() => this.handleSendMessage(id)({
-//    //                name: ROBOT,
-//    //                content: `Ola ${lastMessage.name}`
-//    //             }), 1000);
-//    //          }
-//    //       }
-//    //    }
+   //       if (lastMessage && lastMessage.name !== ROBOT) {
+   //          clearTimeout(this.timeoutId);
+   //          this.timeoutId = setTimeout(() => this.handleSendMessage(id)({
+   //                name: ROBOT,
+   //                content: `Ola ${lastMessage.name}`
+   //             }), 1000);
+   //          }
+   //       }
+   //    }
       
       
       

@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import ChatContainer  from './containers/ChatContainer';
-import { ChatList } from './components/ChatList/ChatList'
+import ChatListContainer from './containers/ChatListContainer'
 import {Header}  from './components/Header/Header.jsx';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import{ Profile } from './components/Profile/Profile';
 import { Provider } from 'react-redux';
-import {initStore} from './store/index'
-
+import {initStore, history} from './store/index'
+import { ConnectedRouter } from 'connected-react-router'
 import {initChats} from './store/chatActions'
 
 const store = initStore();
@@ -17,9 +17,9 @@ store.dispatch(initChats());
 
 export const App = () => (
   <Provider store={store}>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
          <Header/>
-         <ChatList/>
+         <ChatListContainer/>
          <Switch>
             <Route path='/' exact>Main</Route>
             <Route path='/chats'>
@@ -34,6 +34,6 @@ export const App = () => (
             <Route path='/contacts/how'>Contacts how</Route>
             <Route path='/'>404</Route>
          </Switch>
-      </BrowserRouter>
+      </ConnectedRouter>
    </Provider>
 )
