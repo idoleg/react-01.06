@@ -8,6 +8,7 @@ export default class Message extends React.Component {
                 <div className={ className }>
                     <b>{ this.props.name }: </b>
                     <span className="messageText">{ this.props.content }</span>
+                    <button onClick={this.props.deleteMessage}>X</button>
                 </div>
             </div>
             )

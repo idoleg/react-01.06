@@ -2,8 +2,7 @@ import React from 'react';
 import { Chat } from "../components/Chat/Chat";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { sendMessage } from "../store/chatActions";
-
+import { sendMessage, deleteMessage } from "../store/chatActions";
 
 //class ChatContainer extends React.Component {
     //timeoutId = null;
@@ -55,16 +54,20 @@ const mapStateToProps = (store, props) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({ sendMessage }, dispatch)
+    bindActionCreators({ sendMessage, deleteMessage }, dispatch)
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { id } = ownProps.match.params;
     const onMessage = (message) =>  {
         dispatchProps.sendMessage(id, message.name, message.content);
     }
+    const onDeleteMessage = (messageIndex) => {
+        dispatchProps.deleteMessage(id, messageIndex);
+    }
     return {
         ...stateProps,
         onMessage,
+        onDeleteMessage
     }
 }
 

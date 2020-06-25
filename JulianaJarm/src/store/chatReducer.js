@@ -1,5 +1,5 @@
-import { handleActions} from "redux-actions";
-import { initChats, sendMessage, createChat } from "./chatActions";
+import { handleActions } from "redux-actions";
+import { initChats, sendMessage, deleteMessage, createChat, deleteChat } from "./chatActions";
 
 const initialState = {};
 
@@ -32,6 +32,7 @@ export default handleActions({
 
         };
     },
+
     [sendMessage]: (state, action) => {
         const { id, name, content } = action.payload;
         return {
@@ -45,6 +46,23 @@ export default handleActions({
             }
         }
     },
+
+    [deleteMessage]: (state, action) => {
+        const { chatId, messageId } = action.payload;
+        let messages = state[chatId].messages;
+        messages.splice(messageId, 1)
+        console.log(state)
+        return {
+            ...state,
+            [chatId] : {
+                ...state[chatId],
+                messages: [
+                    ...state[chatId].messages
+                ]
+            }
+        }
+    },
+
     [createChat]: (state, action) => {
         const { id, name } = action.payload;
         return {
@@ -52,8 +70,13 @@ export default handleActions({
             [id]: {
                 name: name,
                 messages: [],
-
             }
         }
-    }
+    },
+
+    [deleteChat]: (state, action) => {
+
+    },
+
+
 }, initialState);

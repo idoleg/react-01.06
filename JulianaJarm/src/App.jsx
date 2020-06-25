@@ -2,9 +2,10 @@ import React from 'react';
 import ChatContainer from "./containers/ChatContainer";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { initStore } from "./store";
+import { initStore, history } from "./store";
 import { initChats } from "./store/chatActions";
 import ChatListContainer from "./containers/ChatListContainer";
+import { ConnectedRouter } from "connected-react-router";
 
 
 const store = initStore();
@@ -13,9 +14,10 @@ store.dispatch(initChats());
 export const App = () => (
     <div className="container">
         <Provider store={store}>
-            <BrowserRouter>
+            <ConnectedRouter history={history}>
                 <Switch>
-                    <Route path="/" exact>Main page
+                    <Route path="/" exact>
+                        <ChatListContainer />
                     </Route>
                     <Route path="/chats">
                         <ChatListContainer />
@@ -29,21 +31,15 @@ export const App = () => (
                     <Route path="/contacts/how">It's contacts page</Route>
                     <Route path="/">It's 404 page</Route>
                 </Switch>
-            </BrowserRouter>
+            </ConnectedRouter>
         </Provider>
     </div>
 )
 
-
-
 /*
 //todo Lesson 6
-
-
 //todo 3. Сделать с помощью middleware мигание (подсвечивание в списке на короткое время) чата, в который пришло сообщение от робота.
-//todo 4. Подключить Router к Redux и перевести переходы между чатами с <Link> на push().
-//todo 5. Подключить redux-persist и сохранять с его помощью чаты и сообщения.
-//todo 6. * Реализовать возможность удаления чатов и сообщений.
+//todo 6. * Реализовать возможность удаления чатов
 
 //todo Lesson 7
 //todo 1. Подключить redux-api-middleware.

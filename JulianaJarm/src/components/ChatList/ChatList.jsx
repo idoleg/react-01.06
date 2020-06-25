@@ -6,15 +6,18 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 export class ChatList extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             chatName: '',
         }
     }
+
     handleNameChange = (event) => {
         this.setState({chatName: event.target.value});
     }
+
     findNewChatId = () => {
         let max = 0;
         this.props.chats.map((chat) => {
@@ -24,22 +27,27 @@ export class ChatList extends React.Component {
         })
         return max += 1;
     }
+
     setNewChat = () => {
         const chatName = this.state.chatName;
         const chatId = this.findNewChatId();
         return {id: chatId, name: chatName};
     }
+
     handleCreateChat = () => {
         const chat = this.setNewChat();
-        this.props.onNewChat(chat);
+        this.props.createChat(chat.id, chat.name)
         this.setState({chatName: ''})
     }
+
+    handleNavigate = (link) => {
+        console.log('click');
+        this.props.push(link);
+    }
+
     render() {
         const chats = this.props.chats.map((chat, id) => (
-            <Link key={id} to={`/chats/${chat.id}`}>
-                <ListItem>{chat.name}</ListItem>
-                <Divider/>
-            </Link>
+                <ListItem key={chat.id} onClick={() => this.handleNavigate(`/chats/${chat.id}`)}>{this.props.symbol}{chat.name}</ListItem>
         ))
 
         return (

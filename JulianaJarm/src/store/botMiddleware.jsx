@@ -25,10 +25,8 @@ export default store => next => action => {
     } else if (action.type === createChat.toString()) {
         const {id} = action.payload;
         generateBotMessageInNewChat(store, id);
-        console.log(id)
     }
 }
-
 
 function generateBotAnswer (store, id, name) {
     const chatName = store.getState().chats[id].name;

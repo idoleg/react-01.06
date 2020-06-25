@@ -1,8 +1,9 @@
 import React from "react";
-import {bindActionCreators} from "redux";
-import {createChat} from "../store/chatActions";
-import {connect} from "react-redux";
-import {ChatList} from "../components/ChatList/ChatList";
+import { bindActionCreators } from "redux";
+import { createChat } from "../store/chatActions";
+import { connect } from "react-redux";
+import { ChatList } from "../components/ChatList/ChatList";
+import { push } from "connected-react-router";
 
 const mapStateToProps = (store) => {
     let chats = [];
@@ -13,15 +14,12 @@ const mapStateToProps = (store) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({ createChat }, dispatch);
+    bindActionCreators({ createChat, push }, dispatch);
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const onNewChat = (chat) => {
-        dispatchProps.createChat(chat.id, chat.name);
-    }
+const mergeProps = (stateProps, dispatchProps) => {
     return {
         ...stateProps,
-        onNewChat
+        ...dispatchProps,
     }
 }
 
