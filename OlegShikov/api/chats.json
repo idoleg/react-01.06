@@ -1,0 +1,36 @@
+{
+    "1233": {
+        "name": "Chat 1",
+        "messages": [
+            {
+                "name": "Ivan",
+                "content": "Hello, friend!"
+            },
+            {
+                "name": "Oleg",
+                "content": "Hi!"
+            },
+            {
+                "name": "Ivan",
+                "content": "How are you?"
+            },
+            {
+                "name": "Oleg",
+                "content": "I'm fine"
+            }
+        ]
+    },
+    "2333": {
+        "name": "Chat 2",
+        "messages": [
+            {
+                "name": "Dima",
+                "content": "It's chat 2"
+            }
+        ]
+    },
+    "3444": {
+        "name": "Chat 3",
+        "messages": []
+    }
+}

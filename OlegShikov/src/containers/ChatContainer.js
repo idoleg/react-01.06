@@ -45,9 +45,11 @@ export const ROBOT_NAME = "Robot";
 
 const mapStateToProps = (store, props) => {
     const { id } = props.match.params;
-    const chat = id && store.chats && store.chats[id] ? store.chats[id] : undefined;
+    const chat = id && store.chats.items && store.chats.items[id] ? store.chats.items[id] : undefined;
 
     return {
+        isLoading: store.chats.isLoading,
+        error: store.chats.error,
         messages: chat ? chat.messages : undefined,
     }
 }

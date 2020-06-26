@@ -10,10 +10,10 @@ import { ConnectedRouter } from 'connected-react-router'
 // MemoryRouter - 
 // HashRouter - www.test.com#/about
 // BrowserRouter - www.test.com/about
-import { initChats } from './store/chatActions';
+import { fetchChats } from './store/chatOperations';
 const store = initStore();
 console.log("store", store.getState())
-store.dispatch(initChats())
+store.dispatch(fetchChats())
 
 export const App = () => (
     <Provider store={store}>
