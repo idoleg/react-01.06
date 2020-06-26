@@ -1,61 +1,39 @@
-const initialState = {	 		
-				chats:{
-						1:{
-						author: "Mask",
-						msgArr: [{name: "Mask", text: "Hello"},
-								{name: "Bot", text: "Hi"},
-								{name: "Mask", text: "How are U?"},
-								{name: "Bot", text: "Fine, thanks"},
-								],
-						},
-						2:{
-							author: "Durov",
-							msgArr: [{name: "Durov", text: "Hello, i had created VK"},
-									{name: "Bot", text: "It's awesome"},
-									{name: "Durov", text: "Yeaa"},					
-									],
-						},
-						3:{
-							author: "Gates",
-							msgArr: [{name: "Gates", text: "I'm smartest man in the world"},
-									{name: "Bot", text: "Everybody know it"},
-									],
-						},		
-				},
-				changeMsg:{
-					text: "",
-					indexMsg: null
-				},
-				newMsgEffect: null,
-			}
+const initialState = {};
 
 const chatReducer = (state = initialState, action) =>{
+
 switch (action.type){
-	case "SEND-MSG":
-	return {...state,
-		chats:{...state.chats,
-		[action.chatId]:{
-			...state.chats[action.chatId],
-			msgArr:[...state.chats[action.chatId].msgArr,action.message]
+	case "LOADING-CHATS":
+		return  {			
+			isLoading:true
 		}
-	}
-	}
-	case "ADD-CHAT":
-	debugger
-	return  {
-		...state,				
-		chats:{...state.chats,
-			[action.id]:{author:action.name, msgArr:[]}	
-		},	
-	}
-	case "REMOVE-MSG":		
-			return {
-				...state,				
-				chats:{...state.chats,
-					[action.idChat]:{...state.chats[action.idChat],
-						msgArr: state.chats[action.idChat].msgArr.filter((item, index) => index != action.indexMsg)}	
-				},	
+	case "INIT-CHATS":
+		return {...action.data,
+			isLoading:false}
+	case "SEND-MSG":
+		return {...state,
+			chats:{...state.chats,
+			[action.chatId]:{
+				...state.chats[action.chatId],
+				msgArr:[...state.chats[action.chatId].msgArr,action.message]
 			}
+		}
+		}
+	case "ADD-CHAT":	
+		return  {
+			...state,				
+			chats:{...state.chats,
+				[action.id]:{author:action.name, msgArr:[]}	
+			},	
+		}
+	case "REMOVE-MSG":		
+		return {
+			...state,				
+			chats:{...state.chats,
+				[action.idChat]:{...state.chats[action.idChat],
+					msgArr: state.chats[action.idChat].msgArr.filter((item, index) => index != action.indexMsg)}	
+			},	
+		}
 	case "CHANGE-CLICK":	
 		return {
 			...state,
@@ -96,3 +74,6 @@ export const removeMessageActionCreator = (idChat,indexMsg) => ({type: "REMOVE-M
 export const changeClickActionCreator = (idChat,indexMsg) => ({type: "CHANGE-CLICK", idChat, indexMsg});
 export const editMessageActionCreator = (message,idChat) => ({type: "EDIT-MSG", message,idChat});
 export const newMsgEffectActionCreator = (id) => ({type: "NEW-MSG",id});
+export const initChatActionCreator = (data) => ({type: "INIT-CHATS",data});
+export const loadingChatActionCreator = () => ({type: "LOADING-CHATS"});
+

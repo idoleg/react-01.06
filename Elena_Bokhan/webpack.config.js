@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-	entry: path.resolve(__dirname, "src","index.js"),
+	entry: ["@babel/polyfill", path.resolve(__dirname, "src","index.js")],
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "index.js"
@@ -52,6 +52,15 @@ module.exports = {
 	},	
 	devtool : 'cheap-inline-module-source-map',
 	devServer : {	
-		historyApiFallback : true
+		historyApiFallback : true,
+		writeToDisk: true,
+		proxy:{
+			'/bot/' : {
+				target: 'https://aiproject.ru/api/',
+				pathRewrite: { '/bot/': '' },
+				secure: false,
+				changeOrigin: true
+			}
+		} 
 		} ,
 }

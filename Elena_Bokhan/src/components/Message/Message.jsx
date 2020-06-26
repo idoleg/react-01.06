@@ -13,11 +13,11 @@ const Message = (props) => {
 		let indexMsg = event.currentTarget.getAttribute("id")
 		props.changeClick(indexMsg)	
 		}
-	return  <div className = { props.name == "Bot"? "wrp-item-bot" : "wrp-item"  }>
-				<div className ={ props.name == "Bot"? "item bot" : "item" }>
+	return  <div className = { props.name == "Anfisa"? "wrp-item-bot" : "wrp-item"  }>
+				<div className ={ props.name == "Anfisa"? "item bot" : "item" }>
 					<div className = "avatar"></div>
 					<span> <div><strong>{props.name} </strong></div> <i> {props.text} </i></span>
-					{props.name !== "Bot"? 
+					{props.name !== "Anfisa"? 
 						<div className = "options">
 							<div onClick = {editMessage} id = {props.index}>
 								<EditIcon />

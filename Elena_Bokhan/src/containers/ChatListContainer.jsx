@@ -5,12 +5,15 @@ import ChatList from "../components/ChatList/ChatList";
 
 
 let mapStateToProps = ({chatReducer}) =>{
-
-	const chats = Object.entries(chatReducer.chats).map( ([id, {author}] )=> ({id,author}) );	
-	return{
-		chats,
-		newMsgEffect: chatReducer.newMsgEffect 	
-	}	
+	if(chatReducer.chats){
+		const chats = Object.entries(chatReducer.chats).map( ([id, {author}] )=> ({id,author}) );	
+			return{
+				chats,
+				newMsgEffect: chatReducer.newMsgEffect,
+				isLoading: chatReducer.isLoading 	
+			}	
+	} else return {}
+		
 }
 let mapDispatchToProps = (dispatch) =>{
 	return {
@@ -18,7 +21,7 @@ let mapDispatchToProps = (dispatch) =>{
 		}
 }
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-	const  id  = stateProps.chats.length+1;
+	const  id  = stateProps.chats ? stateProps.chats.length+1 : null;
 	const addChat = (nameChat) => {
         dispatchProps.addChat( nameChat,id);
     }
