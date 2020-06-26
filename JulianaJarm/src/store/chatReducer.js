@@ -14,14 +14,14 @@ export default handleActions({
     [failedLoadedChats]: (state, action) => {
         return {
             isLoading: false,
-            error: action.payload.messages,
+            error: action.payload.message,
         }
     },
 
     [initChats]: (state, action) => {
 
         return {
-            ...action.payload.data,
+            ...action.payload,
             isLoading: false,
             error: null,
         };

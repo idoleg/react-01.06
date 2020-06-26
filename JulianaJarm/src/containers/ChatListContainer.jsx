@@ -14,6 +14,7 @@ const mapStateToProps = (store) => {
         }
     return {
         isLoading: store.chats.isLoading,
+        error: store.chats.error,
         chats
         }
 }

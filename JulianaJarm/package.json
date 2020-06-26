@@ -39,6 +39,7 @@
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.7.16",
     "redux-actions": "^2.6.5",
+    "redux-api-middleware": "^3.2.1",
     "redux-thunk": "^2.3.0",
     "style-loader": "^1.2.1"
   }

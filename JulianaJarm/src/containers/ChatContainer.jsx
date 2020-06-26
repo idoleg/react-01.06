@@ -50,6 +50,7 @@ const mapStateToProps = (store, props) => {
     const chat = id && store.chats ? store.chats[id] : undefined;
     return {
         isLoading: store.chats.isLoading,
+        error: store.chats.error,
         messages: chat ? chat.messages : undefined,
     }
 }
