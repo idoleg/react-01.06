@@ -1,14 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/style.css';
 
 export default class Profile extends React.Component {
-   render() {
+    state = {
+        data: {},
+    }
+
+    componentDidMount() {
+        fetch('/api/header.json')
+            .then(body => body.json())
+            .then(data => {
+                this.setState({
+                    data: data[0],
+                });
+            });
+    }
+
+   render() { 
+
+    let {data} = this.state;
+
        return (
-           <div>
-               <h1>Профиль</h1>
-               <div>Гик</div>
-               <div>geek@geekbrains.ru</div>
-               <div>+7 999 999 99 99</div>
+           <div className="container">
+               <div>
+                   {Object.keys(data).map((elem) => {
+                        return <div key={data[elem]}>{ elem } - { data[elem] }</div>
+                   })}
+               </div>
                <Link to='/'> ← Назад</Link>
            </div>
        )
