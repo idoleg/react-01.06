@@ -8,9 +8,14 @@ import { push } from "connected-react-router";
 const mapStateToProps = (store) => {
     let chats = [];
         for (let id in store.chats) {
-            chats.push({id: parseInt(id, 10), name: store.chats[id].name})
+            if (id > 0 ) {
+                chats.push({id: parseInt(id, 10), name: store.chats[id].name});
+            }
         }
-    return { chats }
+    return {
+        isLoading: store.chats.isLoading,
+        chats
+        }
 }
 
 const mapDispatchToProps = (dispatch) =>

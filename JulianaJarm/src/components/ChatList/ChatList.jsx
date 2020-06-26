@@ -34,7 +34,7 @@ export class ChatList extends React.Component {
 
     handleCreateChat = () => {
         const chat = this.setNewChat();
-        this.props.createChat(chat.id, chat.name)
+        this.props.createChat(chat.id, chat.name);
         this.setState({chatName: ''})
     }
 
@@ -43,6 +43,9 @@ export class ChatList extends React.Component {
     }
 
     render() {
+        if (this.props.isLoading) {
+            return <strong>Подождите, все грузится.</strong>
+        }
         const chats = this.props.chats.map((chat, id) => (
                 <ListItem
                     key={chat.id}

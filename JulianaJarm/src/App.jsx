@@ -3,12 +3,12 @@ import ChatContainer from "./containers/ChatContainer";
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { initStore, history } from "./store";
-import { initChats } from "./store/chatActions";
 import ChatListContainer from "./containers/ChatListContainer";
 import { ConnectedRouter } from "connected-react-router";
+import { fetchChats } from "./store/chatOperations";
 
 const store = initStore();
-store.dispatch(initChats());
+store.dispatch(fetchChats());
 
 export const App = () => (
     <div className="container">
@@ -44,5 +44,15 @@ export const App = () => (
 //todo 2. Организовать загрузку чатов и сообщений через API.
 //todo 3. Проводить выделение сущностей (чатов и сообщений) с помощью normalizr.
 //todo 4. Загружать данные профиля через API.
+
+//todo Lesson 8
+//todo 1. Установить Lighthouse.
+//todo 2. Подключить service-worker.
+//todo 3. Добавить Web App Manifest и иконки.
+//todo 4. Установить приложение на рабочий стол.
+//todo 5. Реализовать мобильную верстку.
+//todo 6. Реализовать всплывающее окно с предложением об установке для iPhone.
+//todo 7. Добавить скрипт отслеживания установок.
+//todo 8. Реализовать подписку на push-уведомления и получить subscriptionID.
  */
 
