@@ -2,11 +2,11 @@ import './Message.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ROBOT_NAME } from '../../containers/ChatContainer';
+// import { ROBOT_NAME } from '../../containers/ChatContainer';
 
 export const Message = ({ name, content }) => {
 
-    const isRobot = name === ROBOT_NAME ? ' message--is-robot' : '';
+    const isRobot = name === 'Robot' ? ' message--is-robot' : '';
 
     return (<li className={'message' + isRobot}><strong>{name}:</strong> {content}</li>);
 };
