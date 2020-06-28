@@ -4,8 +4,13 @@ import './ChatList.css'
 import useInput  from '../../hooks/useInput'
 
 
-export const ChatList = ({chats, createChat}) => {
-      const [name, setName, setNameState] = useInput('')
+export const ChatList = ({isLoading, chats, createChat}) => {
+      const [name, setName, setNameState] = useInput('');
+
+      if (isLoading) {
+            return <strong>Loading</strong>
+      }
+
       const handleClick = () => {
             setNameState('');
             createChat(new Date().valueOf(), name)

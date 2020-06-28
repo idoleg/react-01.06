@@ -7,10 +7,11 @@ import{ Profile } from './components/Profile/Profile';
 import { Provider } from 'react-redux';
 import {initStore, history} from './store/index'
 import { ConnectedRouter } from 'connected-react-router'
-import {initChats} from './store/chatActions'
+
+import {fetchChat} from './store/chatOperations'
 
 const store = initStore();
-store.dispatch(initChats());
+store.dispatch(fetchChat());
 
 
 
