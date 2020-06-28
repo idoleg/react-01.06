@@ -42,7 +42,7 @@ export default handleActions({
             [id]: {
                ...state.items[id],
                messages: [
-                  ...state.items[id].message,
+                  ...state.items[id].messages,
                   { name, content }
                ]
             }

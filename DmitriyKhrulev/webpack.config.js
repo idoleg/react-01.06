@@ -41,6 +41,15 @@ module.exports = {
    },
    devServer: {
       historyApiFallback: true,
+      writeToDisk: true,
+      proxy: {
+         '/bot/': {
+            target: 'https://aiproject.ru/api/',
+            pathRewrite: {'/bot/' : ''},
+            secure: false,
+            changeOrigin: true,
+         }
+      }
    },
    devtool: 'inline-source-map',
 }

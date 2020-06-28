@@ -1,23 +1,25 @@
-import { sendMessage, createChat } from './chatActions'
-
+import { sendMessage, createChat } from './chatActions';
+import { sendMessageToBot } from './chatOperations';
 
 
 export const ROBOT = 'Robot';
 let timeoutIds = {};
 
 export default store => next => action => {
-   next(action)
+   next(action);
 
    if (action.type === sendMessage.toString()) {
-      const { name, id } = action.payload;
+      const { name, id, content } = action.payload;
 
       if (name !== ROBOT) {
-         clearTimeout(timeoutIds[id]);
-         timeoutIds[id] = setTimeout(generateRobotAnswer, 3000, store, id, name);
+         store.dispatch(sendMessageToBot(ROBOT, id, content));
+         // clearTimeout(timeoutIds[id]);
+         // timeoutIds[id] = setTimeout(generateRobotAnswer, 3000, store, id, name);
       }
    } else if (action.type === createChat.toString()) {
       const { name, id } = action.payload;
-      generateRobotMessageInNewChat(store, id)
+      store.dispatch(sendMessageToBot(ROBOT, id, 'Привет'));
+      // generateRobotMessageInNewChat(store, id)
    }
 }
 
