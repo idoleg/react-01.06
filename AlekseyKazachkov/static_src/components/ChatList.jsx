@@ -8,7 +8,7 @@ import AddIcon from 'material-ui/svg-icons/content/add';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import PropTypes from "prop-types";
 import { addChat } from '../actions/chatActions';
-
+import '../styles/style.css';
 
 class ChatList extends React.Component {
    static propTypes = {
@@ -47,7 +47,8 @@ class ChatList extends React.Component {
        const { chats, chatsWithNewMessages } = this.props;
        const chatElements = Object.keys(chats).map(chatId => (
            <ListItem
-                key={chatId}
+               key={ chatId }
+               // className={ chatsWithNewMessages.indexOf(Number(chatId)) >= 0 ? 'highlighted' : '' }
                style={ chatsWithNewMessages.indexOf(Number(chatId)) >= 0 ? { backgroundColor: 'red' } : {}}
                primaryText={ chats[chatId].title }
                leftIcon={ <ContentSend /> }

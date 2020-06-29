@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MessageField from './MessageField';
 import ChatList from './ChatList';
 import Header from './Header';
+import InstallPopup from './InstallPopup';
 import '../styles/layout.css';
 
 export default class Layout extends React.Component {
@@ -17,6 +18,7 @@ export default class Layout extends React.Component {
     render() {
         return (
             <div className="layout">
+                <InstallPopup />
                 <Header chatId={ this.props.chatId } />
                 <div className="layout-canvas">
                     <div className="layout-left-side">
