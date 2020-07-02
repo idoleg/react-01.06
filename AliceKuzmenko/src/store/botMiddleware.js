@@ -3,7 +3,7 @@ import {sendMessage, addChat} from './chatActions'
 import {ROBOT_NAME} from '../containers/ChatContainer/ChatContainer'
 const timeoutIds = {};
 export default store => next => action=>{
-            console.log(store, action, next)
+            //console.log(store, action, next)
             next(action)
             if(action.type === sendMessage.toString()) {
                 const {name, id} = action.payload;
@@ -11,7 +11,7 @@ export default store => next => action=>{
                 if(name !== ROBOT_NAME){
                    clearTimeout(timeoutIds[id]);
                    timeoutIds[id] = setTimeout(genRobotAnswer, 3000, store, id, name);
-                   console.log("robot!")
+                   //console.log("robot!")
                 }
             } else if(action.type === addChat.toString()) {
                 const {id} = action.payload;

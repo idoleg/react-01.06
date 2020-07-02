@@ -6,7 +6,6 @@ import './ChatList.css'
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { push } from 'connected-react-router';
 //import './NewChatForm.css'
 
 
@@ -50,16 +49,16 @@ export const AddChatForm = ({onNewChat, chats}) => {
 
 
 //export function ChatList(chats){
-export const ChatList = ({ chats, addChat }) => {
+export const ChatList = ({ chats, addChat,push }) => {
     
    //chats = Object.values(chats)
    const chatsArray=[]
    for (let key in chats){chatsArray.push(chats[key])};
-   chatsArray.map(item => console.log (item))
+   //chatsArray.map(item => console.log (item))
     return (
         <><ul className="chats">
-            {chatsArray.map(({ id, name }) => (<li key={id}><Link to={"/chats/" + id}>{name}</Link></li>))}
-            {/* {chatsArray.map(({ id, name }) => (<li key={id} onClick={()=>push(`/chats/${id}`)}>{name}</li>))} */}
+            {/* {chatsArray.map(({ id, name }) => (<li key={id}><Link to={"/chats/" + id}>{name}</Link></li>))} */}
+            {chatsArray.map(({ id, name }) => (<li key={id} onClick={()=>push(`/chats/${id}`)}>{name}</li>))}
             
             
         
