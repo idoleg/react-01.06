@@ -29,7 +29,11 @@ module.exports={
     },
     resolve:{
         extensions: ['.jsx','.js']
-    }
+    },
+    devServer: {
+        historyApiFallback: true,
+    },
+    devtool: 'cheap-inline-module-source-map',
 
     
 }

@@ -1,0 +1,6 @@
+.no-chat , .no-msgs{
+    display: block;
+    text-align: center;
+    font-size: 36px;
+    color:lightgray
+}

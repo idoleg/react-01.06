@@ -1,0 +1,17 @@
+header {
+    text-align: center;
+    
+}
+h1 {
+    color: gray;
+}
+header a{
+    text-decoration: none;
+    color:gray;
+}
+header a:hover{
+    font-style: italic;
+}
+header a:active{
+    font-weight: bold;
+}
