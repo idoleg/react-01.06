@@ -23,15 +23,17 @@ export const ChatForm = ({onSendMessage}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (content.trim() !== '') {
-            onSendMessage({name, content});
-            setContentState('');
-        }
+        onSendMessage({name, content});
+        setContentState('');
     };
 
-    const handleKeyUp = (event) => {
-        if (event.keyCode === 13) {
-            if (content.trim() !== '') {
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+
+            console.log({name, content});
+
+            if (event.keyCode === 13) {
                 onSendMessage({name, content});
                 setContentState('');
             }
@@ -44,7 +46,6 @@ export const ChatForm = ({onSendMessage}) => {
                 className={"input-name"}
                 label="Name"
                 variant="outlined"
-                placeholder="Name"
                 value={name}
                 onChange={setName}
             />
@@ -54,17 +55,16 @@ export const ChatForm = ({onSendMessage}) => {
                 label="Content"
                 multiline
                 variant="outlined"
-                placeholder="Type text of message"
                 value={content}
                 onChange={setContent}
-                onKeyUp={handleKeyUp}
+                onKeyDown={handleKeyDown}
             />
 
             <IconButton
                 aria-label="delete"
                 onClick={handleSubmit}
             >
-                <SendRoundedIcon />
+                <SendRoundedIcon/>
             </IconButton>
         </form>
     )

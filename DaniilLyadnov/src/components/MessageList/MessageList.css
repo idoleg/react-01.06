@@ -3,8 +3,17 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 7px;
+	padding:15px 20px;
 	box-sizing: border-box;
 	flex-grow: 2;
 	overflow-y: auto;
+}
+
+h2.message-error {
+	padding: 20px;
+	font: 700 30px Roboto;
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	margin: auto;
 }

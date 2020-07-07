@@ -3,12 +3,20 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {MessageList} from "../MessageList/MessageList";
 import {ChatForm} from "../ChatForm/ChatForm";
+import {ChatList} from "../ChatList/ChatList";
+import {Header} from "../Header/Header";
 
-export const Chat = ({messages, onSendMessage}) => (
+export const Chat = ({chats, messages, onSendMessage}) => (
     <main>
-        {!messages && <strong>Chats not found!</strong>}
-        {messages && <MessageList messages={messages}/>}
-        {messages && <ChatForm onSendMessage={onSendMessage}/>}
+        <Header/>
+
+        <ChatList chats={chats}/>
+
+        <section className="chat-app">
+            {!messages && <h2 className={'chats-error'}>Chats not found!</h2>}
+            {messages && <MessageList messages={messages}/>}
+            {messages && <ChatForm onSendMessage={onSendMessage}/>}
+        </section>
     </main>
 );
 

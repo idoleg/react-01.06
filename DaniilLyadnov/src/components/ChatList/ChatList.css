@@ -1,0 +1,35 @@
+.chat-list {
+	height: calc(100vh - 50px);
+	width: 270px;
+	background: #17212b;
+	border-right: 1px solid #0a121b;
+	box-sizing: border-box;
+}
+
+.chat-list ul {
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-list ul li a {
+	display: flex;
+	height: 75px;
+	padding: 10px;
+	box-sizing: border-box;
+	transition: .2s linear;
+	background: transparent;
+	align-items: center;
+	color: #fff;
+	font: 400 25px Roboto;
+}
+
+.chat-list ul li a:hover {
+	background: #202b36;
+}
+
+.chat-avatar {
+	display: block;
+	width: 55px;
+	height: 55px;
+	margin: 0 15px 0 0;
+}

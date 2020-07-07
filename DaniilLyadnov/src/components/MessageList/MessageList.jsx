@@ -5,7 +5,7 @@ import {Message} from "../Message/Message";
 
 export const MessageList = ({messages}) => (
     <ul className="message-list">
-        {messages.length === 0 && <strong>Here not a message! <br/> Type a first message.</strong>}
+        {messages.length === 0 && <h2 className={'message-error'}>Here not a message! <br/> Type a first message.</h2>}
         {messages.map((item, index) => <Message {...item} key={index}/>)}
     </ul>
 );
