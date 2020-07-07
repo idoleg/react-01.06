@@ -1,0 +1,35 @@
+.parent {
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.list {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.list-item {
+    color: #f50056;
+    list-style-type: square;
+    display: inline-block;
+}
+
+.link {
+    text-decoration: none;
+    color: #FFA07A;
+    display: block;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.link:visited {
+    color: #FFA07A;
+}
+
+.add-form {
+    display: flex;
+}
+
+.add-btn {
+    margin-left: 20px;
+}

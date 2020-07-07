@@ -1,36 +1,81 @@
 import React, { Component } from 'react';
-import { Chat } from '../components/Chat/Chat'
+import { Chat } from '../components/Chat/Chat';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { sendMessage } from '../store/chatActions'
+
 
 export const ROBOT_NAME = 'Robot';
 
-export class ChatContainer extends Component {
-    state = {
-        messages: [
-            { name: 'Alex', content: 'Hello!' },
-            { name: 'Ivan', content: 'Hi!' },
-            { name: 'Alex', content: 'How are you?' },
-            { name: 'Ivan', content: 'Fine, and wbu?' },
-        ]
-    }
-
-    componentDidUpdate() {
-        const lastMessage = this.state.messages[this.state.messages.length - 1];
-
-        if (lastMessage.name !== ROBOT_NAME) {
-            setTimeout(() => this.handleSendMessage({
-                name: ROBOT_NAME,
-                content: `Hello ${lastMessage.name}, I'm Robot`,
-            }), 1000);
+/* class ChatContainer extends Component {
+    componentDidUpdate(prevProps, prevState) 
+    {
+        
+        handleRobotAnswer = () => {
+            const { id } = this.props.match.params;
+    
+            if (id && this.state.chats[id]) {
+                const currentMessages = this.state.chats[id].messages;
+                const lastMessage = currentMessages[currentMessages.length - 1];
+    
+                // if(prevState.chats[id].messages.length === currentMessages.length) return;
+    
+                if (lastMessage && lastMessage.name !== ROBOT_NAME) {
+                    clearTimeout(this.timeoutId);
+                    this.timeoutId = setTimeout(() => this.handleSendMessage(id)({
+                        name: ROBOT_NAME,
+                        content: `Hello ${lastMessage.name}, I'm Robot`,
+                    }), 1000);
+                }
+    
+            }
+    
+    
         }
-    }
 
-    handleSendMessage = (message) => {
+    handleSendMessage = (id) => (messages) => {
         this.setState(state => ({
-            messages: [...state.messages, message],
-        }));
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    ...state.chats[id],
+                    messages: [...state.chats[id].messages, messages],
+                }
+            }
+        }), this.handleRobotAnswer);
     }
 
     render() {
-        return <Chat messages={ this.state.messages } onSendMessage={ this.handleSendMessage } />
+        const { id } = this.props.match.params;
+        const messages = id && this.state.chats[id] ? this.state.chats[id].messages : null;
+        return <Chat messages={ messages } onSendMessage={ this.handleSendMessage(id) } />
+    }
+} */
+
+const mapStateToProps = (store, props) => {
+    const { id } = props.match.params;
+    const chat = id && store.chats && store.chats[id] ? store.chats[id] : undefined;
+
+    return {
+        messages: chat ? chat.messages : undefined,
     }
 }
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({ sendMessage }, dispatch);
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const { id } = ownProps.match.params;
+
+    const onSendMessage = (message) => {
+        dispatchProps.sendMessage(id, message.name, message.content);
+    }
+
+    return {
+        ...stateProps,
+        onSendMessage,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);
