@@ -1,0 +1,16 @@
+.message {
+    background-color: lightblue;
+    list-style: none;
+    padding: 6px;
+    border-radius: 5px;
+    width: 40%;
+    align-self: flex-end;
+}
+
+.message:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.message-robot {
+    align-self: flex-start;
+}
