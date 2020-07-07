@@ -6,6 +6,7 @@ import './message-list.css';
 
 export const MessageList = ({ messages }) => (
   <ul className="message-list">
+    { messages.length == 0 && <strong>Здесь ещё нет сообщений.<br/>Введите первое.</strong> }
     { messages.map(item => <Message key={item.id} { ...item} />) }
   </ul>
 );

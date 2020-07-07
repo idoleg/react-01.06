@@ -1,12 +1,25 @@
 import React from 'react';
-import { Header } from '../components/Header/Header';
-import { ChatArea } from '../components/ChatArea/ChatArea';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-export const App = () => {
-  return (
-    <>
-      <Header />
-      <ChatArea />
-    </>
-  );
-};
+import { Header } from '../components/Header/Header';
+
+import { ChatList } from '../components/ChatList/ChatList';
+import { ChatContainer } from './ChatContainer';
+import { Profile } from '../components/Profile/Profile';
+
+export const App = () => (
+  <BrowserRouter>
+    <Header />
+    <Route path="/profile" exact component={ Profile } />
+    <Switch>
+      <Route path="/" exact>Главная страница</Route>
+      <Route path="/chats">
+        <ChatList />
+        <Switch>
+          {/* <Route path="/chats" exact component={ ChatContainer } /> */}
+          <Route path="/chats/:id" exact component={ ChatContainer } />
+        </Switch>
+      </Route>
+    </Switch>
+  </BrowserRouter>
+);

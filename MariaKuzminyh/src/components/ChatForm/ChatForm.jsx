@@ -14,12 +14,12 @@ const useInput = (initialState) => {
   return [state, setInput, setState];
 };
 
-export const ChatForm = ({ messages, onSendMessage }) => {
+export const ChatForm = ({ onSendMessage }) => {
   const [name, setName] = useInput('Мария');
   const [content, setContent, setContentState] = useInput('');
 
   const sendingActions = () => {
-    onSendMessage({ id: messages.length, name, content });
+    onSendMessage({ name, content });
     setContentState('');
   }
 
