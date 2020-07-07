@@ -5,4 +5,4 @@ import './layout/style/main.css';
 
 const mountPoint = document.getElementById('root');
 
-ReactDom.render(<App />, mountPoint);
+ReactDom.render(<App />	, mountPoint);

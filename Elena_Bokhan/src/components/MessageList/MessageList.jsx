@@ -8,7 +8,11 @@ class MessageList extends Component{
 	}
 	render(){
 		return <div className = "messages-list-field">
-					{this.props.messages.map(elem => <Message name = {elem.name} text = {elem.text}/>)}
+					{this.props.messages.map((elem, index) => <Message 	name = {elem.name} 
+																		text = {elem.text}
+																		index = {index}
+																		removeMsg = {this.props.removeMsg}
+																		changeClick = {this.props.changeClick}/>)}
 				</div>	
 	}		
 }

@@ -1,39 +1,55 @@
 import React, { Component } from 'react';
 import Chat from '../components/Chat/Chat';
+import { sendMessageActionCreator, removeMessageActionCreator, changeClickActionCreator, editMessageActionCreator } from '../store/chatReducer';
+import { connect } from 'react-redux';
 
-export class ChatContainer extends Component{
-	state = {	
-		msgArr: [{name: "Mask", text: "Hello"},
-				{name: "Bot", text: "Hi"},
-				{name: "Mask", text: "How are U?"},
-				{name: "Bot", text: "Fine, thanks"},
-				],
-		chatArr: ["Mask", "Durov", "Gates"],		
+
+let mapStateToProps = ({chatReducer}, ownProps) =>{	
+	const chatId =  ownProps.match.params.id;	
+	return {
+		messages: chatReducer.chats[chatId].msgArr,
+		author: chatReducer.chats[chatId].author,
+		chatId: chatReducer.chatId,
+		changeMsgText: chatReducer.changeMsg.text,	
 	}
-	componentDidUpdate(){
-		if(this.state.msgArr[this.state.msgArr.length-1].name !="Bot"){
-
-		setTimeout(()=>{
-			if(this.state.msgArr[this.state.msgArr.length-1].name !="Bot"){
-			this.setState({msgArr: [...this.state.msgArr, {name: "Bot", text: "Can I help u?"}]})
-			}		
-		},3000)
+	
+}
+let mapDispatchToProps = (dispatch) =>{
+	return {
+		onSendMsg: (message,id) => dispatch(sendMessageActionCreator(message,id)),
+		removeMessage: (id,index) => dispatch(removeMessageActionCreator(id,index)),
+		changeClick: (id,index) =>dispatch(changeClickActionCreator(id,index)),
+		editMsg: (message,id) =>dispatch(editMessageActionCreator(message,id)),				
 		}
+}
+	
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const { id } = ownProps.match.params;
+
+    const onSendMsg = (message) => {
+		dispatchProps.onSendMsg( message,id);		
 	}
-	handleSendMessage = (message) =>{
-		this.setState (state => ({
-			msgArr: [...state.msgArr, message]
-		}))
+	const removeMsg = (index) => {		
+		dispatchProps.removeMessage(Number(id),Number(index))
 	}
-	handleAddChat = (person) =>{		
-		this.setState (state => {state.chatArr.push(person.name)})
+	const changeClick = (index) => {		
+		dispatchProps.changeClick(Number(id),Number(index))
 	}
-	render(){
-	return <Chat messages = {this.state.msgArr}
-				 currentChat= {this.state.currentChat} 
-				 chats = {this.state.chatArr} 
-				 onSendMessage = {this.handleSendMessage}
-				 addChat = {this.handleAddChat}/>
+	const editMsg = (message) => {		
+		dispatchProps.editMsg(message,Number(id))
 	}
-}	
+	
+    return {
+		...stateProps,
+		...dispatchProps,
+		onSendMsg,
+		removeMsg,
+		changeClick,
+		editMsg,
+    }
+}
+ const ChatContainer = connect(mapStateToProps,mapDispatchToProps, mergeProps)(Chat)
+
+ export default ChatContainer
+
 

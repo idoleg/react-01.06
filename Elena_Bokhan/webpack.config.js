@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-	entry: path.resolve(__dirname, "src","index.js"),
+	entry: ["@babel/polyfill", path.resolve(__dirname, "src","index.js")],
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "index.js"
@@ -23,6 +23,20 @@ module.exports = {
 				test: /\.css$/i,
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'url-loader',
+				options: {
+				  limit: 25000,
+				},
+			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				loader: 'file-loader',
+				options: {
+				  name: '[path][name].[hash].[ext]',
+				},
+			},
 		]
 	},
 	plugins: [
@@ -33,6 +47,20 @@ module.exports = {
 			chunkFilename: '[id].css',
 		}),
 	],
-	resolve: {extensions: ['.jsx','.js']}
-	
+	resolve: {
+        extensions: [".jsx", ".js"],
+	},	
+	devtool : 'cheap-inline-module-source-map',
+	devServer : {	
+		historyApiFallback : true,
+		writeToDisk: true,
+		proxy:{
+			'/bot/' : {
+				target: 'https://aiproject.ru/api/',
+				pathRewrite: { '/bot/': '' },
+				secure: false,
+				changeOrigin: true
+			}
+		} 
+		} ,
 }
