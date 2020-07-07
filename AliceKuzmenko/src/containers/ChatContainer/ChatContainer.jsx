@@ -11,6 +11,8 @@ import {bindActionCreators} from 'redux'
 
 import {initChats, sendMessage} from '../../store/chatActions'
 
+
+
 export const ROBOT_NAME = "Robot";
 
 //export 
@@ -124,7 +126,8 @@ const mapStateToProps = (store, props)=>{
     const { id } = props.match.params;
     const chat = id && store.chats && store.chats[id] ? store.chats[id] : null;
     //console.log(store);
-    return { messages:  chat ? chat.messages : null}
+    return {isLoading:store.chats.isLoading, 
+        messages:  chat ? chat.messages : null}
 }
 const mapDispatchToProps = (dispatch) => bindActionCreators({sendMessage},dispatch)
 //,{addChat}

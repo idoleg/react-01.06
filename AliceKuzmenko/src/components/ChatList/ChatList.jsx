@@ -49,8 +49,9 @@ export const AddChatForm = ({onNewChat, chats}) => {
 
 
 //export function ChatList(chats){
-export const ChatList = ({ chats, addChat,push }) => {
-    
+export const ChatList = ({isLoading, chats, addChat,push }) => {
+    if (isLoading){console.log(isLoading);
+        return <strong className="no-msgs">Loading...</strong>}
    //chats = Object.values(chats)
    const chatsArray=[]
    for (let key in chats){chatsArray.push(chats[key])};

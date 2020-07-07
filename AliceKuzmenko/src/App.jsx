@@ -12,18 +12,19 @@ import { Provider } from 'react-redux'
 import { initStore, history } from './store'
 
 import {initChats, sendMessage} from './store/chatActions'
-
+import {fetchChats} from './store/chatOperations'
 import { ConnectedRouter } from 'connected-react-router' 
 
 const store = initStore();
 
-store.dispatch(initChats());
+//store.dispatch(initChats());
 //store.dispatch(sendMessage(1,'Lorem',"New"))
 //store.dispatch(sendMessage(1,'Lorem',"New"))
 // store.dispatch({type:'COUNT',payload:{number:1}})
 // store.dispatch({type:'COUNT',payload:{number:2}})
 // store.dispatch({type:'COUNT',payload:{number:10}})
 // store.dispatch({type:'COUNT',payload:{number:-12}})
+store.dispatch(fetchChats())
 export const App = () => (
     <Provider store={store}>
         <ConnectedRouter history={history}>

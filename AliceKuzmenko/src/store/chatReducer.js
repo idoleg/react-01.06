@@ -9,37 +9,41 @@
 // }
 
 import {handleActions} from "redux-actions"
-import {initChats, sendMessage, addChat} from './chatActions'
-//addChat
+import {loadingChats, initChats, sendMessage, addChat} from './chatActions'
+
 
 const initialState={};
 export default handleActions({
+    [loadingChats]:(state,action)=>{
+        
+        return {isLoading : true}
+    },
     [initChats]:(state,action)=>{
         //console.log("initChats",state,action)
-        return {
-            1: {
-                name: 'Lorem',
-                messages: [
-                    { name: 'Me', content: 'Hello!', id: 1 },
-                    { name: 'Lorem', content: 'Hi!', id: 2 },
-                    { name: 'Me', content: 'How are you?', id: 3 },
-                    { name: 'Lorem', content: 'Fine', id: 4 },
-                ]
-            },
-            2: {
-                name: 'Ipsum',
-                messages: [
-                    { name: 'Me', content: 'Hello!', id: 1 },
-                    { name: 'Ipsum', content: 'Hi!', id: 2 },
-                ]
-            },
-            3: {
-                name: 'Dolor-Vasya',
-                messages: []
-            },
-            //4:{name:'Sit'},
-            //5:{name:'Amet'},    
-        };
+        return {...action.payload.data, isLoading:false} //{
+        //     1: {
+        //         name: 'Lorem',
+        //         messages: [
+        //             { name: 'Me', content: 'Hello!', id: 1 },
+        //             { name: 'Lorem', content: 'Hi!', id: 2 },
+        //             { name: 'Me', content: 'How are you?', id: 3 },
+        //             { name: 'Lorem', content: 'Fine', id: 4 },
+        //         ]
+        //     },
+        //     2: {
+        //         name: 'Ipsum',
+        //         messages: [
+        //             { name: 'Me', content: 'Hello!', id: 1 },
+        //             { name: 'Ipsum', content: 'Hi!', id: 2 },
+        //         ]
+        //     },
+        //     3: {
+        //         name: 'Dolor-Vasya',
+        //         messages: []
+        //     },
+        //     //4:{name:'Sit'},
+        //     //5:{name:'Amet'},    
+        // };
     },
     [sendMessage]:(state,action)=>{
         //console.log(state,action)
