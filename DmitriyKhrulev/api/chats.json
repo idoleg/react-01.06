@@ -1,0 +1,32 @@
+{
+   "134567": {
+      "name": "Chat 1",
+      "messages": [
+         {
+            "name": "Ivan",
+            "content": "Hello"
+         },
+         {
+            "name": "Gref",
+            "content": "Hi"
+         }
+      ]
+   },
+   "232434": {
+      "name": "Chat 2",
+      "messages": [
+         {
+            "name": "Pupu",
+            "content": "Good day"
+         },
+         {
+            "name": "Medved",
+            "content": "Ola"
+         }
+      ]
+   },
+   "356757": {
+      "name": "Chat 3",
+      "messages": []
+   }
+}

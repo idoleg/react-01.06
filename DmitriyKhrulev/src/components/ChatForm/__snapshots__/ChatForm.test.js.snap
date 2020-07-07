@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatForm render content 1`] = `
+<form
+  className="send-form"
+  onSubmit={[Function]}
+>
+  <WithStyles(ForwardRef(TextField))
+    className="name-form"
+    id="outlined-basic"
+    label="Name"
+    onChange={[Function]}
+    placeholder="Имя"
+    value="Dima"
+    variant="outlined"
+  />
+  <WithStyles(ForwardRef(TextField))
+    className="content-form"
+    id="outlined-multiline-static"
+    label="Content"
+    multiline={true}
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="Введите собщение"
+    rowsMax={4}
+    value=""
+    variant="outlined"
+  />
+  <WithStyles(ForwardRef(Button))
+    color="primary"
+    onClick={[Function]}
+    variant="contained"
+  >
+     Отправить 
+  </WithStyles(ForwardRef(Button))>
+</form>
+`;

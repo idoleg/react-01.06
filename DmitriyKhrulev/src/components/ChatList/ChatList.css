@@ -1,0 +1,16 @@
+.chat-list {
+  padding: 20px; 
+}
+
+.chat-list li {
+   text-decoration: none;
+   float: right;
+   padding: 10px
+
+}
+.chat-list li a {
+   text-decoration: none;
+}
+.foo{
+   background-image: url(/DmitriyKhrulev/src/components/Profile/images/avatar.jpg);
+}

@@ -1,17 +1,24 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {MessageList} from '../MessageList/MessageList';
-import { Message } from '../Message/Message';
 import { ChatForm } from '../ChatForm/ChatForm'
 
-export const Chat = ({messages, onSendMessage}) =>(
-   <main className='chat'>
-      <MessageList messages={messages}/>
-      <ChatForm onSendMessage={onSendMessage} />
+export const Chat = ({isLoading, error, messages, onSendMessage}) =>{
+
+   return(
+      <main className='chat'>
+      {error && <strong>Error {error} occures</strong> }
+      {isLoading && <strong>Loading</strong>}
+      {!messages && !error && !isLoading && <strong>Broken link</strong>}
+      {messages && <MessageList messages={messages}/>}
+      {messages && <ChatForm onSendMessage={onSendMessage} />}
    </main>
-);
+   )
+  
+};
 
 Chat.propTypes = {
-   messages: MessageList.propTypes.messages,
+   // messages: MessageList.propTypes.messages,
    onSendMessage: PropTypes.func.isRequired,
 }
+

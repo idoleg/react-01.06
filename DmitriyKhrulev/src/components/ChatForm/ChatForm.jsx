@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import useInput from '../../hooks/useInput'
 import './ChatForm.css'
 
 
-function useInput(initialState) {
-   const [state, setState] = useState(initialState);
 
-   const setInput = e => {
-      setState(e.target.value);
-   }
-
-   return [state, setInput, setState];
-}
 
 export const ChatForm = ({ onSendMessage }) => {
-   const [name, setName, setNameState] = useInput('');
+   const [name, setName, setNameState] = useInput('Dima');
    const [content, setContent, setContentState] = useInput('')
 
    const handleSubmit = (e) => {
       e.preventDefault();
       onSendMessage({ name, content });
       setContentState('');
-      setNameState('');
+      // setNameState('');
    }
 
    const handleKeyUp = (e) => {
@@ -31,7 +24,7 @@ export const ChatForm = ({ onSendMessage }) => {
          e.preventDefault();
          onSendMessage({ name, content });
          setContentState('');
-         setNameState('');
+         // setNameState('');
       }
 
 
@@ -48,11 +41,11 @@ export const ChatForm = ({ onSendMessage }) => {
             onChange={setName}
          />
 
-         <TextField 
+         <TextField
             onKeyUp={e => handleKeyUp(e, content)}
             className='content-form'
             id="outlined-multiline-static"
-            label="Введите собщение"
+            label="Content"
             placeholder="Введите собщение"
             multiline
             rowsMax={4}
@@ -65,6 +58,6 @@ export const ChatForm = ({ onSendMessage }) => {
    );
 }
 
-ChatForm.propTypes = {
-   onSendMessage: PropTypes.func.isRequired,
-}
+// ChatForm.propTypes = {
+//    onSendMessage: PropTypes.func.isRequired,
+// }

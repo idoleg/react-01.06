@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './Message.css'
-import { ROBOT } from '../../containers/ChatContainer'
+import { ROBOT } from '../../store/botMiddleware'
 
 export const Message = ({ name, content }) => {
    

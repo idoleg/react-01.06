@@ -1,10 +1,39 @@
-import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
-import {ChatName} from '../ChatName/ChatName'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './ChatList.css'
+import useInput  from '../../hooks/useInput'
 
 
-export const ChatList = ({dialogs}) => {
-      return <ul className='chat-list'>
-            {dialogs.map((item, index) =>  <ChatName {... item} key={index} />)}
-         </ul>  
+export const ChatList = ({isLoading, chats, createChat}) => {
+      const [name, setName, setNameState] = useInput('');
+
+      if (isLoading) {
+            return <strong>Loading</strong>
+      }
+
+      const handleClick = () => {
+            setNameState('');
+            createChat(new Date().valueOf(), name)
+      }
+      const handleKeyUp = (e) => {
+            if (e.keyCode === 13) {
+               e.preventDefault();
+               setNameState('');
+               createChat(new Date().valueOf(), name);
+               
+            }
+      }
+      return (
+            <ul className='chat-list'>
+                  {chats.map(({id, name}) => (<li key={id}><Link to={'/chats/' + id}>{name}</Link></li>))}
+            <li>
+                  <input 
+                  placeholder="Type name of Chat" 
+                  onChange={setName}
+                  onKeyUp={e => handleKeyUp(e, name)}
+                  value={name}/>
+                  <button onClick={handleClick}>"Add new chat"</button>      
+            </li>      
+            </ul>
+      ) 
 }
