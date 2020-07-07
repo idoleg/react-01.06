@@ -19,7 +19,7 @@ export const ChatForm = ({ onSendMessage }) => {
     const [name, setName] = useInput("Oleg");
     const [content, setContent, setContentState] = useInput("");
 
-    const handleKeyUp = (event, message) => {
+    const handleKeyUp = (event) => {
         if (event.keyCode === 13) { // Enter
             onSendMessage({ name, content });
             setContentState("");

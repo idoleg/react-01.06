@@ -1,17 +1,13 @@
 import React from 'react'
 
 import './Header.css'
-import { Component } from 'react'
+import { Link } from '@material-ui/core'
 
-class Header extends Component {
-    render() {
-        return (
-            <div className="Header">
+export const Header = () => (
+    
+            <div className="header">
                 {/* <img src="https://material-ui.com/static/logo_raw.svg" alt="logo"/> */}
-                <span>Profile</span>
+                <Link to="/profile">Profile</Link>
             </div>
-        )
-    }
-}
 
-export default Header
+)
