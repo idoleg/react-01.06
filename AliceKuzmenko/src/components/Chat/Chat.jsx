@@ -5,13 +5,17 @@ import { NoChatForm } from '../NoChatForm/NoChatForm';
 import PropTypes from 'prop-types';
 import './Chat.css'
 
-export const Chat = ({ isLoading, messages, onSendMessage, onNewChat }) => {
+export const Chat = ({ isLoading, error, messages, onSendMessage, onNewChat }) => {
     if (isLoading){
         return (<main>
 
             <strong className="no-msgs">Loading...</strong>
         </main>)
     }
+    if (error){return (<main>
+
+    <strong className="no-msgs">{error}</strong>
+    </main>)}
     return (<main>
 
         {!messages && <NoChatForm/> }
@@ -26,6 +30,7 @@ Chat.propTypes = {
     //onNewChat: PropTypes.func.isRequired,
     onSendMessage: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired, 
+    error: PropTypes.string 
 }
 
 

@@ -9,18 +9,31 @@
 // }
 
 import {handleActions} from "redux-actions"
-import {loadingChats, initChats, sendMessage, addChat} from './chatActions'
+import {loadingChats, failedLoadedChats, initChats, sendMessage, addChat} from './chatActions'
 
 
-const initialState={};
+const initialState={
+    items:{},
+    isLoading : false, 
+    error:null
+
+};
 export default handleActions({
     [loadingChats]:(state,action)=>{
         
-        return {isLoading : true}
+        return {items:{},isLoading : true, error:null}
+    },
+    [failedLoadedChats]:(state,action)=>{
+        
+        return {
+            items:{},
+            isLoading : false,
+            error:action.payload.message
+        }
     },
     [initChats]:(state,action)=>{
         //console.log("initChats",state,action)
-        return {...action.payload.data, isLoading:false} //{
+        return {items:action.payload.data, isLoading:false, error:null} //{
         //     1: {
         //         name: 'Lorem',
         //         messages: [
@@ -48,15 +61,16 @@ export default handleActions({
     [sendMessage]:(state,action)=>{
         //console.log(state,action)
         const { id, name, content } = action.payload;
-        let message={name:name, content:content, id:(state[id].messages.length+1)}
+        let message={name:name, content:content, id:(state.items[id].messages.length+1)}
         return {
             ...state,
+            items:{ ...state.items,
             [id]: {
-                ...state[id],
+                ...state.items[id],
                 messages: [
-                    ...state[id].messages,message
+                    ...state.items[id].messages,message
                 ]
-            }
+            }}
         };
     },
      [addChat]:(state,action)=>{
@@ -64,7 +78,10 @@ export default handleActions({
         const { id, name } = action.payload;
         //let chat={name:name, id:(state[id].messages.length+1)}
         return {
-            ...state, [id]:{name, messages:[]}
+            ...state,
+            items:{ ...state.items,
+                 [id]:{name, messages:[]}
+            }
             
         };
     }

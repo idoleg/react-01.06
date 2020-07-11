@@ -124,9 +124,10 @@ export const ROBOT_NAME = "Robot";
 //onNewChatDo={this.handleNewChat(id)}
 const mapStateToProps = (store, props)=>{
     const { id } = props.match.params;
-    const chat = id && store.chats && store.chats[id] ? store.chats[id] : null;
+    const chat = id && store.chats.items && store.chats.items[id] ? store.chats.items[id] : null;
     //console.log(store);
     return {isLoading:store.chats.isLoading, 
+        error:store.chats.error,
         messages:  chat ? chat.messages : null}
 }
 const mapDispatchToProps = (dispatch) => bindActionCreators({sendMessage},dispatch)

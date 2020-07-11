@@ -32,6 +32,13 @@ module.exports={
     },
     devServer: {
         historyApiFallback: true,
+        proxy:{
+            '/botAPI/': {
+            target: 'https://aiproject.ru/api/',
+            pathRewrite: { '/botAPI/': '' },
+            secure: false,
+            changeOrigin: true,}
+        }
     },
     devtool: 'cheap-inline-module-source-map',
 

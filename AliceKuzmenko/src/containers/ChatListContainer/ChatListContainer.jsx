@@ -7,7 +7,7 @@ import { addChat } from '../../store/chatActions';
 import { push } from 'connected-react-router';
 
 const mapStateToProps = (state) => {
-    const chats = Object.entries(state.chats).map(([id, { name }]) => ({ id, name })).filter(item=>item.name)
+    const chats = Object.entries(state.chats.items).map(([id, { name }]) => ({ id, name }))
     //console.log (chats)
     return {
         isLoading: state.chats.isLoading,
