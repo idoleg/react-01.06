@@ -3,7 +3,7 @@ import {sendMessageToBotAPI} from './chatOperations'
 
 import {ROBOT_NAME} from '../containers/ChatContainer/ChatContainer'
 const timeoutIds = {};
-const ROBOT_API_NAME = "Robot API"
+export const ROBOT_API_NAME = "Robot API"
 export default store => next => action=>{
             //console.log(store, action, next)
             next(action)
