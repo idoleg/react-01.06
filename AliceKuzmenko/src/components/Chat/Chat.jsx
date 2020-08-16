@@ -1,25 +1,36 @@
 import React from 'react';
 import { MessageList } from '../MessageList/MessageList';
 import { ChatForm } from '../ChatForm/ChatForm';
-import { NewChatForm } from '../NewChatForm/NewChatForm';
+import { NoChatForm } from '../NoChatForm/NoChatForm';
 import PropTypes from 'prop-types';
 import './Chat.css'
 
-export const Chat = ({ messages, onSendMessage, onNewChat }) => (
-    <>
+export const Chat = ({ isLoading, error, messages, onSendMessage, onNewChat }) => {
+    if (isLoading){
+        return (<main>
 
-        {!messages && <NewChatForm onNewChat={onNewChat}/> }
+            <strong className="no-msgs">Loading...</strong>
+        </main>)
+    }
+    if (error){return (<main>
+
+    <strong className="no-msgs">{error}</strong>
+    </main>)}
+    return (<main>
+
+        {!messages && <NoChatForm/> }
         {messages && messages.length === 0 && <strong className="no-msgs">Say 'HI!'</strong>}
         {messages && <MessageList messages={messages} />}
         {messages && <ChatForm onSendMessage={onSendMessage} />}
-    </>
-);
+    </main>)
+};
 
 Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Object)),
-    onNewChat: PropTypes.func.isRequired,
+    //onNewChat: PropTypes.func.isRequired,
     onSendMessage: PropTypes.func.isRequired,
-    
+    isLoading: PropTypes.bool.isRequired, 
+    error: PropTypes.string 
 }
 
 

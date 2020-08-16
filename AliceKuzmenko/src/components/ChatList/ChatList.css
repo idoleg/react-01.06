@@ -2,30 +2,45 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    padding: 0;
-    padding-bottom: 40px;
+    flex-wrap: wrap;
+    padding: 40px 0;
     border-bottom: 2px solid lightgray;
 }
 .chats li{
     display: block;
-    padding:10px;
+    
     border:3px solid lightgray;
     border-radius: 10px;
     margin-right: 20px;
+    padding: 10px;
     
 }
 .chats li:last-child{
     margin-right: 0;
 }
-.chats li a{
+/* .chats li a{
     text-decoration: none;
     font-weight: bold;
-    color: gray
-}
+    color: gray;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding:10px;
+} */
 
 .chats li:hover{
     border-color: lightskyblue;
+    cursor: pointer;
 }
 .chats li.active{
     border-color: lightblue;
+}
+.add-chat-form {
+    border: none;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: center;
+
 }

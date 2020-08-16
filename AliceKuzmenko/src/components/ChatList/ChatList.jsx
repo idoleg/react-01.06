@@ -1,61 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-//import InputLabel from '@material-ui/core/InputLabel';
-//import FormControl from '@material-ui/core/FormControl';
-//import Select from '@material-ui/core/Select';
 
 import {Link} from 'react-router-dom';
 import './ChatList.css'
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+//import './NewChatForm.css'
 
-export  function ChatList(){//({chats}) {
-  //const classes = useStyles();
-  let chats=  [
-    {name: 'Lorem'},
-    {name:'Ipsum'},
-    {name: 'Dolor'},
-    {name:'Sit'},
-    {name:'Amet'},    
-]
 
-//   return <FormControl className={classes.formControl}>
-//     <InputLabel htmlFor="name-native-simple">Chats</InputLabel>
-  
-//     <Select
-//     native
-    
-//     inputProps={{
-//       name: 'name',
-//       id: 'name-native-simple',
-//     }}
-//   >
-      
-//     {chats.map((item,index) => <option value={index} key={index}>{item.name}</option>  )}
-    
-//   </Select>
-// </FormControl>
-return <ul className="chats">
-  {chats.map((item,index) =>{
-    let chatLink="/chats/"+(index+1)
-    //if (this.props.match.params.id == (index+1)&&className){let classActive="active"}
-  return <li key={index}> <Link to={chatLink}>{item.name}</Link>  </li>
-  })
-}  
- 
-</ul>
+import useInput from '../../hooks/useInput';
+
+export const AddChatForm = ({onNewChat, chats}) => {
+
+    const [name, setName,setNameState] = useInput("");
+
+
+    const handleSubmit = (event) => {
+        //alert('Отправленное имя: ' + this.state.value);
+       // console.log(onNewChat)
+        onNewChat(chats.length+1, name);
+       // console.log(name)
+        event.preventDefault();
+        setNameState('');
+
+    }
+
+    return (
+        <form className="add-chat-form" onSubmit={handleSubmit}>
+            <TextField
+                label="New chat name"
+                variant="outlined"
+                placeholder="New chat name"
+                value={name}
+                onChange={setName}
+            />
+            <Button 
+                variant="contained" 
+                color="primary" 
+                onClick={handleSubmit}
+                
+            >
+                Create
+            </Button>
+        </form>
+    )
 }
 
 
-ChatList.propTypes = {
-    chats: PropTypes.arrayOf(PropTypes.shape(Object)),//.isRequired,
+//export function ChatList(chats){
+export const ChatList = ({isLoading, chats, addChat,push }) => {
+    if (isLoading){console.log(isLoading);
+        return <strong className="no-msgs">Loading...</strong>}
+   //chats = Object.values(chats)
+   const chatsArray=[]
+   for (let key in chats){chatsArray.push(chats[key])};
+   //chatsArray.map(item => console.log (item))
+    return (
+        <><ul className="chats">
+            {/* {chatsArray.map(({ id, name }) => (<li key={id}><Link to={"/chats/" + id}>{name}</Link></li>))} */}
+            {chatsArray.map(({ id, name }) => (<li key={id} onClick={()=>push(`/chats/${id}`)}>{name}</li>))}
+            
+            
+        
+        </ul>
+              <AddChatForm onNewChat={addChat} chats={chats}/>
+        </>
+    )
+    return null
 }
+

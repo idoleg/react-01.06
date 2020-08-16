@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './NewChatForm.css'
+import './NoChatForm.css'
 
 function useInput(initialState) {
     const [state, setState] = useState(initialState);
@@ -14,7 +14,7 @@ function useInput(initialState) {
     return [state, setInput, setState];
 }
 
-export const NewChatForm = ({onNewChat}) => {
+export const NoChatForm = () => {
     const [name, setName] = useInput("Chat");
 
     const handleChange = (event) => {
@@ -37,9 +37,9 @@ export const NewChatForm = ({onNewChat}) => {
         }
      };
     return (
-        <form>
+        <>
             <strong className="no-chat">Chat does not exist</strong>
-            <TextField
+            {/* <TextField
                 label="Name"
                 variant="outlined"
                 placeholder="Name"
@@ -53,13 +53,13 @@ export const NewChatForm = ({onNewChat}) => {
                 
             >
                 Create
-            </Button>
-        </form>
+            </Button> */}
+        </>
     )
 }
 
-NewChatForm.propTypes = {
-    onNewChat: PropTypes.func.isRequired,
+NoChatForm.propTypes = {
+   // onNewChat: PropTypes.func.isRequired,
 
 }
 
